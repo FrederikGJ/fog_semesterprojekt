@@ -22,8 +22,7 @@ public class ConnectionPool
         this(USER, PASSWORD, URL);
     }
 
-    public ConnectionPool(String USER, String PASSWORD, String URL)
-    {
+    public ConnectionPool(String USER, String PASSWORD, String URL) {
         String deployed = System.getenv("DEPLOYED");
         if (deployed != null)
         {
