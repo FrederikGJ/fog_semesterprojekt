@@ -25,7 +25,7 @@
                     href="login.jsp">Login</a></p>
 
             <p>You are not a user you can become one here: <a
-                    href="signup.jsp.jsp">SignUp</a></p>
+                    href="signup.jsp">SignUp</a></p>
         </c:if>
 
     </jsp:body>
