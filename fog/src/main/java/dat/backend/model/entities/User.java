@@ -30,6 +30,12 @@ public class User {
     }
 
     public String getRole() {
+        if(role.equalsIgnoreCase("0")){
+            return "Normal user";
+        }
+        else if (role.equalsIgnoreCase("1")){
+            return "Admin";
+        }
         return role;
     }
 
