@@ -7,6 +7,7 @@
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
 ConnectionPool.class
+ConnectionPool.java 
 
 # User-specific stuff
 .idea/**/workspace.xml
