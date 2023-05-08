@@ -11,8 +11,8 @@ import java.util.logging.Logger;
 public class ConnectionPool {
     // TODO: Change access credentials for MySql server as needed below:
 
-    private static String USER = "root";
-    private static String PASSWORD = "Frederik1988";
+    private static String USER = "MAOMAOMAOMAO";
+    private static String PASSWORD = "lolololo";
     private static String URL = "jdbc:mysql://localhost:3306/startcode";
     private HikariDataSource ds;
 
