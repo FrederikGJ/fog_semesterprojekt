@@ -25,7 +25,7 @@ public class SignUp extends HttpServlet
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        response.sendRedirect("registerUser.jsp");
+        response.sendRedirect("signup.jsp");
     }
 
     @Override
@@ -34,13 +34,13 @@ public class SignUp extends HttpServlet
         response.setContentType("text/html");
         HttpSession session = request.getSession();
         session.setAttribute("user", null);
-        String email = request.getParameter("email");
+        String username = request.getParameter("email");
         String password = request.getParameter("password");
-        String role = "user";
+        String role = "0";
 
         try
         {
-            User user = UserFacade.createUser(email, password, role, connectionPool);
+            User user = UserFacade.createUser(username, password, role, connectionPool);
             session = request.getSession();
             session.setAttribute("user", user); // adding user object to session scope
             request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request, response);
