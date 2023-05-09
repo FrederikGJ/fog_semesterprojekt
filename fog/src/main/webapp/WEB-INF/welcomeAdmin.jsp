@@ -14,12 +14,18 @@
 
   <jsp:body>
 
-    <p>You should be logged in now</p>
 
 
-    <c:if test="${sessionScope.user != null}">
-      <p>You are logged in with the role of "${sessionScope.user.role}".</p>
-    </c:if>
+      <form action="viewinventory" method="post">
+          <input style="color: white; background-color: indigo; border: solid 5px indigo; border-radius: 5px; text-decoration: none"
+                 type="submit" value="Se alt inventar">
+      </form>
+      <br>
+      <br>
+      <br>
+      <form action="viewrequests" method="post">
+          <input type="submit" value="Se alle ordre">
+      </form>
 
 
 
