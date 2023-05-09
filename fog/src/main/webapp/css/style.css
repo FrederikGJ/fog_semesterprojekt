@@ -10,6 +10,88 @@ th, td {
     border: 1px solid silver;
     padding:15px;
 }
+h1{
+    font-family: Tahoma;
+    font-weight: bold;
+    color: #0064C2;
+}
+h2, h3, h4, h5, h6{
+    font-family: Tahoma;
+    color: #2a5d8c;
+}
+p{
+    font-family: Arial;
+    color: #002242;
+}
+label {
+    font-family: Tahoma;
+    color: #2a5d8c;
+}
+input[type=text] {
+    color: #0064C2;
+    padding: 5px;
+    border: 2px;
+    border-color: #0064C2;
+    border-style: solid;
+}
+input[type=password] {
+    color: #0064C2;
+    padding: 5px;
+    border: 2px;
+    border-color: #0064C2;
+    border-style: solid;
+}
+input[type=submit]{
+    font-family: Tahoma;
+    font-weight: bold;
+    color: white;
+    background-color: #003D76;
+    padding:10px 20px;
+    border: none;
+}
+input[value=login]{
+    font-family: Tahoma;
+    font-weight: bold;
+    color: white;
+    background-color: #003D76;
+    padding:30px 60px;
+    border: none;
+}
+input[class=frontbutton]{
+    font-family: Tahoma;
+    font-size: x-large;
+    font-weight: bold;
+    color: white;
+    background-color: #003D76;
+    padding:30px 60px;
+    border: none;
+}
+button{
+    color: #2a5d8c;
+    padding:8px 16px;
+    border: 2px;
+    border-color: #2a5d8c;
+    border-style: solid;
+    min-width: 80px;
+    text-decoration: none;
+}
 
-
+table, th, td, caption {
+    border: 2px solid #0064C2;
+    border-collapse: collapse;
+    color: #003D76;
+    font-family: Tahoma;
+    min-width: 200px;
+}
+caption{
+    padding: 10px;
+}
+ .table-header{
+    font-family: Tahoma;
+    font-weight: bold;
+    color: white;
+    background-color: #003D76;
+    padding:10px 20px;
+    border-color: #003D76;
+}
 
