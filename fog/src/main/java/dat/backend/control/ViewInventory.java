@@ -1,11 +1,10 @@
 package dat.backend.control;
 
 import dat.backend.model.config.ApplicationStart;
-import dat.backend.model.entities.User;
+import dat.backend.model.entities.Materials;
 import dat.backend.model.exceptions.DatabaseException;
-import dat.backend.model.persistence.UserFacade;
+import dat.backend.model.persistence.AdminFacade;
 import dat.backend.model.persistence.ConnectionPool;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,10 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
-@WebServlet(name = "login", urlPatterns = {"/login"})
 
-public class Login extends HttpServlet {
+@WebServlet(name = "viewinventory", urlPatterns = {"/viewiinventory"})
+
+public class ViewInventory extends HttpServlet {
     private ConnectionPool connectionPool;
 
     @Override
@@ -29,28 +30,34 @@ public class Login extends HttpServlet {
         response.sendRedirect("index.jsp");
     }
 
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         HttpSession session = request.getSession();
-        session.setAttribute("user", null); // invalidating user object in session scope
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
+        String name = request.getParameter("name");
+        int unitPrice = Integer.parseInt(request.getParameter("unitprice"));
+        String unit = request.getParameter("unit");
+        String description = request.getParameter("description");
 
         try {
-            User user = UserFacade.login(username, password, connectionPool);
-            session = request.getSession();
-            session.setAttribute("user", user); // adding user object to session scope
-
-            if (user.getRole().equalsIgnoreCase("admin")) {
-                session.setAttribute("admin", true); // adding admin object to session scope
-                request.getRequestDispatcher("WEB-INF/welcomeAdmin.jsp").forward(request, response);
-            }
-            request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request, response);
+            List<Materials> materialsList = AdminFacade.getAllMaterials(name, unitPrice, unit, description,connectionPool);
+            session.setAttribute("materialsList", materialsList); // adding user object to session scope
 
 
         } catch (DatabaseException e) {
             request.setAttribute("errormessage", e.getMessage());
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
+        request.getRequestDispatcher("WEB-INF/welcomeAdmin.jsp").forward(request, response);
     }
+
+
 }
+
+
+
+
+
+
+
+
