@@ -25,7 +25,7 @@
                     <div class="col d-flex justify-content-around">
                         <br><br>
                         <c:if test="${sessionScope.user != null}">
-                            <h2>Velkommen ${sessionScope.user.role}. Nu kan du bestille din egen skræddersyede carport</h2>
+                            <h2>Velkommen ${sessionScope.user.username}. Nu kan du bestille din egen skræddersyede carport</h2>
                         </c:if>
 
                         <c:if test="${sessionScope.user == null}">
@@ -36,6 +36,9 @@
                         <c:if test="${sessionScope.user != null}">
                             <form action="#">
                                 <input type="submit" value="Bestil carport" class="frontbutton">
+                            </form>
+                            <form action="#">
+                                <input type="submit" value="Mine bestillinger" class="frontbutton">
                             </form>
                         </c:if>
 
