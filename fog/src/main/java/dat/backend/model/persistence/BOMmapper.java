@@ -32,7 +32,8 @@ public class BOMmapper {
                     // mao mao maoooox
                 }
                 else {
-                throw new DatabaseException("Denne stykliste kunne ikke skabes id databasen");}
+                throw new DatabaseException("Denne stykliste kunne ikke skabes id databasen");
+                }
             }
         }
         catch (SQLException ex){
