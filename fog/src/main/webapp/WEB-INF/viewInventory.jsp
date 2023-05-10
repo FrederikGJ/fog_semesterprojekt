@@ -14,20 +14,25 @@
 <form method="post">
   <table>
     <tr>
-      <th>Username</th>
-      <th>Credit</th>
-      <th>Actions</th>
+      <th>Name</th>
+      <th>UnitPrice</th>
+      <th>Unit</th>
+      <th>Description</th>
     </tr>
 
-    <c:forEach var="user" items="${requestScope.userList}">
+    <c:forEach var="materials" items="${requestScope.materialsList}">
       <tr>
-        <td>${user.username}</td>
-        <td>${user.credit}</td>
-        <td>
-          <button formaction="insertamount" formmethod="post" name="username"
-                  value="${user.username}">Insert amount
-          </button>
-        </td>
+        <td>${materials.idMaterials}</td>
+        <td>${materials.name}</td>
+        <td>${materials.unitPrice}</td>
+        <td>${materials.unit}</td>
+        <td>${materials.description}</td>
+
+        <button formaction="addtoinventory" formmethod="post"
+                value=""
+        </button>
+
+
       </tr>
     </c:forEach>
   </table>

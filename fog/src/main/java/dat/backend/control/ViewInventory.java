@@ -12,10 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
-@WebServlet(name = "viewinventory", urlPatterns = {"/viewiinventory"})
+@WebServlet(name = "viewinventory", urlPatterns = {"/viewinventory"})
 
 public class ViewInventory extends HttpServlet {
     private ConnectionPool connectionPool;
@@ -34,24 +36,25 @@ public class ViewInventory extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         HttpSession session = request.getSession();
-        String name = request.getParameter("name");
+
+        int idMaterials = Integer.parseInt(request.getParameter("idmaterials"));
+        String name = request.getParameter("material_name");
         int unitPrice = Integer.parseInt(request.getParameter("unitprice"));
         String unit = request.getParameter("unit");
         String description = request.getParameter("description");
 
         try {
-            List<Materials> materialsList = AdminFacade.getAllMaterials(name, unitPrice, unit, description,connectionPool);
-            session.setAttribute("materialsList", materialsList); // adding user object to session scope
+            List<Materials> materialsList = AdminFacade.getAllMaterials(idMaterials, name, unitPrice, unit, description,connectionPool);
+
+            session.setAttribute("materialsList", materialsList); // adding inventory list object to session scope
+            request.getRequestDispatcher("WEB-INF/viewinventory.jsp").forward(request, response);
 
 
         } catch (DatabaseException e) {
             request.setAttribute("errormessage", e.getMessage());
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
-        request.getRequestDispatcher("WEB-INF/welcomeAdmin.jsp").forward(request, response);
     }
-
-
 }
 
 

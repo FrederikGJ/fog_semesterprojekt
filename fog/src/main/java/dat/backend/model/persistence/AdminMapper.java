@@ -14,9 +14,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class AdminMapper {
-    static List<Materials> getAllMaterials(String name, int unitPrice,String unit, String description,ConnectionPool connectionPool) throws DatabaseException {
+
+    static List<Materials> getAllMaterials(int idMaterials, String name, int unitPrice, String unit, String description, ConnectionPool connectionPool) throws DatabaseException {
         List<Materials> materialsList = new ArrayList<>();
         Logger.getLogger("web").log(Level.INFO, "");
+        Materials materials;
 
         String sql = "SELECT * FROM materials";
 
@@ -24,11 +26,12 @@ public class AdminMapper {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
-                    name = rs.getString("name");
+                    idMaterials = rs.getInt("idmaterials");
+                    name = rs.getString("material_name");
                     unitPrice = rs.getInt("unitprice");
                     unit = rs.getString("unit");
                     description = rs.getString("description");
-                   Materials materials = new Materials(name, unitPrice, unit, description );
+                    materials = new Materials(idMaterials, name, unitPrice, unit, description);
                     materialsList.add(materials);
                 }
             }
