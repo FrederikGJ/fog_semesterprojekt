@@ -13,6 +13,8 @@ public class BOM {
     1. den skal have en liste med Materials
     2. hvert material skal ahve en quaantity budnet op på sig.
 
+    Derfor skal der i denne class være et hashMap med en instans af Materials klassen og en integer
+
      */
 
 }
