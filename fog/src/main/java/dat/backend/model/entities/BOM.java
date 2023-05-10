@@ -20,10 +20,9 @@ public class BOM {
         this.quantity = quantity;
     }
 
-    public Map<Variants, Integer> addToBOM(Variants variant, int i){
+    public void addToBOM(Variants variant, int i){
         billOfMaterials.put(variant, i);
-        return billOfMaterials;
     }
 
-    
+
 }
