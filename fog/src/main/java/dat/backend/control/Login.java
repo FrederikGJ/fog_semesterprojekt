@@ -47,7 +47,6 @@ public class Login extends HttpServlet {
             }
             request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request, response);
 
-
         } catch (DatabaseException e) {
             request.setAttribute("errormessage", e.getMessage());
             request.getRequestDispatcher("error.jsp").forward(request, response);

@@ -15,22 +15,22 @@ import java.util.logging.Logger;
 
 public class AdminMapper {
 
-    static List<Materials> getAllMaterials(int idMaterials, String name, int unitPrice, String unit, String description, ConnectionPool connectionPool) throws DatabaseException {
+    static List<Materials> getAllMaterials(ConnectionPool connectionPool) throws DatabaseException {
         List<Materials> materialsList = new ArrayList<>();
-        Logger.getLogger("web").log(Level.INFO, "");
+        //Logger.getLogger("web").log(Level.INFO, "");
         Materials materials;
 
-        String sql = "SELECT * FROM materials";
+        String sql = "SELECT * FROM fog.materials";
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
-                    idMaterials = rs.getInt("idmaterials");
-                    name = rs.getString("material_name");
-                    unitPrice = rs.getInt("unitprice");
-                    unit = rs.getString("unit");
-                    description = rs.getString("description");
+                    int idMaterials = rs.getInt("idmaterials");
+                    String name = rs.getString("material_name");
+                    int unitPrice = rs.getInt("unitprice");
+                    String unit = rs.getString("unit");
+                    String description = rs.getString("description");
                     materials = new Materials(idMaterials, name, unitPrice, unit, description);
                     materialsList.add(materials);
                 }

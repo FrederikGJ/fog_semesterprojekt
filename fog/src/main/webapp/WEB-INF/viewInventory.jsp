@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: signekruselllarsen
@@ -20,19 +22,13 @@
       <th>Description</th>
     </tr>
 
-    <c:forEach var="materials" items="${requestScope.materialsList}">
+    <c:forEach var="materials" items="${sessionScope.materialsList}">
       <tr>
         <td>${materials.idMaterials}</td>
         <td>${materials.name}</td>
         <td>${materials.unitPrice}</td>
         <td>${materials.unit}</td>
         <td>${materials.description}</td>
-
-        <button formaction="addtoinventory" formmethod="post"
-                value=""
-        </button>
-
-
       </tr>
     </c:forEach>
   </table>

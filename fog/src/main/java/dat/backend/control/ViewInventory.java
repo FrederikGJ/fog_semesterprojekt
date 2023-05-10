@@ -2,6 +2,7 @@ package dat.backend.control;
 
 import dat.backend.model.config.ApplicationStart;
 import dat.backend.model.entities.Materials;
+import dat.backend.model.entities.Orders;
 import dat.backend.model.exceptions.DatabaseException;
 import dat.backend.model.persistence.AdminFacade;
 import dat.backend.model.persistence.ConnectionPool;
@@ -29,25 +30,18 @@ public class ViewInventory extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         // You shouldn't end up here with a GET-request, thus you get sent back to frontpage
-        response.sendRedirect("index.jsp");
-    }
+        response.sendRedirect("index.jsp");}
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { {
         response.setContentType("text/html");
         HttpSession session = request.getSession();
 
-        int idMaterials = Integer.parseInt(request.getParameter("idmaterials"));
-        String name = request.getParameter("material_name");
-        int unitPrice = Integer.parseInt(request.getParameter("unitprice"));
-        String unit = request.getParameter("unit");
-        String description = request.getParameter("description");
-
         try {
-            List<Materials> materialsList = AdminFacade.getAllMaterials(idMaterials, name, unitPrice, unit, description,connectionPool);
+            List<Materials> materialsList = AdminFacade.getAllMaterials(connectionPool);
 
             session.setAttribute("materialsList", materialsList); // adding inventory list object to session scope
-            request.getRequestDispatcher("WEB-INF/viewinventory.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/viewInventory.jsp").forward(request, response);
 
 
         } catch (DatabaseException e) {
@@ -55,6 +49,8 @@ public class ViewInventory extends HttpServlet {
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
     }
+    }
+
 }
 
 
