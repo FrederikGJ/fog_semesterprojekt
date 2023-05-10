@@ -11,25 +11,31 @@ import java.util.logging.Logger;
 
 public class BOMmapper {
 
-    static BOM createBOM(ConnectionPool connectionPool) throws DatabaseException {
+    static BOM createBOM(int idBOM, int idorders, int quantity, String description, int idvariants,ConnectionPool connectionPool) throws DatabaseException {
         Logger.getLogger("web").log(Level.INFO, ""); //HVAD GØR LOGGER??
-        BOM bom = null;
+        BOM bom;
 
-        String sql = "insert into fog.BOM (quantity, description, idvariants) values (?,?,?)";
+        String sql = "insert into fog.BOM (idBOM ,idorders ,quantity, description, idvariants) values (?, ?, ?, ?, ?)";
 
         try(Connection connection = connectionPool.getConnection()){
-            //trololo
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, idBOM);
+                ps.setInt(2, idorders);
+                ps.setInt(3, quantity);
+                ps.setString(4, description);
+                ps.setInt(5, idvariants);
+                int rowsAffected = ps.executeUpdate();
+
 
             } catch (SQLException ex) {
-                throw new DatabaseException("Denne stykliste kunne ikke skabes id atabasen");
+                throw new DatabaseException("Denne stykliste kunne ikke skabes id databasen");
             }
         }
         catch (SQLException ex){
-            throw new DatabaseException("Denne stykliste kunne ikke skabes id atabasen");
+            throw new DatabaseException("Denne stykliste kunne ikke skabes id databasen");
         }
 
-        return bom;
+        return bom = null; //TROLOLOLO
     }
 
 }

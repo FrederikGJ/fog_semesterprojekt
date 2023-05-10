@@ -4,13 +4,10 @@ import java.util.ArrayList;
 
 public class BOM {
 
-    private int quantity;
-    private String description;
-    private int variant;
+    private ArrayList<Materials> bom;
 
-    public BOM(int quantity, String description, int variant) {
-        this.quantity = quantity;
-        this.description = description;
-        this.variant = variant;
+    public BOM(ArrayList<Materials> bom) {
+        this.bom = bom;
     }
+    
 }
