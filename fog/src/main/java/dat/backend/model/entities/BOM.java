@@ -9,5 +9,5 @@ public class BOM {
     public BOM(ArrayList<Materials> bom) {
         this.bom = bom;
     }
-    
+
 }

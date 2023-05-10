@@ -11,17 +11,6 @@ public class CalculateBOM {
     int l = 400;
     int b = 300;
 
-    //I need a lsit of all materials?? or do i do crud operations to get materials??
-
-    protected ArrayList<Materials> CalcBOM(){
-        ArrayList<Materials> BOM = new ArrayList<>();
-        //tilføj skruer
-        //BOM.add(skruer)
-
-
-
-        return BOM;
-    }
 
 
 

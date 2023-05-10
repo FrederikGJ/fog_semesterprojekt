@@ -12,7 +12,9 @@ import java.util.logging.Logger;
 public class BOMmapper {
 
     static BOM createBOM(int idBOM, int idorders, int quantity, String description, int idvariants,ConnectionPool connectionPool) throws DatabaseException {
-        Logger.getLogger("web").log(Level.INFO, ""); //HVAD GØR LOGGER??
+        Logger.getLogger("web").log(Level.INFO, "");
+        /*The logger is typically used for monitoring the behavior of the application, debugging,
+         troubleshooting problems, and auditing purposes. */
         BOM bom;
 
         String sql = "insert into fog.BOM (idBOM ,idorders ,quantity, description, idvariants) values (?, ?, ?, ?, ?)";
