@@ -13,7 +13,20 @@
     <jsp:body>
         <h1>Vælg mål på din carport</h1>
         <form action="MakeNewRequest" method="post">
-            <input type="checkbox">
+            <label for="length">Vælg carportens længde:</label>
+            <select name="length" id="length">
+                <option value="#">Længde 1</option>
+                <option value="#">Længde 2</option>
+                <option value="#">Længde 3</option>
+                <option value="#">Længde 4</option>
+            </select>
+            <label for="width">Vælg carportens bredde:</label>
+            <select name="width" id="width">
+                <option value="#">Bredde 1</option>
+                <option value="#">Bredde 2</option>
+                <option value="#">Bredde 3</option>
+                <option value="#">Bredde 4</option>
+            </select>
         </form>
 
 

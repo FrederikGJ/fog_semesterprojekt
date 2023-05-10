@@ -40,7 +40,6 @@
                             <input type="submit" value="Mine bestillinger" class="frontbutton">
                         </form>
                     </c:if>
-
                     <c:if test="${sessionScope.user == null}">
                         <form action="login.jsp">
                             <input type="submit" value="Log ind" class="frontbutton">

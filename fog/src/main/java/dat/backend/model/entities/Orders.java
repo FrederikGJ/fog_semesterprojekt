@@ -1,13 +1,18 @@
 package dat.backend.model.entities;
 
+import java.util.List;
+
 public class Orders {
+
+    private int idOrders;
     private int orderStatus;
     private int width;
     private int length;
     private int totalPrice;
     private User user;
 
-    public Orders(int orderStatus, int width, int length, int totalPrice, User user) {
+    public Orders(int idOrders, int orderStatus, int width, int length, int totalPrice, User user) {
+        this.idOrders = idOrders;
         this.orderStatus = orderStatus;
         this.width = width;
         this.length = length;
