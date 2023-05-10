@@ -28,9 +28,11 @@ public class BOMmapper {
                 ps.setInt(5, idvariants);
                 int rowsAffected = ps.executeUpdate();
 
-
-            } catch (SQLException ex) {
-                throw new DatabaseException("Denne stykliste kunne ikke skabes id databasen");
+                if(1 == 1){  // DENNE DEL AF KODEN MANGLER
+                    // mao mao maoooox
+                }
+                else {
+                throw new DatabaseException("Denne stykliste kunne ikke skabes id databasen");}
             }
         }
         catch (SQLException ex){
