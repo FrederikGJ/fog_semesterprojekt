@@ -19,7 +19,7 @@ public class BomMapper {
         Logger.getLogger("web").log(Level.INFO, "");
         // The logger is used for monitoring
         // the behavior of the application, troubleshooting problems, and auditing purposes.
-        BOM bom; 
+        BOM bom;
         String sql = "insert into fog.BOM (idBOM, idorders, quantity, description, idmaterials) values (?,?,?,?,?)";
 
         try (Connection connection = connectionPool.getConnection()) {
@@ -33,7 +33,8 @@ public class BomMapper {
                 if (rowsAffected == 1) {
                     bom = new BOM(idBOM, materials, descriptionOfUSe, quantity);
                 } else {
-                    throw new DatabaseException("The BOM with idBOM = " + idBOM + " could not be inserted into the database");
+                    throw new DatabaseException("The BOM with idBOM = " + idBOM + " and descrition"
+                            + descriptionOfUSe + " could not be inserted into the database");
                 }
             }
         } catch (SQLException ex) {
