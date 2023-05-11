@@ -7,7 +7,8 @@ import java.util.ArrayList;
 public class BomMapper {
 
     static BOM createBOM(){
-        BOM bom = null;
+        BOM bom = null; //HUSK AT FJERNE NULL
+        String sql = "insert into fog.BOM (username, password, role) values (?,?,?)";
      return bom;
     }
 
