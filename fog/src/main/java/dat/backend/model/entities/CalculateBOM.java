@@ -13,10 +13,8 @@ public class CalculateBOM {
     int l = 400;
     int b = 300;
 
-    // I need to create a new bom from the two integers - the bom has materials and so on.
-
     public void createBOM(){
-        //here we need the calculations
+        // I need to create a new bom from the two integers - the bom has materials and so on.
         //HUSK hjælpemetoder!! det er guld værd!!!
 
 
