@@ -15,7 +15,8 @@ import java.util.logging.Logger;
 
 public class BomMapper {
 
-    static BOM createBOM(int idBOM, Orders order, Materials material, String descriptionOfUSe, int quantity, Materials materials, ConnectionPool connectionPool) throws DatabaseException{
+    static BOM createBOM(int idBOM, Orders order, Materials material, String descriptionOfUSe,
+                         int quantity, Materials materials, ConnectionPool connectionPool) throws DatabaseException{
         Logger.getLogger("web").log(Level.INFO, "");
         // The logger is used for monitoring
         // the behavior of the application, troubleshooting problems, and auditing purposes.
