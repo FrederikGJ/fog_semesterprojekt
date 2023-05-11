@@ -55,7 +55,7 @@ public class BomMapper {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ResultSet rs = ps.executeQuery();
                 if (rs.next()) {
-                    //Should we get material name and add it or should we combine it in a RealMaterial for frontend use??
+                    //get material name and add it 
                     bom = new BOM(rs.getInt(1), rs.getInt(5), rs.getString(4), rs.getInt(3));
                     bomArrayList.add(bom);
                 } else {
