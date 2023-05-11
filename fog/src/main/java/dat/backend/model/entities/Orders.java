@@ -25,4 +25,30 @@ public class Orders {
         this.totalPrice = totalPrice;
         this.user = user;
     }
+
+
+    //below is getters
+    public int getIdorders() {
+        return idorders;
+    }
+
+    public int getOrderStatus() {
+        return orderStatus;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getLength() {
+        return length;
+    }
+
+    public int getTotalPrice() {
+        return totalPrice;
+    }
+
+    public User getUser() {
+        return user;
+    }
 }
