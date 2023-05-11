@@ -32,25 +32,8 @@ public class ViewInventory extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html");
-        HttpSession session = request.getSession();
-        String name = request.getParameter("name");
-        int unitPrice = Integer.parseInt(request.getParameter("unitprice"));
-        String unit = request.getParameter("unit");
-        String description = request.getParameter("description");
 
-        try {
-            List<Materials> materialsList = AdminFacade.getAllMaterials(name, unitPrice, unit, description,connectionPool);
-            session.setAttribute("materialsList", materialsList); // adding user object to session scope
-
-
-        } catch (DatabaseException e) {
-            request.setAttribute("errormessage", e.getMessage());
-            request.getRequestDispatcher("error.jsp").forward(request, response);
-        }
-        request.getRequestDispatcher("WEB-INF/welcomeAdmin.jsp").forward(request, response);
     }
-
 
 }
 
