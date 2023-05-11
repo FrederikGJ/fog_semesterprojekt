@@ -15,4 +15,30 @@ public class Materials {
         this.description = description;
         this.length = length;
     }
+
+    //getters below
+
+    public int getIdmaterials() {
+        return idmaterials;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getUnitPrice() {
+        return unitPrice;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public int getLength() {
+        return length;
+    }
 }

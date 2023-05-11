@@ -15,21 +15,23 @@ import java.util.logging.Logger;
 
 public class BomMapper {
 
-    static BOM createBOM(int idBOM, Orders order, Materials material, String descriptionOfUSe, int quantity, ConnectionPool connectionPool) throws DatabaseException{
+    static BOM createBOM(int idBOM, Orders order, Materials material, String descriptionOfUSe, int quantity, Materials materials, ConnectionPool connectionPool) throws DatabaseException{
         Logger.getLogger("web").log(Level.INFO, "");
         // The logger is used for monitoring
         // the behavior of the application, troubleshooting problems, and auditing purposes.
-        BOM bom = null; //HUSK AT FJERNE NULL
+        BOM bom; 
         String sql = "insert into fog.BOM (idBOM, idorders, quantity, description, idmaterials) values (?,?,?,?,?)";
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setInt(1, idBOM);
-                ps.setInt(2, order.);
-                ps.setString(3, role);
+                ps.setInt(2, order.getIdorders());
+                ps.setInt(3, quantity);
+                ps.setString(4, descriptionOfUSe);
+                ps.setInt(5, material.getIdmaterials());
                 int rowsAffected = ps.executeUpdate();
                 if (rowsAffected == 1) {
-                    user = new User(username, password, role);
+                    bom = new BOM(idBOM, materials, descriptionOfUSe, quantity);
                 } else {
                     throw new DatabaseException("The BOM with idBOM = " + idBOM + " could not be inserted into the database");
                 }
