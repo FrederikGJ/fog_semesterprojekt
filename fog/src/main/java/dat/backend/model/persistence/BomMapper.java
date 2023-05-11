@@ -8,6 +8,7 @@ import dat.backend.model.exceptions.DatabaseException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -43,10 +44,28 @@ public class BomMapper {
      return bom;
     }
 
-    static ArrayList<BOM> readBOM(){
+    static ArrayList<BOM> readBOM(ConnectionPool connectionPool) throws DatabaseException{
+        Logger.getLogger("web").log(Level.INFO, "");
         ArrayList<BOM> bomArrayList = new ArrayList<>();
-        BOM bom = null;
-        bomArrayList.add(bom);
+        BOM bom;
+        //********************************
+        String sql = "SELECT * FROM fog.BOM";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    //Should we get material name and add it or should we combine it in a RealMaterial for frontend use??
+                    bom = new BOM(rs.getInt(1), rs.getInt(5), rs.getString(4), rs.getInt(3));
+                    bomArrayList.add(bom);
+                } else {
+                    throw new DatabaseException("Something went wrong when reading BOM list");
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DatabaseException(ex, "Something went wrong with the database when you tried to read BOM");
+        }
+
         return bomArrayList;
     }
 
