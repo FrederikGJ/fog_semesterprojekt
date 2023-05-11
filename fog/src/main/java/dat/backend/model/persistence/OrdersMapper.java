@@ -14,7 +14,7 @@ public class OrdersMapper {
     static Orders createOrder(int orderstatus, int width, int length, int totalprice, User user, ConnectionPool connectionPool) throws DatabaseException {
         Logger.getLogger("web").log(Level.INFO, "");
         Orders orders;
-        String sql = "insert into fog.orders (orderstatus, width, length, totalprice, user) values (?,?,?,?,?)";
+        String sql = "insert into fog.orders (orderstatus, width, length, totalprice, username) values (?,?,?,?,?)";
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setInt(2, orderstatus);
