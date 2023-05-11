@@ -20,7 +20,7 @@ public class CalculateBOM {
 
         /*
         in the end some data will be added through the BomFacade.createBOM();
-        For this i need the ORDER NUMBER (idorders) and the MATERIAL NUMBER (idmaterials)
+        For this i need the ORDER NUMBER (idorders)(idorders coems eith the ints) and the MATERIAL NUMBER (idmaterials)
 
         it needs to be a loop that runs through the list of materials and adds the same idbom and idorders to all rows
          */
