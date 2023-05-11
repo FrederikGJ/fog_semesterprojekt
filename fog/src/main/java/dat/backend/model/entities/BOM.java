@@ -6,23 +6,13 @@ import java.util.Map;
 
 public class BOM {
 
-
-    /*
-    hashMap med en instans af Materials klassen og en integer
-     */
-
-    Variants variant;
+    Materials material;
+    String descriptionOfUSe;
     int quantity;
-    HashMap<Variants, Integer> billOfMaterials;
 
-    public BOM(Variants variant, int quantity) {
-        this.variant = variant;
+    public BOM(Materials material, String descriptionOfUSe, int quantity) {
+        this.material = material;
+        this.descriptionOfUSe = descriptionOfUSe;
         this.quantity = quantity;
     }
-
-    public void addToBOM(Variants variant, int i){
-        billOfMaterials.put(variant, i);
-    }
-
-
 }
