@@ -1,7 +1,7 @@
 package dat.backend.model.entities;
 
 public class Materials {
-    private int idmaterials; 
+    private int idmaterials;
     private String name;
     private int unitPrice;
     private String unit;
