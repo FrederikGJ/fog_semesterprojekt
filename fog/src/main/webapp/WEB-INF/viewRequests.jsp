@@ -40,7 +40,7 @@
                 </form>
             </div>
 
-            <div class="col-6 mb-2">
+            <div class="col-6">
                 <h3>Afsluttede: </h3>
                 <form method="get">
                     <table>
