@@ -9,22 +9,25 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class OrdersMapper {
-    static Orders createOrder(int orderstatus, int width, int length, int totalprice, User user, ConnectionPool connectionPool) throws DatabaseException {
+    static Orders createOrder(int orderstatus, int width, int length, String username, ConnectionPool connectionPool) throws DatabaseException {
         Logger.getLogger("web").log(Level.INFO, "");
         Orders orders;
-        String sql = "insert into fog.orders (orderstatus, width, length, totalprice, user) values (?,?,?,?,?)";
+        int def = 0;
+        String sql = "insert into fog.orders (orderstatus, length, width, totalprice, username) values (?,?,?,?,?);";
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
-                ps.setInt(2, orderstatus);
+                ps.setInt(1, orderstatus);
+                ps.setInt(2, length);
                 ps.setInt(3, width);
-                ps.setInt(4, length);
-                ps.setInt(5, totalprice);
-                ps.setString(6, user.getUsername());
+                ps.setInt(4, def);
+                ps.setString(5, username);
+
                 int rowsAffected = ps.executeUpdate();
+
                 if (rowsAffected == 1) {
-                    orders = new Orders (createIdOrders(connectionPool),orderstatus, width, length, totalprice, user);
+                    orders = new Orders (createIdOrders(connectionPool),orderstatus, width, length, 0, username);
                 } else {
-                    throw new DatabaseException("The user with username = " + user.getUsername() + " could not be inserted into the database");
+                    throw new DatabaseException("The user with username = " + username+ " could not be inserted into the database");
                 }
             }
         } catch (SQLException ex) {

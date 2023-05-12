@@ -9,14 +9,14 @@ public class Orders {
     private int width;
     private int length;
     private int totalPrice;
-    private User user;
+    private String username;
 
-    public Orders(int idOrders, int orderStatus, int width, int length, int totalPrice, User user) {
+    public Orders(int idOrders, int orderStatus, int width, int length, int totalPrice, String username) {
         this.idOrders = idOrders;
         this.orderStatus = orderStatus;
         this.width = width;
         this.length = length;
         this.totalPrice = totalPrice;
-        this.user = user;
+        this.username = username;
     }
 }
