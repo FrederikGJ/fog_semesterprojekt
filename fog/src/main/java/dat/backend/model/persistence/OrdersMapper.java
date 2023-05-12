@@ -9,7 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class OrdersMapper {
-    static Orders createOrder(int orderstatus, int width, int length, String username, ConnectionPool connectionPool) throws DatabaseException {
+    static void createOrder(int orderstatus, int width, int length, String username, ConnectionPool connectionPool) throws DatabaseException {
         Logger.getLogger("web").log(Level.INFO, "");
         Orders orders;
         int def = 0;
@@ -22,18 +22,14 @@ public class OrdersMapper {
                 ps.setInt(4, def);
                 ps.setString(5, username);
 
-                int rowsAffected = ps.executeUpdate();
 
-                if (rowsAffected == 1) {
-                    orders = new Orders (createIdOrders(connectionPool),orderstatus, width, length, 0, username);
-                } else {
-                    throw new DatabaseException("The user with username = " + username+ " could not be inserted into the database");
-                }
+                ps.executeUpdate();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
             }
-        } catch (SQLException ex) {
-            throw new DatabaseException(ex, "Could not insert username into database");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
-        return orders;
     }
     static int createIdOrders(ConnectionPool connectionPool) throws DatabaseException {
         String sql = "SELECT * FROM orders WHERE idOrders = ? ";

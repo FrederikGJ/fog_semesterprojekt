@@ -34,7 +34,7 @@ public class MakeNewRequest extends HttpServlet {
 
 
         request.setAttribute("length", length);
-        request.setAttribute("width", width);
+        request.setAttribute("width", width);+
 
         request.getRequestDispatcher("WEB-INF/confirmCarport.jsp").forward(request, response); // Giver kunderne mulighed for at shoppe videre
 
