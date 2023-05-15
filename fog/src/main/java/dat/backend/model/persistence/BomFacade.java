@@ -9,9 +9,9 @@ import java.util.ArrayList;
 
 public class BomFacade {
 
-    public static BOM createBOM(int idBOM, Orders order, Materials material, String descriptionOfUSe,
+    public static BOM createBOM(Orders order, Materials material, String descriptionOfUSe,
                                 int quantity, Materials materials, ConnectionPool connectionPool) throws DatabaseException {
-        return BomMapper.createBOM(idBOM, order, material, descriptionOfUSe, quantity, materials, connectionPool);
+        return BomMapper.createBOM( order, material, descriptionOfUSe, quantity, materials, connectionPool);
 
     }
 

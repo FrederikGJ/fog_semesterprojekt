@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class BOM {
 
-    int idorders; 
+    int idorders;
     Materials material;
     String descriptionOfUSe;
     int quantity;

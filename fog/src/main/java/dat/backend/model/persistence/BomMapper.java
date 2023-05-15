@@ -15,13 +15,13 @@ import java.util.logging.Logger;
 
 public class BomMapper {
 
-    static BOM createBOM(int idBOM, Orders order, Materials material, String descriptionOfUSe,
+    static BOM createBOM(Orders order, Materials material, String descriptionOfUSe,
                          int quantity, Materials materials, ConnectionPool connectionPool) throws DatabaseException{
         Logger.getLogger("web").log(Level.INFO, "");
         // The logger is used for monitoring
         // the behavior of the application, troubleshooting problems, and auditing purposes.
         BOM bom;
-        String sql = "insert into fog.BOM (idBOM, idorders, quantity, description, idmaterials) values (?,?,?,?)";
+        String sql = "insert into fog.BOM (idorders, quantity, description, idmaterials) values (?,?,?,?)";
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -33,7 +33,7 @@ public class BomMapper {
                 if (rowsAffected == 1) {
                     bom = new BOM( materials, descriptionOfUSe, quantity);
                 } else {
-                    throw new DatabaseException("The BOM with idBOM = " + idBOM + " and descrition"
+                    throw new DatabaseException("The BOM with idorders = " + order.getIdorders() + " and descrition"
                             + descriptionOfUSe + " could not be inserted into the database");
                 }
             }
