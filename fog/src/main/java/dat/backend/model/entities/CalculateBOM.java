@@ -19,7 +19,7 @@ public class CalculateBOM {
         // I need to create a new bom from the two integers - the bom has materials and so on.
         //HUSK hjælpemetoder!
         ArrayList<BOM> bom = new ArrayList<>();
-        ArrayList<Materials> = AdminFacade.getAllMaterials(); //denne skal ikke tage andet end connectionpool
+        //ArrayList<Materials> = AdminFacade.getAllMaterials(); //denne skal ikke tage andet end connectionpool
 
         //OM SPÆR: her skal jeg bruge en bom fra databasen
         //og så skal den int der retuneres sættes som quantitiy

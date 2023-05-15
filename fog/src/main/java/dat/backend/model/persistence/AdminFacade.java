@@ -6,8 +6,12 @@ import dat.backend.model.exceptions.DatabaseException;
 import java.util.List;
 
 public class AdminFacade {
-    public static List<Materials> getAllMaterials( int idMaterials, String name, int unitPrice,String unit, String description, int length, ConnectionPool connectionPool) throws DatabaseException {
-        return AdminMapper.getAllMaterials(idMaterials, name, unitPrice, unit, description,length, connectionPool);
+    public static List<Materials> getAllMaterials(ConnectionPool connectionPool) throws DatabaseException {
+        return AdminMapper.getAllMaterials(connectionPool);
     }
 
+    public static void addToInventory(Materials materials, ConnectionPool connectionPool) throws DatabaseException {
+        AdminMapper.addToInventory(materials, connectionPool);
+    }
 }
+//String name, int unitPrice, String unit, String des
