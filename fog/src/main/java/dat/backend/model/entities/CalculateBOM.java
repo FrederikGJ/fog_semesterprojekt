@@ -19,13 +19,7 @@ public class CalculateBOM {
         ArrayList<BOM> bom = new ArrayList<>();
 
         //her skal jeg bruge en bom fra databasen
-        
-         postCalculator(length);
-
-
-
-
-
+        postCalculator(length);
 
         /*
         in the end some data will be added through the BomFacade.createBOM();
