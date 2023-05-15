@@ -14,4 +14,3 @@ public class AdminFacade {
         AdminMapper.addToInventory(materials, connectionPool);
     }
 }
-//String name, int unitPrice, String unit, String des
