@@ -42,12 +42,13 @@ public class CalculateBOM {
         beamWidthCalculator(width);
 
         //tilføj en pakke skruer
-        
+
 
         //lav et loop der finder et specifikt material.
         Materials skruer = findMaterial("skruer", materials);
 
         //raft length finder needs to length as well
+        
 
         //tilføj alle de materials vi har brug for til listen
         bom.add(new BOM(skruer, "bruges til at skrue med", 1));
