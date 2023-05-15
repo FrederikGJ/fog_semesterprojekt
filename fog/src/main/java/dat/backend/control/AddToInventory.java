@@ -15,7 +15,6 @@ import java.util.List;
 @WebServlet(name = "addtoinventory", value = "/addtoinventory")
 public class AddToInventory extends HttpServlet {
     private ConnectionPool connectionPool;
-    List<Materials> materialsList;
 
     @Override
     public void init() {
@@ -38,10 +37,10 @@ public class AddToInventory extends HttpServlet {
         String unit = request.getParameter("unit");
         String description = request.getParameter("description");
         int length = Integer.parseInt(request.getParameter("length"));
-        Materials materials = new Materials(name,unitPrice,unit,description,length);
-        //Materials materials = new Materials("lone",666,"meter","træ",100);
-       // System.out.println(materials.toString());
+        Materials materials = new Materials(name, unitPrice, unit, description, length);
 
+        List<Materials> materialsList = (List<Materials>) session.getAttribute("materialsList"); // adding inventory list object to session scope
+        materialsList.add(materials);
 
         try {
             AdminFacade.addToInventory(materials, connectionPool);
@@ -51,8 +50,6 @@ public class AddToInventory extends HttpServlet {
             request.setAttribute("description", materials.getDescription());
             request.setAttribute("length", materials.getLength());
 
-            session.getAttribute("materialsList"); // adding inventory list object to session scope
-            materialsList.add(materials);
 
         } catch (DatabaseException e) {
             e.printStackTrace();

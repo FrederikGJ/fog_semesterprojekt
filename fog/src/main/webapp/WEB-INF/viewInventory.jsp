@@ -17,7 +17,6 @@
 <form action="addtoinventory" method="post">
 
     <td>
-        ${sessionScope.materialsList}
         <label>Tilføj vare:</label><br>
         Navn: <input type="text" id="material_name" name="name"/>
         Pris: <input type="text" id="unitprice" name="unitPrice"/>
@@ -26,8 +25,6 @@
         Længde: <input type="text" id="length" name="length"/>
         <input type="submit" value="Tilføj">
     </td>
-
-
 </form>
 
 
@@ -51,8 +48,18 @@
                 <td>${materials.description}</td>
                 <td>${materials.length}</td>
                 <td>
-                    <a href="editInventory? id =${materials.idMaterials}">Rediger</a>
-                    <a href="deleteInventory? id =${materials.idMaterials}">Slet</a>
+
+                    <form action="deleteinventory" method="post">
+                        <input type="submit" value="Submit">
+                    </form>
+                    <form action="editinventory" method="post">
+                        <input type="button" id="edit" name="delete"><br><br>
+                        <input type="submit" value="Submit">
+                    </form>
+                    href="edit.jsp">Edit</a></td><td><a
+                    href="delete.jsp">Delete</a></td></tr>
+                    <a href="editinventory" id =<c:out value="${materials.idMaterials}"/>Rediger</a>
+                    <a href="deleteinventory" id=<c:out value ="${materials.idMaterials}"/>Slet</a>
                 </td>
             </tr>
         </c:forEach>

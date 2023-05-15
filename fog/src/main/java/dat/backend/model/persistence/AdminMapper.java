@@ -2,6 +2,7 @@ package dat.backend.model.persistence;
 
 import dat.backend.model.entities.Materials;
 import dat.backend.model.exceptions.DatabaseException;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,9 +45,7 @@ public class AdminMapper {
         }
         return materialsList;
     }
-
-
-    static Materials getMaterialsByID(int idMaterials, ConnectionPool connectionPool) throws DatabaseException {
+    /*static Materials getMaterialsByID(int idMaterials, ConnectionPool connectionPool) throws DatabaseException {
         List<Materials> materialsList = new ArrayList<>();
         //Logger.getLogger("web").log(Level.INFO, "");
 
@@ -68,8 +67,8 @@ public class AdminMapper {
         }
 
     }
-
-    public void editMaterials(String name, int unitPrice, String unit, String description, int length, ConnectionPool connectionPool) throws DatabaseException {
+*/
+   /* public void editMaterials(String name, int unitPrice, String unit, String description, int length, ConnectionPool connectionPool) throws DatabaseException {
 
         String sql = "UPDATE fog.materials set material_name = ?, unitprice = ?, unit= ?, description = ?, length = ?";
         try (
@@ -87,16 +86,17 @@ public class AdminMapper {
             throw new DatabaseException(ex, "Something went wrong with the database");
         }
     }
+*/
 
+    public static void deleteMaterials(Materials materials, ConnectionPool connectionPool) throws DatabaseException {
 
-    public void deleteMaterials(int idMaterials, ConnectionPool connectionPool) throws DatabaseException {
-
-        String sql = "DELETE fog.materials WHERE idmaterials = ?";
+        String sql = "DELETE FROM fog.materials WHERE idmaterials =?";
         try (
                 Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
-                ps.setInt(1, idMaterials);
+                ps.setInt(1, materials.getIdMaterials());
                 ps.executeUpdate();
+                List<Materials>materialsList.remove(materials.getIdMaterials());
 
             }
         } catch (

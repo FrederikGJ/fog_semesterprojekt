@@ -13,5 +13,8 @@ public class AdminFacade {
     public static void addToInventory(Materials materials, ConnectionPool connectionPool) throws DatabaseException {
         AdminMapper.addToInventory(materials, connectionPool);
     }
+
+    public static void deleteMaterials(Materials materials,  ConnectionPool connectionPool) throws DatabaseException {
+        AdminMapper.deleteMaterials(materials, connectionPool);
+    }
 }
-//String name, int unitPrice, String unit, String description, int length,

@@ -51,9 +51,9 @@ public class ViewInventory extends HttpServlet {
 
             } catch (DatabaseException e) {
                 request.setAttribute("errormessage", e.getMessage());
+
                 request.getRequestDispatcher("error.jsp").forward(request, response);
             }
-
         }
     }
 }
