@@ -7,39 +7,53 @@ public class Orders {
     private int width;
     private int length;
     private int totalPrice;
-    private User user;
     private String username;
+    private String comments;
 
-    /*
-    public Orders(int orderStatus, int width, int length, int totalPrice, User user) {
-        this.orderStatus = orderStatus;
-        this.width = width;
-        this.length = length;
-        this.totalPrice = totalPrice;
-        this.user = user;
-    }
-     */
 
-    public Orders(int idorders, String orderStatus, int length, int width, int totalPrice, String username){
+    public Orders(int idorders, String orderStatus, int length, int width, int totalPrice, String username, String comments){
         this.idorders = idorders;
         this.orderStatus = orderStatus;
         this.length = length;
         this.width = width;
         this.totalPrice = totalPrice;
         this.username = username;
+        this.comments = comments;
     }
 
 
-    public int getIdorders(){
+    public int getIdorders()
+    {
         return idorders;
     }
 
-    public String getOrderStatus(){
+    public String getOrderStatus()
+    {
         return orderStatus;
     }
 
-    public String getUsername(){
+    public int getWidth()
+    {
+        return width;
+    }
+
+    public int getLength()
+    {
+        return length;
+    }
+
+    public int getTotalPrice()
+    {
+        return totalPrice;
+    }
+
+    public String getUsername()
+    {
         return username;
     }
 
+    public String getComments()
+    {
+        return comments;
+    }
 }

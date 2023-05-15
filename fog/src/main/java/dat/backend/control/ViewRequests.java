@@ -37,12 +37,15 @@ public class ViewRequests extends HttpServlet{
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         response.setContentType("text/html");
         HttpSession session = request.getSession();
+
+
         try{
             List<Orders> ongoingOrders = AdminFacade.getOngoingOrders(connectionPool);
             session.setAttribute("ongoingOrders", ongoingOrders);
 
             List<Orders> finishedOrders = AdminFacade.getFinishedOrders(connectionPool);
             session.setAttribute("finishedOrders", finishedOrders);
+
 
             request.getRequestDispatcher("WEB-INF/viewRequests.jsp").forward(request, response);
 

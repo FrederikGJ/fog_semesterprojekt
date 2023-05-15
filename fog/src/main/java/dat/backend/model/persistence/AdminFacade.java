@@ -21,5 +21,11 @@ public class AdminFacade {
         return AdminMapper.getOngoingOrders(connectionPool);
     }
 
+    public static Orders getOrdersById(int idOrders, String status, ConnectionPool connectionPool) throws DatabaseException
+    {
+        return AdminMapper.getOrdersById(idOrders, status, connectionPool);
+    }
 
-}
+
+
+    }

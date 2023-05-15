@@ -56,12 +56,13 @@ public class AdminMapper {
                 ResultSet rs = ps.executeQuery();
                 while(rs.next()) {
                     int idorders = rs.getInt("idorders");
-                    String orderstatus = rs.getString("orderstatus");
+                    String orderStatus = rs.getString("orderstatus");
                     int length = rs.getInt("length");
                     int width = rs.getInt("width");
-                    int totalprice = rs.getInt("totalprice");
+                    int totalPrice = rs.getInt("totalprice");
                     String username = rs.getString("username");
-                    orders = new Orders(idorders, orderstatus, length, width, totalprice, username);
+                    String comments = rs.getString("comments");
+                    orders = new Orders(idorders, orderStatus, length, width, totalPrice, username, comments);
                     ordersList.add(orders);
                 }
             }
@@ -85,12 +86,13 @@ public class AdminMapper {
                 ResultSet rs = ps.executeQuery();
                 while(rs.next()) {
                     int idorders = rs.getInt("idorders");
-                    String orderstatus = rs.getString("orderstatus");
+                    String orderStatus = rs.getString("orderstatus");
                     int length = rs.getInt("length");
                     int width = rs.getInt("width");
-                    int totalprice = rs.getInt("totalprice");
+                    int totalPrice = rs.getInt("totalprice");
                     String username = rs.getString("username");
-                    orders = new Orders(idorders, orderstatus, length, width, totalprice, username);
+                    String comments = rs.getString("comments");
+                    orders = new Orders(idorders, orderStatus, length, width, totalPrice, username, comments);
                     finishedOrders.add(orders);
                 }
             }
@@ -114,12 +116,13 @@ public class AdminMapper {
                 ResultSet rs = ps.executeQuery();
                 while(rs.next()) {
                     int idorders = rs.getInt("idorders");
-                    String orderstatus = rs.getString("orderstatus");
+                    String orderStatus = rs.getString("orderstatus");
                     int length = rs.getInt("length");
                     int width = rs.getInt("width");
-                    int totalprice = rs.getInt("totalprice");
+                    int totalPrice = rs.getInt("totalprice");
                     String username = rs.getString("username");
-                    orders = new Orders(idorders, orderstatus, length, width, totalprice, username);
+                    String comments = rs.getString("comments");
+                    orders = new Orders(idorders, orderStatus, length, width, totalPrice, username, comments);
                     ongoingOrders.add(orders);
                 }
             }
@@ -129,5 +132,38 @@ public class AdminMapper {
         return ongoingOrders;
     }
 
+    static Orders getOrdersById(int idorders, String status, ConnectionPool connectionPool) throws DatabaseException {
+        Orders orders;
+        String sql = "";
+
+        switch (status){
+            case "new_pending":
+               sql = "SELECT * FROM fog.orders WHERE  idorders = ? AND orderstatus = 'New' OR orderstatus = 'Pending' ORDER BY orderstatus ASC";
+               break;
+            case "finished":
+                sql = "SELECT * FROM fog.orders WHERE idorders = ? AND orderstatus = 'Finished' ORDER BY orderstatus ASC";
+                break;
+        }
+
+        try(Connection connection = connectionPool.getConnection()){
+            try(PreparedStatement ps = connection.prepareStatement(sql)){
+                ps.setInt(1, idorders);
+                ResultSet rs = ps.executeQuery();
+                if(rs.next()) {
+                    String orderStatus = rs.getString("orderstatus");
+                    int length = rs.getInt("length");
+                    int width = rs.getInt("width");
+                    int totalPrice = rs.getInt("totalprice");
+                    String username = rs.getString("username");
+                    String comments = rs.getString("comments");
+                    orders = new Orders(idorders, orderStatus, length, width, totalPrice, username, comments);
+                    return orders;
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DatabaseException(ex, "Something went wrong with the database");
+        }
+        return null;
+    }
 
 }
