@@ -13,17 +13,21 @@ public class CalculateBOM {
     int l = 400;
     int b = 300;
 
-    public void createBOM(){
+    public ArrayList<Materials> createBOM(int length, int width){
         // I need to create a new bom from the two integers - the bom has materials and so on.
         //HUSK hjælpemetoder!! det er guld værd!!!
+        ArrayList<Materials> bom = new ArrayList<>();
+        
+
 
 
         /*
         in the end some data will be added through the BomFacade.createBOM();
-        For this i need the ORDER NUMBER (idorders)(idorders coems eith the ints) and the MATERIAL NUMBER (idmaterials)
+        For this i need the ORDER NUMBER (idorders)(idorders gives the ints) and the MATERIAL NUMBER (idmaterials)
 
         it needs to be a loop that runs through the list of materials and adds the same idbom and idorders to all rows
          */
+        return bom;
     }
 
     //calculator that outputs the price of a given offer based on a bom arraylist
@@ -36,7 +40,7 @@ public class CalculateBOM {
             e.printStackTrace();
         }
 
-        // take find the bom needed form allBOM and add the prices together
+        //  find the bom needed form allBOM and add the prices together
 
         return -1111111;
     }
