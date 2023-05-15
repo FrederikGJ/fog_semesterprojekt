@@ -15,7 +15,6 @@
   <jsp:body>
 
 
-
       <form action="viewinventory" method="post">
           <input style="color: white; background-color: indigo; border: solid 5px indigo; border-radius: 5px; text-decoration: none"
                  type="submit" value="Se alt inventar">

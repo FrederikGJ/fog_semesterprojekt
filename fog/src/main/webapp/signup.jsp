@@ -26,15 +26,13 @@
 
 
         <div class="text-center mt-5">
-            <form action="SignUp" method="post">
-                <label for="email" hidden>Username: </label>
-                <input type="text" id="email" name="email" placeholder="Insert Email"/>
-                <br/>
-                <label for="password" hidden>Password: </label><br/>
-                <input type="password" id="password" name="password" placeholder="Insert Password"/>
-                <br/>
-                <br/>
-                <input type="submit" class="btn btn-secondary fw-bold" style="width: 180px;" value="Log in"/>
+            <form action="/action_page.php" method="get">
+                <label for="fname">First name:</label>
+                <input type="text" id="fname" name="fname"><br><br>
+                <label for="lname">Last name:</label>
+                <input type="text" id="lname" name="lname"><br><br>
+                <button type="submit">Submit</button>
+                <button type="submit" formaction="/action_page2.php">Submit to another page</button>
             </form>
         </div>
 

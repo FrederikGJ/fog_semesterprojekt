@@ -5,7 +5,9 @@ import dat.backend.model.entities.Materials;
 import dat.backend.model.entities.Orders;
 import dat.backend.model.exceptions.DatabaseException;
 import dat.backend.model.persistence.AdminFacade;
+import dat.backend.model.persistence.AdminMapper;
 import dat.backend.model.persistence.ConnectionPool;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,36 +24,40 @@ import java.util.Map;
 
 public class ViewInventory extends HttpServlet {
     private ConnectionPool connectionPool;
+    Materials materials;
+    List<Materials> materialsList;
 
     @Override
-    public void init() throws ServletException {
+    public void init() {
         this.connectionPool = ApplicationStart.getConnectionPool();
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        // You shouldn't end up here with a GET-request, thus you get sent back to frontpage
-        response.sendRedirect("index.jsp");}
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { {
-        response.setContentType("text/html");
-        HttpSession session = request.getSession();
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        // You shouldn't end up here with a GET-request, thus you get sent back to frontpage
+        response.sendRedirect("index.jsp");
+    }
 
-        try {
-            List<Materials> materialsList = AdminFacade.getAllMaterials(connectionPool);
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        {
+            HttpSession session = request.getSession();
 
-            session.setAttribute("materialsList", materialsList); // adding inventory list object to session scope
-            request.getRequestDispatcher("WEB-INF/viewInventory.jsp").forward(request, response);
+            try {
+                List<Materials> materialsList = AdminFacade.getAllMaterials(connectionPool);
+                session.setAttribute("materialsList", materialsList); // adding inventory list object to session scope
+                request.getRequestDispatcher("WEB-INF/viewInventory.jsp").forward(request, response);
 
+            } catch (DatabaseException e) {
+                request.setAttribute("errormessage", e.getMessage());
+                request.getRequestDispatcher("error.jsp").forward(request, response);
+            }
 
-        } catch (DatabaseException e) {
-            request.setAttribute("errormessage", e.getMessage());
-            request.getRequestDispatcher("error.jsp").forward(request, response);
         }
     }
-    }
-
 }
+
 
 
 

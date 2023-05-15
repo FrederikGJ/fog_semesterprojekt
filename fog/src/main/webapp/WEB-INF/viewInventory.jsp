@@ -13,25 +13,50 @@
     <title>Title</title>
 </head>
 <body>
-<form method="post">
-  <table>
-    <tr>
-      <th>Name</th>
-      <th>UnitPrice</th>
-      <th>Unit</th>
-      <th>Description</th>
-    </tr>
 
-    <c:forEach var="materials" items="${sessionScope.materialsList}">
-      <tr>
-        <td>${materials.idMaterials}</td>
-        <td>${materials.name}</td>
-        <td>${materials.unitPrice}</td>
-        <td>${materials.unit}</td>
-        <td>${materials.description}</td>
-      </tr>
-    </c:forEach>
-  </table>
+<form action="addtoinventory" method="post">
+
+    <td>
+        ${sessionScope.materialsList}
+        <label>Tilføj vare:</label><br>
+        Navn: <input type="text" id="material_name" name="name"/>
+        Pris: <input type="text" id="unitprice" name="unitPrice"/>
+        Enhed: <input type="text" id="unit" name="unit"/>
+        Beskrivelse:<input type="text" id="description" name="description"/>
+        Længde: <input type="text" id="length" name="length"/>
+        <input type="submit" value="Tilføj">
+    </td>
+
+
+</form>
+
+
+<form method="post">
+    <table>
+        <tr>
+            <th>Vare ID</th>
+            <th>Navn</th>
+            <th>Enheds Pris</th>
+            <th>Enhed</th>
+            <th>Beskrivelse</th>
+            <th>Længde</th>
+        </tr>
+
+        <c:forEach var="materials" items="${sessionScope.materialsList}">
+            <tr>
+                <td>${materials.idMaterials}</td>
+                <td>${materials.name}</td>
+                <td>${materials.unitPrice}</td>
+                <td>${materials.unit}</td>
+                <td>${materials.description}</td>
+                <td>${materials.length}</td>
+                <td>
+                    <a href="editInventory? id =${materials.idMaterials}">Rediger</a>
+                    <a href="deleteInventory? id =${materials.idMaterials}">Slet</a>
+                </td>
+            </tr>
+        </c:forEach>
+    </table>
 
 </form>
 

@@ -10,4 +10,8 @@ public class AdminFacade {
         return AdminMapper.getAllMaterials(connectionPool);
     }
 
+    public static void addToInventory(Materials materials, ConnectionPool connectionPool) throws DatabaseException {
+        AdminMapper.addToInventory(materials, connectionPool);
+    }
 }
+//String name, int unitPrice, String unit, String description, int length,
