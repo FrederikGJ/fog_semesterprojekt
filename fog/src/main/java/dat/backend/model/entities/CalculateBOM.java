@@ -42,7 +42,7 @@ public class CalculateBOM {
         beamWidthCalculator(width);
 
         //tilføj en pakke skruer
-
+        
 
         //lav et loop der finder et specifikt material.
         Materials skruer = findMaterial("skruer", materials);
