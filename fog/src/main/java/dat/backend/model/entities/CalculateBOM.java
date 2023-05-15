@@ -23,9 +23,6 @@ public class CalculateBOM {
         ArrayList<BOM> bom = new ArrayList<>();
         List<Materials> materials = AdminFacade.getAllMaterials(connectionPool);
 
-
-        //lav et loop der inder et specifikt material.
-
         //OM SPÆR: her skal jeg bruge en bom fra databasen
         //og så skal den int der retuneres sættes som quantitiy
         raftCalculator(length);
@@ -36,6 +33,10 @@ public class CalculateBOM {
         //tilføj topbrædder width med en if statement
         //tilføj en pakke skruer
 
+        //lav et loop der finder et specifikt material.
+        findMaterial("skruer", materials);
+
+        //lav et loop ser tilføjer alle de materials vi har brug for til listen
 
 
         /*
@@ -45,6 +46,19 @@ public class CalculateBOM {
         it needs to be a loop that runs through the list of materials and adds the same idbom and idorders to all rows
          */
         return bom;
+    }
+
+    private Materials findMaterial(String name, List<Materials> materials) {
+        Materials foundMaterial;
+        // Iterate through the list of materials
+        for (Materials material : materials) {
+            if (material.getName().equals(name)) {
+                foundMaterial = material;
+                return foundMaterial;
+            }
+        }
+        //TODO: måske bør den retunere en fejl istedet for null
+        return null;
     }
 
     private int postCalculator(int length, int width) {
