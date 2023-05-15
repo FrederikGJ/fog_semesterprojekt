@@ -23,7 +23,7 @@
                 <div class="col d-flex justify-content-around">
                     <br><br>
                     <c:if test="${sessionScope.user != null}">
-                        <h2>Velkommen ${sessionScope.user.role}. Nu kan du bestille din egen skræddersyede carport</h2>
+                        <h2>Velkommen ${sessionScope.user.username}. Nu kan du bestille din egen skræddersyede carport</h2>
                     </c:if>
 
                     <c:if test="${sessionScope.user == null}">

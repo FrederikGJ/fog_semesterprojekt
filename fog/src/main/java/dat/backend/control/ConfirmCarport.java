@@ -36,7 +36,7 @@ public class ConfirmCarport extends HttpServlet {
         String username = user.getUsername();
 
         try {
-            OrdersFacade.createOrder(1, width, length, username, connectionPool);
+            OrdersFacade.createOrder( width, length, username, connectionPool);
         } catch (DatabaseException e) {
             e.printStackTrace();
         }

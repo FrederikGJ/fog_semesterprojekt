@@ -86,12 +86,14 @@ table, th, td, caption {
 caption{
     padding: 10px;
 }
- .table-header{
-    font-family: Tahoma;
-    font-weight: bold;
-    color: white;
-    background-color: #003D76;
-    padding:10px 20px;
-    border-color: #003D76;
-}
+
+ .navbar-name{
+     font-family: Tahoma;
+     font-weight: bold;
+     color: white;
+     background-color: #003D76;
+     padding:10px 20px;
+     border-color: #003D76;
+
+ }
 

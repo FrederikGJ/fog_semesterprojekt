@@ -38,6 +38,7 @@
                     </c:if>
                     <c:if test="${sessionScope.user != null }">
                         <a style="font-family: Tahoma; font-weight: bold;color: white;"class="nav-item nav-link" href="${pageContext.request.contextPath}/logout">Log out</a>
+                        <p style="font-family: Tahoma; font-weight: bold;color: white;"class="nav-item nav-link" class="nav-item nav-link">${sessionScope.user.username}</p>
                     </c:if>
                 </div>
             </div>
