@@ -13,10 +13,15 @@ public class CalculateBOM {
     int l = 400;
     int b = 300;
 
-    public ArrayList<Materials> createBOM(int length, int width){
+    public ArrayList<BOM> createBOM(int length, int width){
         // I need to create a new bom from the two integers - the bom has materials and so on.
         //HUSK hjælpemetoder!
-        ArrayList<Materials> bom = new ArrayList<>();
+        ArrayList<BOM> bom = new ArrayList<>();
+
+        //her skal jeg bruge en bom fra databasen
+        
+         postCalculator(length);
+
 
 
 
@@ -29,6 +34,11 @@ public class CalculateBOM {
         it needs to be a loop that runs through the list of materials and adds the same idbom and idorders to all rows
          */
         return bom;
+    }
+
+    private int postCalculator(int length) {
+        int numberOfPosts = (length/50)-2;
+        return numberOfPosts;
     }
 
     //calculator that outputs the price of a given offer based on a bom arraylist
