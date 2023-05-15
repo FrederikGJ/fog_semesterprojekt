@@ -48,7 +48,7 @@ public class CalculateBOM {
         Materials skruer = findMaterial("skruer", materials);
 
         //raft length finder needs to length as well
-        
+
 
         //tilføj alle de materials vi har brug for til listen
         bom.add(new BOM(skruer, "bruges til at skrue med", 1));
