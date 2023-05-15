@@ -1,5 +1,7 @@
 package dat.backend.model.entities;
 
+import dat.backend.model.persistence.AdminFacade;
+import dat.backend.model.persistence.AdminMapper;
 import dat.backend.model.persistence.BomFacade;
 import dat.backend.model.persistence.ConnectionPool;
 
@@ -17,9 +19,14 @@ public class CalculateBOM {
         // I need to create a new bom from the two integers - the bom has materials and so on.
         //HUSK hjælpemetoder!
         ArrayList<BOM> bom = new ArrayList<>();
+        ArrayList<Materials> = AdminFacade.getAllMaterials(); //denne skal ikke tage andet end connectionpool
 
-        //her skal jeg bruge en bom fra databasen
-        postCalculator(length);
+        //OM SPÆR: her skal jeg bruge en bom fra databasen
+        //og så skal den int der retuneres sættes som quantitiy
+        raftCalculator(length);
+
+        postCalculator(length, width);
+
 
         /*
         in the end some data will be added through the BomFacade.createBOM();
@@ -30,7 +37,14 @@ public class CalculateBOM {
         return bom;
     }
 
-    private int postCalculator(int length) {
+    private int postCalculator(int length, int width) {
+        if(length > 450){return 6;}
+        else if(width > 450){return 6;}
+        else return 4;
+
+    }
+
+    private int raftCalculator(int length) {
         int numberOfPosts = (length/50)-2;
         return numberOfPosts;
     }
