@@ -30,9 +30,10 @@ public class CalculateBOM {
         //og så skal den int der retuneres sættes som quantitiy
         raftCalculator(length);
         //OM pæle : denne skal også sættes som quantity
+        //+ beslag skal have samme quantity som posts (Carport Saddle Bracket)
         postCalculator(length, width);
-        //tilføj brædder på length og width med en if statement
-
+        //tilføj topbrædder på length med en if statement
+        //tilføj topbrædder width med en if statement
         //tilføj en pakke skruer
 
 
