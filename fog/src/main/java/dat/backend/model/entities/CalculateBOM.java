@@ -12,13 +12,14 @@ import java.util.List;
 public class CalculateBOM {
     // TODO: I will recieve two integers and they will be used for calculating bom
     // TODO: make a method that calculate the BOM the price
+    //TODO: replace dummy integers with the real deal
 
     //dummy integers for the calculations - these will be replaced and so on
     int l = 400;
     int b = 300;
     int idorders = 1; //Orders.getIdOrders;
 
-    public ArrayList<BOM> createBOM(int length, int width, int idorders, ConnectionPool connectionPool) throws DatabaseException {
+    public ArrayList<BOM> createBOM(int length, int width, ConnectionPool connectionPool) throws DatabaseException {
         // I need to create a new bom from the two integers - the bom has materials and so on.
         //HUSK hjælpemetoder!
         ArrayList<BOM> bom = new ArrayList<>();
