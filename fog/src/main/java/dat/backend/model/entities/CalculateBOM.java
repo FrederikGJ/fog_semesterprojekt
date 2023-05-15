@@ -37,8 +37,10 @@ public class CalculateBOM {
 
         //tilføj rem på length med en if statement
         beamLengthCalculator(length);
+
         //tilføj rem width med en if statement
         beamWidthCalculator(width);
+
         //tilføj en pakke skruer
 
 
