@@ -18,7 +18,7 @@ public class CalculateBOM {
     int b = 300;
     int idorders = 1; //Orders.getIdOrders;
 
-    public ArrayList<BOM> createBOM(int length, int width, ConnectionPool connectionPool) throws DatabaseException {
+    public ArrayList<BOM> createBOM(int length, int width, int idorders, ConnectionPool connectionPool) throws DatabaseException {
         // I need to create a new bom from the two integers - the bom has materials and so on.
         //HUSK hjælpemetoder!
         ArrayList<BOM> bom = new ArrayList<>();
@@ -26,7 +26,9 @@ public class CalculateBOM {
 
         //OM SPÆR: her skal jeg bruge en bom fra databasen
         //og så skal den int der retuneres sættes som quantitiy
-        raftCalculator(length);
+        //Når jeg har quantity skal jeg også vælge længden
+        raftQuantityCalculator(length);
+        raftLengthCalculator();
         //OM pæle : denne skal også sættes som quantity
         //+ beslag skal have samme quantity som posts (Carport Saddle Bracket)
         postCalculator(length, width);
@@ -38,10 +40,12 @@ public class CalculateBOM {
 
 
         //lav et loop der finder et specifikt material.
-        findMaterial("skruer", materials);
+        Materials skruer = findMaterial("skruer", materials);
+
+        //raft length finder needs to length as well
 
         //tilføj alle de materials vi har brug for til listen
-        bom.add(new BOM())
+        bom.add(new BOM(idorders, skruer, "bruges til at skrue med", 1));
 
 
         /*
@@ -53,6 +57,12 @@ public class CalculateBOM {
         return bom;
     }
 
+    private int raftLengthCalculator(int length) {
+        if(length <= 300){
+            return 300;
+        }
+    }
+
     private Materials findMaterial(String name, List<Materials> materials) {
         Materials foundMaterial;
         // Iterate through the list of materials
@@ -62,7 +72,6 @@ public class CalculateBOM {
                 return foundMaterial;
             }
         }
-        //TODO: måske bør den retunere en fejl istedet for null
         return null;
     }
 
@@ -73,7 +82,7 @@ public class CalculateBOM {
 
     }
 
-    private int raftCalculator(int length) {
+    private int raftQuantityCalculator(int length) {
         int numberOfPosts = (length/50)-2;
         return numberOfPosts;
     }
