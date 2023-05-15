@@ -24,11 +24,17 @@ public class CalculateBOM {
         List<Materials> materials = AdminFacade.getAllMaterials(connectionPool);
 
 
+        //lav et loop der inder et specifikt material.
+
         //OM SPÆR: her skal jeg bruge en bom fra databasen
         //og så skal den int der retuneres sættes som quantitiy
         raftCalculator(length);
         //OM pæle : denne skal også sættes som quantity
         postCalculator(length, width);
+        //tilføj brædder på length og width med en if statement
+
+        //tilføj en pakke skruer
+
 
 
         /*
