@@ -10,13 +10,13 @@ public class Orders {
     private int length;
     private int totalPrice;
     private String username;
+    private String comment;
 
-    public Orders(int idOrders, int orderStatus, int width, int length, int totalPrice, String username) {
-        this.idOrders = idOrders;
-        this.orderStatus = orderStatus;
+    public Orders( int width, int length, String username, String comment) {
+
         this.width = width;
         this.length = length;
-        this.totalPrice = totalPrice;
         this.username = username;
+        this.comment = comment;
     }
 }

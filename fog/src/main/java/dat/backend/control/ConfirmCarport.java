@@ -1,6 +1,8 @@
 package dat.backend.control;
 
 import dat.backend.model.config.ApplicationStart;
+import dat.backend.model.entities.ListOfOrders;
+import dat.backend.model.entities.Orders;
 import dat.backend.model.entities.User;
 import dat.backend.model.exceptions.DatabaseException;
 import dat.backend.model.persistence.ConnectionPool;
@@ -34,9 +36,14 @@ public class ConfirmCarport extends HttpServlet {
         int width = Integer.parseInt(request.getParameter("width"));
         User user = (User) session.getAttribute("user"); // Henter user ud fra session scope
         String username = user.getUsername();
+        String comment = request.getParameter("comment");
+
 
         try {
-            OrdersFacade.createOrder( width, length, username, connectionPool);
+            OrdersFacade.createOrder( width, length, username, comment, connectionPool);
+            Orders order = new Orders(width, length, username, comment);
+            ListOfOrders orderList = new ListOfOrders();
+            orderList.add(order);
         } catch (DatabaseException e) {
             e.printStackTrace();
         }

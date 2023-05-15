@@ -31,10 +31,12 @@ public class MakeNewRequest extends HttpServlet {
 
         int length = Integer.parseInt(request.getParameter("length"));
         int width = Integer.parseInt(request.getParameter("width"));
+        String comment = request.getParameter("comment");
 
 
         request.setAttribute("length", length);
         request.setAttribute("width", width);
+        request.setAttribute("comment", comment);
         request.getRequestDispatcher("WEB-INF/confirmCarport.jsp").forward(request, response); // Giver kunderne mulighed for at shoppe videre
 
     }

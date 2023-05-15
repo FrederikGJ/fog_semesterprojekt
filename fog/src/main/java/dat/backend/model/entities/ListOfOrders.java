@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListOfOrders {
-    private List<Orders> orderList = new ArrayList<>();
+    public List<Orders> orderList = new ArrayList<>();
 
     public ListOfOrders(){
     //tom constructor

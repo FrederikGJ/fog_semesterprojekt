@@ -28,11 +28,12 @@
                 <th>Bredde</th>
                 <td>${requestScope.width}</td>
             </tr>
-            <caption>Bemærninger: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aliquam at culpa doloremque enim esse eveniet ex, exercitationem iure non nostrum numquam quis quod sequi sit tempora veniam voluptate, voluptates</caption>
+            <caption>${requestScope.comment}</caption>
         </table>
         <form action="ConfirmCarport" method="post">
             <input type="number" hidden name="length" value="${requestScope.length}">
             <input type="number" hidden name="width" value="${requestScope.width}">
+            <input type="text" hidden name="comment" value="${requestScope.comment}">
             <input type="submit" value="Aflæg ordre">
         </form>
 

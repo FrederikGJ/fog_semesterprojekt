@@ -15,18 +15,23 @@
         <form action="MakeNewRequest" method="post">
             <label for="length">Vælg carportens længde:</label>
             <select name="length" id="length">
-                <option value="1">Længde 1</option>
-                <option value="2">Længde 2</option>
-                <option value="3">Længde 3</option>
-                <option value="4">Længde 4</option>
+                <option value="400">400cm</option>
+                <option value="450">450cm</option>
+                <option value="500">500cm</option>
+                <option value="550">550cm</option>
+                <option value="600">600cm</option>
             </select>
             <label for="width">Vælg carportens bredde:</label>
             <select name="width" id="width">
-                <option value="1">Bredde 1</option>
-                <option value="2">Bredde 2</option>
-                <option value="3">Bredde 3</option>
-                <option value="4">Bredde 4</option>
+                <option value="300">300cm</option>
+                <option value="350">350cm</option>
+                <option value="400">400cm</option>
+                <option value="450">450cm</option>
+                <option value="500">500cm</option>
+                <option value="550">550cm</option>
+                <option value="600">600cm</option>
             </select>
+            <input type="text" value="Bemærkninger:" name="comment">
             <input type="submit" value="Gå til kassen">
         </form>
 
