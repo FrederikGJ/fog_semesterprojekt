@@ -28,14 +28,16 @@ public class CalculateBOM {
         //og så skal den int der retuneres sættes som quantitiy
         //Når jeg har quantity skal jeg også vælge længden
         raftQuantityCalculator(length);
-        raftLengthCalculator();
+        raftLengthCalculator(length);
+
         //OM pæle : denne skal også sættes som quantity
         //+ beslag skal have samme quantity som posts (Carport Saddle Bracket)
         postCalculator(length, width);
+
         //tilføj rem på length med en if statement
-
+        beamLengthCalculator(length);
         //tilføj rem width med en if statement
-
+        beamWidthCalculator(width);
         //tilføj en pakke skruer
 
 
@@ -57,10 +59,61 @@ public class CalculateBOM {
         return bom;
     }
 
+    private int beamWidthCalculator(int width) {
+        if(width <= 300){
+            return 300;
+        }
+        else if (width <= 360){
+            return 360;
+        }
+        else if (width <= 420){
+            return 420;
+        }
+        else if (width <= 480){
+            return 480;
+        }
+        else if (width <= 540){
+            return 540;
+        }
+        else return 600;
+    }
+
+    private int beamLengthCalculator(int length) {
+        if(length <= 300){
+            return 300;
+        }
+        else if (length <= 360){
+            return 360;
+        }
+        else if (length <= 420){
+            return 420;
+        }
+        else if (length <= 480){
+            return 480;
+        }
+        else if (length <= 540){
+            return 540;
+        }
+        else return 600;
+    }
+
     private int raftLengthCalculator(int length) {
         if(length <= 300){
             return 300;
         }
+        else if (length <= 360){
+            return 360;
+        }
+        else if (length <= 420){
+            return 420;
+        }
+        else if (length <= 480){
+            return 480;
+        }
+        else if (length <= 540){
+            return 540;
+        }
+        else return 600;
     }
 
     private Materials findMaterial(String name, List<Materials> materials) {
