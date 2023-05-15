@@ -16,6 +16,7 @@ public class CalculateBOM {
     //dummy integers for the calculations - these will be replaced and so on
     int l = 400;
     int b = 300;
+    int idorders = 1; //Orders.getIdOrders;
 
     public ArrayList<BOM> createBOM(int length, int width, ConnectionPool connectionPool) throws DatabaseException {
         // I need to create a new bom from the two integers - the bom has materials and so on.
@@ -29,14 +30,18 @@ public class CalculateBOM {
         //OM pæle : denne skal også sættes som quantity
         //+ beslag skal have samme quantity som posts (Carport Saddle Bracket)
         postCalculator(length, width);
-        //tilføj topbrædder på length med en if statement
-        //tilføj topbrædder width med en if statement
+        //tilføj rem på length med en if statement
+
+        //tilføj rem width med en if statement
+
         //tilføj en pakke skruer
+
 
         //lav et loop der finder et specifikt material.
         findMaterial("skruer", materials);
 
-        //lav et loop ser tilføjer alle de materials vi har brug for til listen
+        //tilføj alle de materials vi har brug for til listen
+        bom.add(new BOM())
 
 
         /*
