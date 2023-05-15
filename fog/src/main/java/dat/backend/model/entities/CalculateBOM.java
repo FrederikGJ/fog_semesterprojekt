@@ -1,11 +1,13 @@
 package dat.backend.model.entities;
 
+import dat.backend.model.exceptions.DatabaseException;
 import dat.backend.model.persistence.AdminFacade;
 import dat.backend.model.persistence.AdminMapper;
 import dat.backend.model.persistence.BomFacade;
 import dat.backend.model.persistence.ConnectionPool;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CalculateBOM {
     // TODO: I will recieve two integers and they will be used for calculating bom
@@ -15,16 +17,17 @@ public class CalculateBOM {
     int l = 400;
     int b = 300;
 
-    public ArrayList<BOM> createBOM(int length, int width){
+    public ArrayList<BOM> createBOM(int length, int width, ConnectionPool connectionPool) throws DatabaseException {
         // I need to create a new bom from the two integers - the bom has materials and so on.
         //HUSK hjælpemetoder!
         ArrayList<BOM> bom = new ArrayList<>();
-        //ArrayList<Materials> = AdminFacade.getAllMaterials(); //denne skal ikke tage andet end connectionpool
+        List<Materials> materials = AdminFacade.getAllMaterials(connectionPool);
+
 
         //OM SPÆR: her skal jeg bruge en bom fra databasen
         //og så skal den int der retuneres sættes som quantitiy
         raftCalculator(length);
-
+        //OM pæle : denne skal også sættes som quantity
         postCalculator(length, width);
 
 
