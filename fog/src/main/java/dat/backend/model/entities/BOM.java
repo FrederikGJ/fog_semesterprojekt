@@ -6,7 +6,6 @@ import java.util.Map;
 
 public class BOM {
 
-    int idBOM;
     Materials material;
     String descriptionOfUSe;
     int quantity;
@@ -14,15 +13,13 @@ public class BOM {
     //for the read CRUD operation in mapper we have
     int idmaterial;
 
-    public BOM(int idBOM,Materials material, String descriptionOfUSe, int quantity) {
-        this.idBOM = idBOM;
+    public BOM(Materials material, String descriptionOfUSe, int quantity) {
         this.material = material;
         this.descriptionOfUSe = descriptionOfUSe;
         this.quantity = quantity;
     }
 
-    public BOM(int idBOM, int idmaterial, String descriptionOfUSe, int quantity){
-        this.idBOM = idBOM;
+    public BOM(int idmaterial, String descriptionOfUSe, int quantity){
         this.idmaterial = idmaterial;
         this. descriptionOfUSe = descriptionOfUSe;
         this.quantity = quantity;

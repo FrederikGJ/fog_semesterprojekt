@@ -21,18 +21,17 @@ public class BomMapper {
         // The logger is used for monitoring
         // the behavior of the application, troubleshooting problems, and auditing purposes.
         BOM bom;
-        String sql = "insert into fog.BOM (idBOM, idorders, quantity, description, idmaterials) values (?,?,?,?,?)";
+        String sql = "insert into fog.BOM (idBOM, idorders, quantity, description, idmaterials) values (?,?,?,?)";
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
-                ps.setInt(1, idBOM);
-                ps.setInt(2, order.getIdorders());
-                ps.setInt(3, quantity);
-                ps.setString(4, descriptionOfUSe);
-                ps.setInt(5, material.getIdmaterials());
+                ps.setInt(1, order.getIdorders());
+                ps.setInt(2, quantity);
+                ps.setString(3, descriptionOfUSe);
+                ps.setInt(4, material.getIdmaterials());
                 int rowsAffected = ps.executeUpdate();
                 if (rowsAffected == 1) {
-                    bom = new BOM(idBOM, materials, descriptionOfUSe, quantity);
+                    bom = new BOM( materials, descriptionOfUSe, quantity);
                 } else {
                     throw new DatabaseException("The BOM with idBOM = " + idBOM + " and descrition"
                             + descriptionOfUSe + " could not be inserted into the database");
@@ -56,7 +55,7 @@ public class BomMapper {
                 ResultSet rs = ps.executeQuery();
                 if (rs.next()) {
                     //TODO get material name and add it
-                    bom = new BOM(rs.getInt(1), rs.getInt(5), rs.getString(4), rs.getInt(3));
+                    bom = new BOM(rs.getInt(4), rs.getString(3), rs.getInt(2));
                     bomArrayList.add(bom);
                 } else {
                     throw new DatabaseException("Something went wrong when reading BOM list");
