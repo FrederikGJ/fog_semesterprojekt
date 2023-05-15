@@ -6,7 +6,7 @@ import dat.backend.model.persistence.ConnectionPool;
 import java.util.ArrayList;
 
 public class CalculateBOM {
-    // TODO: I will recieve two integers and they will be used for calculating
+    // TODO: I will recieve two integers and they will be used for calculating bom
     // TODO: make a method that calculate the BOM the price
 
     //dummy integers for the calculations - these will be replaced and so on
@@ -15,9 +15,10 @@ public class CalculateBOM {
 
     public ArrayList<Materials> createBOM(int length, int width){
         // I need to create a new bom from the two integers - the bom has materials and so on.
-        //HUSK hjælpemetoder!! det er guld værd!!!
+        //HUSK hjælpemetoder!
         ArrayList<Materials> bom = new ArrayList<>();
-        
+
+
 
 
 
