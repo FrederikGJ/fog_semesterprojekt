@@ -38,7 +38,7 @@
                             <input type="submit" value="Bestil carport" class="frontbutton">
                         </form>
 
-                        <form action="MakeNewRequest" method="get">
+                        <form action="ViewOrders" method="get">
                             <input type="submit" value="Mine bestillinger" class="frontbutton">
                         </form>
                     </c:if>

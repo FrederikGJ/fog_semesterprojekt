@@ -31,6 +31,16 @@ public class Orders {
     }
 
 
+    public Orders(int idOrders, String orderStatus, int width, int length, int totalPrice, String username, String comment) {
+        this.idOrders = idOrders;
+        this.orderStatus = orderStatus;
+        this.width = width;
+        this.length = length;
+        this.totalPrice = totalPrice;
+        this.username = username;
+        this.comment = comment;
+    }
+
     public int getIdorders(){
         return idOrders;
     }
