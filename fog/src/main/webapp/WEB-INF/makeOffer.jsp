@@ -14,47 +14,47 @@
     <jsp:body>
 
         <div class="row">
-            <div class="col-6 text-center">
+            <div class="col-6">
                 <h2>Ordre info</h2>
                 <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th scope="col">.</th>
-                            <th scope="col">..</th>
+                            <th scope="col" colspan="2">..</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <th scope="row">IDorders</th>
-                            <td>${sessionScope.idorders}<td>
+                            <td colspan="2">${sessionScope.idorders}<td>
                         </tr>
                         <tr>
                             <th scope="row">Username</th>
-                            <td>${sessionScope.ongoingOrder.username}</td>
+                            <td colspan="2">${sessionScope.ongoingOrder.username}</td>
                         </tr>
                         <tr>
                             <th scope="row">Status</th>
-                            <td>${sessionScope.ongoingOrder.orderStatus}<td>
+                            <td colspan="2">${sessionScope.ongoingOrder.orderStatus}<td>
                         </tr>
                     </tbody>
-                    <thead>
-                        <tr>
-                            <th scope="col">Kundens udfyldte formular</th>
+                    <thead class="thead-light">
+                        <tr class="table-secondary">
+                            <th scope="col" colspan="2">Kundens udfyldte formular</th>
                         </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th scope="row">Længde</th>
-                        <td>${sessionScope.ongoingOrder.length}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Bredde</th>
-                        <td>${sessionScope.ongoingOrder.width}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Bemærkninger</th>
-                        <td>${sessionScope.ongoingOrder.comments}<td>
-                    </tr>
+                        <tr>
+                            <th scope="row">Længde</th>
+                            <td colspan="2">${sessionScope.ongoingOrder.length}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Bredde</th>
+                            <td colspan="2">${sessionScope.ongoingOrder.width}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Bemærkninger</th>
+                            <td colspan="2">${sessionScope.ongoingOrder.comments}<td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

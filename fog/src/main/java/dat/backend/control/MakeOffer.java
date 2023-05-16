@@ -42,11 +42,9 @@ public class MakeOffer extends HttpServlet
             Orders ongoingOrder = AdminFacade.getOrdersById(idorders, "new_pending", connectionPool);
             session.setAttribute("ongoingOrder", ongoingOrder);
 
-
             // lav egen jsp og servlet til finishedOrder i stedet for MakeOffer
             // Orders finishedOrder = AdminFacade.getOrdersById(idorders, "finished", connectionPool);
             // session.setAttribute("finishedOrder", finishedOrder);
-
 
             request.getRequestDispatcher("WEB-INF/makeOffer.jsp").forward(request, response);
 

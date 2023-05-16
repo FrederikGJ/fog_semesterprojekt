@@ -22,20 +22,21 @@
             <div class="col-6">
                 <h3>Igangværende: </h3>
                 <form method="get">
-                    <table>
+                    <table class="table table-hover">
                         <tr>
                             <th>IDorders</th>
                             <th>Username</th>
                             <th>Status</th>
                         </tr>
-
-                        <c:forEach var="orders" items="${sessionScope.ongoingOrders}">
-                            <tr>
-                                <td><button formaction="makeoffer" formmethod="post" name="idorders" value="${orders.idorders}">${orders.idorders}</button></td>
-                                <td>${orders.username}</td>
-                                <td>${orders.orderStatus}</td>
-                            </tr>
-                        </c:forEach>
+                        <tbody>
+                            <c:forEach var="orders" items="${sessionScope.ongoingOrders}">
+                                <tr>
+                                    <td><button formaction="makeoffer" formmethod="post" name="idorders" value="${orders.idorders}">${orders.idorders}</button></td>
+                                    <td>${orders.username}</td>
+                                    <td>${orders.orderStatus}</td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
                     </table>
                 </form>
             </div>
@@ -43,20 +44,21 @@
             <div class="col-6">
                 <h3>Afsluttede: </h3>
                 <form method="get">
-                    <table>
+                    <table class="table table-hover">
                         <tr>
                             <th>IDorders</th>
                             <th>Username</th>
                             <th>Status</th>
                         </tr>
-
-                        <c:forEach var="orders" items="${sessionScope.finishedOrders}">
-                            <tr>
-                                <td><button formaction="makeoffer" formmethod="post" name="idorders" value="${orders.idorders}">${orders.idorders}</button></td>
-                                <td>${orders.username}</td>
-                                <td>${orders.orderStatus}</td>
-                            </tr>
-                        </c:forEach>
+                        <tbody>
+                            <c:forEach var="orders" items="${sessionScope.finishedOrders}">
+                                <tr>
+                                    <td><button formaction="makeoffer" formmethod="post" name="idorders" value="${orders.idorders}">${orders.idorders}</button></td>
+                                    <td>${orders.username}</td>
+                                    <td>${orders.orderStatus}</td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
                     </table>
                 </form>
             </div>
