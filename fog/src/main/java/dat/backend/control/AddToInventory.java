@@ -55,6 +55,8 @@ public class AddToInventory extends HttpServlet {
             e.printStackTrace();
         }
         request.getRequestDispatcher("WEB-INF/viewInventory.jsp").forward(request, response);
+        request.setAttribute("msg", "Vare er blevet tilføjet til inventar");
+
 
     }
 }

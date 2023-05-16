@@ -15,7 +15,6 @@ import java.util.List;
 @WebServlet(name = "deleteinventory", value = "/deleteinventory")
 public class DeleteInventory extends HttpServlet {
     private ConnectionPool connectionPool;
-    Materials materials;
 
 
     @Override
@@ -25,25 +24,33 @@ public class DeleteInventory extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // You shouldn't end up here with a GET-request, thus you get sent back to frontpage
+        response.sendRedirect("index.jsp");
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        List<Materials> materialsList = (List<Materials>) session.getAttribute("materialsList"); // adding inventory list object to session scope
+
+
+        int idMaterials = Integer.parseInt(request.getParameter("idMaterials"));
+        Materials materials = new Materials(idMaterials);
+        /*ist<Materials> materialsList = (List<Materials>) session.getAttribute("materialsList"); // adding inventory list object to session scope
+        if(idMaterials)
+        materialsList.remove(idMaterials1);
+        Materials materials = new Materials(idMaterials);*/
 
         try {
-            int idMaterials = Integer.parseInt(request.getParameter("idmaterials1"));
             AdminFacade.deleteMaterials(materials, connectionPool);
-            request.setAttribute("idmaterials", materials.getIdMaterials());
-            materialsList.remove("");
-            //slet fra arraylisten
+            //session.setAttribute("idMaterials", idMaterials); // adding inventory list object to session scope
+
             request.getRequestDispatcher("WEB-INF/viewInventory.jsp").forward(request, response);
+
 
         } catch (DatabaseException e) {
             e.printStackTrace();
         }
 
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 }

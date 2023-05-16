@@ -96,8 +96,6 @@ public class AdminMapper {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setInt(1, materials.getIdMaterials());
                 ps.executeUpdate();
-                List<Materials>materialsList.remove(materials.getIdMaterials());
-
             }
         } catch (
                 SQLException ex) {

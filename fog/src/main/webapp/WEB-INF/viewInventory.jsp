@@ -25,6 +25,11 @@
         Længde: <input type="text" id="length" name="length"/>
         <input type="submit" value="Tilføj">
     </td>
+    <br>
+    <br>
+    ${requestScope.msg}
+    <br>
+    <br>
 </form>
 
 
@@ -40,29 +45,24 @@
         </tr>
 
         <c:forEach var="materials" items="${sessionScope.materialsList}">
-            <tr>
-                <td>${materials.idMaterials}</td>
-                <td>${materials.name}</td>
-                <td>${materials.unitPrice}</td>
-                <td>${materials.unit}</td>
-                <td>${materials.description}</td>
-                <td>${materials.length}</td>
-                <td>
+        <tr>
+            <td>${materials.idMaterials}</td>
+            <td>${materials.name}</td>
+            <td>${materials.unitPrice}</td>
+            <td>${materials.unit}</td>
+            <td>${materials.description}</td>
+            <td>${materials.length}</td>
+            <td>
+            <button formaction="deleteinventory" formmethod="post" name="idMaterials" value="${materials.idMaterials}">Delete</button>
+            </td>
+            <td>
+                <button formaction="editinventory" formmethod="post" name="idMaterials" value="${materials.idMaterials}">Edit</button>
+            </td>
+        </tr>
 
-                    <form action="deleteinventory" method="post">
-                        <input type="submit" value="Submit">
-                    </form>
-                    <form action="editinventory" method="post">
-                        <input type="button" id="edit" name="delete"><br><br>
-                        <input type="submit" value="Submit">
-                    </form>
-                    href="edit.jsp">Edit</a></td><td><a
-                    href="delete.jsp">Delete</a></td></tr>
-                    <a href="editinventory" id =<c:out value="${materials.idMaterials}"/>Rediger</a>
-                    <a href="deleteinventory" id=<c:out value ="${materials.idMaterials}"/>Slet</a>
-                </td>
-            </tr>
         </c:forEach>
+
+
     </table>
 
 </form>

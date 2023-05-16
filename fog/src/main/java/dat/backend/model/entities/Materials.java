@@ -8,8 +8,9 @@ public class Materials {
     private String description;
     private int length;
 
+    //Constructor
     public Materials(int idMaterials, String name, int unitPrice, String unit, String description, int length) {
-        this.idMaterials= idMaterials;
+        this.idMaterials = idMaterials;
         this.name = name;
         this.unitPrice = unitPrice;
         this.unit = unit;
@@ -17,7 +18,8 @@ public class Materials {
         this.length = length;
     }
 
-    public Materials (String name, int unitPrice, String unit, String description, int length) {
+    // Constructor used in adding to Inventory
+    public Materials(String name, int unitPrice, String unit, String description, int length) {
         this.name = name;
         this.unitPrice = unitPrice;
         this.unit = unit;
@@ -25,7 +27,14 @@ public class Materials {
         this.length = length;
     }
 
-    public int getIdMaterials() {return idMaterials;}
+    //Constructor used iin deleting Inventory
+    public Materials(int idMaterials) {
+        this.idMaterials = idMaterials;
+    }
+
+    public int getIdMaterials() {
+        return idMaterials;
+    }
 
     public String getName() {
         return name;
@@ -43,12 +52,13 @@ public class Materials {
         return description;
     }
 
-    public int getLength() {return length;}
+    public int getLength() {
+        return length;
+    }
 
     public void setName(String name) {
         this.name = name;
     }
-
 
 
     @Override

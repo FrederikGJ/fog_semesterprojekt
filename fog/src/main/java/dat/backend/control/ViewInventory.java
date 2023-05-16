@@ -24,8 +24,6 @@ import java.util.Map;
 
 public class ViewInventory extends HttpServlet {
     private ConnectionPool connectionPool;
-    Materials materials;
-    List<Materials> materialsList;
 
     @Override
     public void init() {
@@ -43,20 +41,18 @@ public class ViewInventory extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         {
             HttpSession session = request.getSession();
-
             try {
                 List<Materials> materialsList = AdminFacade.getAllMaterials(connectionPool);
                 session.setAttribute("materialsList", materialsList); // adding inventory list object to session scope
                 request.getRequestDispatcher("WEB-INF/viewInventory.jsp").forward(request, response);
-
             } catch (DatabaseException e) {
                 request.setAttribute("errormessage", e.getMessage());
-
                 request.getRequestDispatcher("error.jsp").forward(request, response);
             }
         }
     }
 }
+
 
 
 
