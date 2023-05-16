@@ -28,7 +28,7 @@ public class BomMapper {
                 ps.setInt(2, order.getIdorders());
                 ps.setInt(3, quantity);
                 ps.setString(4, descriptionOfUSe);
-                ps.setInt(5, material.getIdmaterials());
+                ps.setInt(5, material.getIdMaterials());
                 int rowsAffected = ps.executeUpdate();
                 if (rowsAffected == 1) {
                     bom = new BOM(idBOM, materials, descriptionOfUSe, quantity);

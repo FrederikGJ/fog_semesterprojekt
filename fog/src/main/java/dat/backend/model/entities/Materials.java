@@ -1,6 +1,8 @@
 package dat.backend.model.entities;
 
 public class Materials {
+
+    private int idMaterials;
     private String name;
     private int unitPrice;
     private String unit;
@@ -12,5 +14,10 @@ public class Materials {
         this.unitPrice = unitPrice;
         this.unit = unit;
         this.description = description;
+    }
+
+    public int getIdMaterials()
+    {
+        return idMaterials;
     }
 }
