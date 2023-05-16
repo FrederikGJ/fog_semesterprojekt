@@ -1,9 +1,11 @@
 package dat.backend.control;
 
 import dat.backend.model.config.ApplicationStart;
+import dat.backend.model.entities.BOM;
 import dat.backend.model.entities.Orders;
 import dat.backend.model.exceptions.DatabaseException;
 import dat.backend.model.persistence.AdminFacade;
+import dat.backend.model.persistence.BomFacade;
 import dat.backend.model.persistence.ConnectionPool;
 
 import javax.servlet.*;
@@ -41,6 +43,10 @@ public class MakeOffer extends HttpServlet
 
             Orders ongoingOrder = AdminFacade.getOrdersById(idorders, "new_pending", connectionPool);
             session.setAttribute("ongoingOrder", ongoingOrder);
+
+            List<BOM> listBOM = BomFacade.readBOM(connectionPool);
+            session.setAttribute("listBOM", listBOM);
+
 
             // lav egen jsp og servlet til finishedOrder i stedet for MakeOffer
             // Orders finishedOrder = AdminFacade.getOrdersById(idorders, "finished", connectionPool);

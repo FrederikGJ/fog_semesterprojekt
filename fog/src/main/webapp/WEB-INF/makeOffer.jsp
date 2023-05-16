@@ -64,19 +64,20 @@
                 <table class="table table-bordered">
                     <thead>
                     <tr>
-                        <th scope="col"></th>
-                        <th scope="col">.</th>
-                        <th scope="col">..</th>
-                        <th scope="col">...</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">ID Materials</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>x</td>
-                        <td>x</td>
-                        <td>x</td>
-                    </tr>
+                    <c:forEach var="BOM" items="${sessionScope.listBOM}">
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>${BOM.quantity}</td>
+                            <td>${BOM.descriptionOfUSe}</td>
+                            <td>${BOM.idmaterials}</td>
+                        </tr>
+                    </c:forEach>
                     <tr>
                         <th scope="row">2</th>
                         <td>xx</td>
