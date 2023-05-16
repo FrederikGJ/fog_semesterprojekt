@@ -14,7 +14,7 @@ public class AdminFacade {
         AdminMapper.addToInventory(materials, connectionPool);
     }
 
-    public static void deleteMaterials(Materials materials,  ConnectionPool connectionPool) throws DatabaseException {
-        AdminMapper.deleteMaterials(materials, connectionPool);
+    public static void deleteMaterials(int idMaterials,  ConnectionPool connectionPool) throws DatabaseException {
+        AdminMapper.deleteMaterials(idMaterials, connectionPool);
     }
 }
