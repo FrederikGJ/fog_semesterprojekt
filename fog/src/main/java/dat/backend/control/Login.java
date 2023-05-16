@@ -39,7 +39,13 @@ public class Login extends HttpServlet {
             User user = UserFacade.login(username, password, connectionPool);
             session = request.getSession();
             session.setAttribute("user", user); // adding user object to session scope
+
+            if (user.getRole().equalsIgnoreCase("admin")) {
+                session.setAttribute("admin", true); // adding admin object to session scope
+                request.getRequestDispatcher("WEB-INF/welcomeAdmin.jsp").forward(request, response);
+            }
             request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request, response);
+
         } catch (DatabaseException e) {
             request.setAttribute("errormessage", e.getMessage());
             request.getRequestDispatcher("error.jsp").forward(request, response);
