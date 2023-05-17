@@ -13,16 +13,14 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-             SignUp
+           Opret ny bruger
     </jsp:attribute>
 
     <jsp:attribute name="footer">
-            SignUp
+
     </jsp:attribute>
 
     <jsp:body>
-
-        <h3>You can sign up here</h3>
 
 
         <div class="text-center mt-5">

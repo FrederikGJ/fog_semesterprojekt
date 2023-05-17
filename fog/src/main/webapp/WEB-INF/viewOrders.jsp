@@ -5,7 +5,7 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-         Welcome to the frontpage
+
     </jsp:attribute>
 
     <jsp:attribute name="footer">
@@ -16,12 +16,12 @@
 
 
         <div class="row col-12 mb-4">
-            <h1>Se alle ordre</h1>
+            <h1>Oversigt over ordre for ${sessionScope.user.username}</h1>
         </div>
 
         <div class="row">
             <div class="col-6">
-                <h3>Nye: </h3>
+                <h3>Afventer: </h3>
                 <form method="get">
                     <table>
                         <tr>
@@ -30,7 +30,6 @@
                             <th>Bredde</th>
                             <th>Bemærkninger</th>
                             <th>Fuld pris</th>
-                            <th>Status</th>
                         </tr>
 
                         <c:forEach var="orders" items="${sessionScope.newOrders}">
@@ -41,7 +40,6 @@
                                     <td>${orders.width}</td>
                                     <td>${orders.comment}</td>
                                     <td>Ikke beregnet</td>
-                                    <td>Afventer</td>
                                 </tr>
                             </c:if>
                         </c:forEach>
@@ -51,7 +49,7 @@
 
         <div class="row">
             <div class="col-6">
-                <h3>Igangværende: </h3>
+                <h3>Tilbud: </h3>
                 <form method="get">
                     <table>
                         <tr>
@@ -60,7 +58,7 @@
                             <th>Bredde</th>
                             <th>Bemærkninger</th>
                             <th>Fuld pris</th>
-                            <th>Status</th>
+                            <th>Svar</th>
                         </tr>
 
                         <c:forEach var="orders" items="${sessionScope.pendingOrders}">
@@ -72,8 +70,11 @@
                                 <td>${orders.comment}</td>
                                 <td>${orders.totalPrice}</td>
                                 <td>
-                                    <button>Accepter</button>
-                                    <button>Afvis</button>
+                                    <form action="#">
+                                        <input type="submit" value="Accepter" name="accept">
+                                        <br><br>
+                                        <input type="submit" value="Afvis" name="decline">
+                                    </form>
                                 </td>
 
                             </tr>
@@ -94,7 +95,7 @@
                             <th>Bredde</th>
                             <th>Bemærkninger</th>
                             <th>Fuld pris</th>
-                            <th>Status</th>
+                            <th>Stykliste</th>
                         </tr>
 
                         <c:forEach var="orders" items="${sessionScope.finishedOrders}">
@@ -106,7 +107,9 @@
                                     <td>${orders.comment}</td>
                                     <td>${orders.totalPrice}</td>
                                     <td>
-                                        <button>Se stykliste</button>
+                                        <form action="#">
+                                            <input type="submit" value="Se styklisten">
+                                        </form>
                                     </td>
                                 </tr>
                             </c:if>

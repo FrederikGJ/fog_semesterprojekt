@@ -21,22 +21,30 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container" style="background-color: #002242">
-            <a class="navbar-brand" href="index.jsp">
-                <img src="${pageContext.request.contextPath}/images/fogLogo.png" width="100px;" class="img-fluid"/>
-            </a>
+            <c:if test="${sessionScope.user == null }">
+                <a class="navbar-brand" href="index.jsp">
+                    <img src="${pageContext.request.contextPath}/images/fogLogo.png" width="100px;" class="img-fluid"/>
+                </a>
+            </c:if>
+            <c:if test="${sessionScope.user != null }">
+                <a class="navbar-brand" href="${pageContext.request.contextPath}/WEB-INF/welcome.jsp">
+                    <img src="${pageContext.request.contextPath}/images/fogLogo.png" width="100px;" class="img-fluid"/>
+                </a>
+            </c:if>
+
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
                     aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a style="font-family: Tahoma; font-weight: bold;color: white;" class="nav-item nav-link" href="${pageContext.request.contextPath}/">Page 1</a>
-                    <a style="font-family: Tahoma; font-weight: bold;color: white;"class="nav-item nav-link" href="${pageContext.request.contextPath}/">Page 2</a>
-                    <a style="font-family: Tahoma; font-weight: bold;color: white;"class="nav-item nav-link" href="${pageContext.request.contextPath}/">Page 3</a>
                     <c:if test="${sessionScope.user == null }">
                         <a style="font-family: Tahoma; font-weight: bold;color: white;"class="nav-item nav-link" href="${pageContext.request.contextPath}/login.jsp">Login</a>
                     </c:if>
-                    <c:if test="${sessionScope.user != null }">
+                    <c:if test="${sessionScope.user.role == }">
+                        <a style="font-family: Tahoma; font-weight: bold;color: white;" class="nav-item nav-link" href="${pageContext.request.contextPath}/MakeNewRequest">Bestil carport</a>
+                        <a style="font-family: Tahoma; font-weight: bold;color: white;"class="nav-item nav-link" href="${pageContext.request.contextPath}/ViewOrders">Mine bestillinger</a>
                         <a style="font-family: Tahoma; font-weight: bold;color: white;"class="nav-item nav-link" href="${pageContext.request.contextPath}/logout">Log out</a>
                         <p style="font-family: Tahoma; font-weight: bold;color: white;"class="nav-item nav-link" class="nav-item nav-link">${sessionScope.user.username}</p>
                     </c:if>

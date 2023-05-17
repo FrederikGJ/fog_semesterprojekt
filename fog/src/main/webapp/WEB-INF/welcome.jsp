@@ -24,16 +24,11 @@
             <div class="row">
                 <div class="col d-flex justify-content-around">
                     <br><br>
-                    <c:if test="${sessionScope.user != null}">
                         <h2>Velkommen ${sessionScope.user.username}. Nu kan du bestille din egen skræddersyede carport</h2>
-                    </c:if>
 
-                    <c:if test="${sessionScope.user == null}">
-                        <h2>Log ind for at bestille din egen skræddersyede carport</h2>
-                    </c:if>
                 </div>
                 <div class="col d-flex justify-content-around">
-                    <c:if test="${sessionScope.user != null}">
+
                         <form action="MakeNewRequest" method="get">
                             <input type="submit" value="Bestil carport" class="frontbutton">
                         </form>
@@ -41,17 +36,13 @@
                         <form action="ViewOrders" method="get">
                             <input type="submit" value="Mine bestillinger" class="frontbutton">
                         </form>
-                    </c:if>
-                    <c:if test="${sessionScope.user == null}">
-                        <form action="login.jsp">
-                            <input type="submit" value="Log ind" class="frontbutton">
-                        </form>
-                    </c:if>
                 </div>
             </div>
             <div class="row">
                 <div class="col d-flex justify-content-center">
-                    <h5>Hos Fog fokuserer vi på Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis deleniti dolore doloribus enim esse id iste iure laudantium libero, molestias neque odit pariatur quisquam reprehenderit saepe vel voluptas! Natus, sunt?</h5>
+                    <h5>
+                        Hos os i Fog fokuserer vi på at alle kan få netop dén carport der passer deres behov. Indsæt målene og evt. særlige krav til din carport. Så klarer Fog resten!
+                    </h5>
                 </div>
                 <div class="col d-flex justify-content-center">
                 </div>
