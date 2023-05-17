@@ -35,33 +35,5 @@ public class OrdersMapper {
         }
     }
 
-    /*static List<Orders> getAllOrders(ConnectionPool connectionPool) throws DatabaseException {
-        List<Orders> ordersList = new ArrayList<>();
-        //Logger.getLogger("web").log(Level.INFO, "");
-        Orders orders;
-
-        String sql = "SELECT * FROM fog.orders";
-        try (Connection connection = connectionPool.getConnection()) {
-            try (PreparedStatement ps = connection.prepareStatement(sql)) {
-                ResultSet rs = ps.executeQuery();
-                while (rs.next()) { // Så længe der stadigvæk er flere ordre på databasen fortsætter den
-                    int idorders = rs.getInt("idorders");
-                    String orderstatus = rs.getString("orderstatus");
-                    int length = rs.getInt("length");
-                    int width = rs.getInt("width");
-                    int totalprice = rs.getInt("totalprice");
-                    String username = rs.getString("username");
-                    String comments = rs.getString("comments");
-
-                    orders = new Orders(idorders, orderstatus, length, width, totalprice, username, comments);
-                    ordersList.add(orders);
-                }
-            }
-        } catch (SQLException ex) {
-            throw new DatabaseException(ex, "Something went wrong");
-        }
-        return ordersList;
-    }*/
-
 
 }

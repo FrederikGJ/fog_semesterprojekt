@@ -23,16 +23,39 @@ public class AdminMapper {
         Logger.getLogger("web").log(Level.INFO, "");
 
         String sql = "SELECT * FROM materials";
+import dat.backend.model.exceptions.DatabaseException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+     static void addToInventory(Materials materials, ConnectionPool connectionPool) throws DatabaseException {
+
+        String sql = "INSERT INTO fog.materials (material_name, unitprice, unit, description, length) VALUES (?,?,?,?,?)";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+                ps.setString(1, materials.getName());
+                ps.setInt(2, materials.getUnitPrice());
+                ps.setString(3, materials.getUnit());
+                ps.setString(4, materials.getDescription());
+                ps.setInt(5, materials.getLength());
+                ps.executeUpdate();
+
+            }
+        } catch (SQLException ex) {
+            throw new DatabaseException(ex, "Something went wrong with the database");
+        }
+    }
+
+    static List<Materials> getAllMaterials(ConnectionPool connectionPool) throws DatabaseException {
+        List<Materials> materialsList = new ArrayList<>();
+        String sql = "SELECT * FROM fog.materials";
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
-                    name = rs.getString("name");
-                    unitPrice = rs.getInt("unitprice");
-                    unit = rs.getString("unit");
-                    description = rs.getString("description");
-                   Materials materials = new Materials(name, unitPrice, unit, description );
+                    Materials materials = new Materials(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getInt(6));
                     materialsList.add(materials);
                 }
             }
@@ -122,6 +145,24 @@ public class AdminMapper {
                     orders = new Orders(idorders, orderstatus, length, width, totalprice, username);
                     ongoingOrders.add(orders);
                 }
+
+
+    static Materials getMaterialsByID(int idMaterials, ConnectionPool connectionPool) throws DatabaseException {
+        List<Materials> materialsList = new ArrayList<>();
+        //Logger.getLogger("web").log(Level.INFO, "");
+
+        String sql = "SELECT * FROM fog.materials WHERE idmaterials = ?";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, idMaterials);
+                ResultSet rs = ps.executeQuery();
+                Materials materials = null;
+                while (rs.next()) {
+                    materials = new Materials(rs.getInt(0), rs.getString(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getInt(5));
+                    materialsList.add(materials);
+                }
+                return materials;
             }
         } catch (SQLException ex) {
             throw new DatabaseException(ex, "Something went wrong with the database");
@@ -188,4 +229,42 @@ public class AdminMapper {
 
 
 
+
+    }
+
+    static void editMaterials(String name, int unitPrice, String unit, String description, int length, ConnectionPool connectionPool) throws DatabaseException {
+
+        String sql = "UPDATE fog.materials set material_name = ?, unitprice = ?, unit= ?, description = ?, length = ?";
+        try (
+                Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setString(1, name);
+                ps.setInt(2, unitPrice);
+                ps.setString(3, unit);
+                ps.setString(4, description);
+                ps.setInt(5, length);
+                ps.executeQuery();
+            }
+        } catch (
+                SQLException ex) {
+            throw new DatabaseException(ex, "Something went wrong with the database");
+        }
+    }
+
+
+    static void deleteMaterials(int idMaterials, ConnectionPool connectionPool) throws DatabaseException {
+
+        String sql = "DELETE fog.materials WHERE idmaterials = ?";
+        try (
+                Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, idMaterials);
+                ps.executeUpdate();
+
+            }
+        } catch (
+                SQLException ex) {
+            throw new DatabaseException(ex, "Something went wrong with the database");
+        }
+    }
 }

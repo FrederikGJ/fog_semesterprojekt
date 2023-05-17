@@ -33,6 +33,17 @@ public class Orders {
 
     public Orders(int idOrders, String orderStatus, int width, int length, int totalPrice, String username, String comment) {
         this.idOrders = idOrders;
+    public Orders(int idorders,int orderStatus, int width, int length, int totalPrice, User user) {
+        this.idorders = idorders;
+        this.orderStatus = orderStatus;
+        this.width = width;
+        this.length = length;
+        this.totalPrice = totalPrice;
+        this.user = user;
+    }
+
+    public Orders(int orderStatus, int width, int length, int totalPrice, User user) {
+
         this.orderStatus = orderStatus;
         this.width = width;
         this.length = length;
@@ -41,47 +52,4 @@ public class Orders {
         this.comment = comment;
     }
 
-    public int getIdorders(){
-        return idOrders;
-    }
-
-    public String getOrderStatus(){
-        return orderStatus;
-    }
-
-    public String getUsername(){
-        return username;
-    }
-
-    public int getIdOrders() {
-        return idOrders;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public int getLength() {
-        return length;
-    }
-
-    public int getTotalPrice() {
-        return totalPrice;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-   /* public int assignInteger(String inputString) {
-        int assignedInteger = 0;
-
-        if (inputString.equals("New")) {
-            assignedInteger = 1;
-        } else if (inputString.equals("Pending")) {
-            assignedInteger = 2;
-        } else if (inputString.equals("Finished")) {
-            assignedInteger = 3;
-        }
-        return assignedInteger;
-    }*/
 }

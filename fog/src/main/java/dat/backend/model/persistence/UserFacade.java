@@ -4,6 +4,7 @@ import dat.backend.model.entities.User;
 import dat.backend.model.exceptions.DatabaseException;
 
 public class UserFacade {
+
     public static User login(String username, String password, ConnectionPool connectionPool) throws DatabaseException {
         return UserMapper.login(username, password, connectionPool);
     }
