@@ -5,7 +5,10 @@ import dat.backend.model.entities.Orders;
 import dat.backend.model.entities.User;
 import dat.backend.model.exceptions.DatabaseException;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -45,13 +48,13 @@ public class AdminMapper {
             try(PreparedStatement ps = connection.prepareStatement(sql)){
                 ResultSet rs = ps.executeQuery();
                 while(rs.next()) {
-                    int idorders = rs.getInt("idorders");
-                    String orderstatus = rs.getString("orderstatus");
+                    int idOrders = rs.getInt("idorders");
+                    String orderStatus = rs.getString("orderstatus");
                     int length = rs.getInt("length");
                     int width = rs.getInt("width");
-                    int totalprice = rs.getInt("totalprice");
+                    int totalPrice = rs.getInt("totalprice");
                     String username = rs.getString("username");
-                    orders = new Orders(idorders, orderstatus, length, width, totalprice, username);
+                    orders = new Orders(idOrders, orderStatus, length, width, totalPrice, username);
                     ordersList.add(orders);
                 }
             }
@@ -74,13 +77,13 @@ public class AdminMapper {
             try(PreparedStatement ps = connection.prepareStatement(sql)){
                 ResultSet rs = ps.executeQuery();
                 while(rs.next()) {
-                    int idorders = rs.getInt("idorders");
-                    String orderstatus = rs.getString("orderstatus");
+                    int idOrders = rs.getInt("idorders");
+                    String orderStatus = rs.getString("orderstatus");
                     int length = rs.getInt("length");
                     int width = rs.getInt("width");
-                    int totalprice = rs.getInt("totalprice");
+                    int totalPrice = rs.getInt("totalprice");
                     String username = rs.getString("username");
-                    orders = new Orders(idorders, orderstatus, length, width, totalprice, username);
+                    orders = new Orders(idOrders, orderStatus, length, width, totalPrice, username);
                     finishedOrders.add(orders);
                 }
             }
@@ -103,13 +106,13 @@ public class AdminMapper {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
-                    int idorders = rs.getInt("idorders");
-                    String orderstatus = rs.getString("orderstatus");
+                    int idOrders = rs.getInt("idorders");
+                    String orderStatus = rs.getString("orderstatus");
                     int length = rs.getInt("length");
                     int width = rs.getInt("width");
-                    int totalprice = rs.getInt("totalprice");
+                    int totalPrice = rs.getInt("totalprice");
                     String username = rs.getString("username");
-                    orders = new Orders(idorders, orderstatus, length, width, totalprice, username);
+                    orders = new Orders(idOrders, orderStatus, length, width, totalPrice, username);
                     ongoingOrders.add(orders);
                 }
             }
@@ -133,13 +136,13 @@ public class AdminMapper {
                         try (PreparedStatement ps = connection.prepareStatement(sql)) {
                             ResultSet rs = ps.executeQuery();
                             while (rs.next()) {
-                                int idorders = rs.getInt("idorders");
-                                String orderstatus = rs.getString("orderstatus");
+                                int idOrders = rs.getInt("idorders");
+                                String orderStatus = rs.getString("orderstatus");
                                 int length = rs.getInt("length");
                                 int width = rs.getInt("width");
-                                int totalprice = rs.getInt("totalprice");
+                                int totalPrice = rs.getInt("totalprice");
                                 String username = rs.getString("username");
-                                orders = new Orders(idorders, orderstatus, length, width, totalprice, username);
+                                orders = new Orders(idOrders, orderStatus, length, width, totalPrice, username);
                                 newOrders.add(orders);
                             }
                         }
@@ -161,13 +164,13 @@ public class AdminMapper {
                         try (PreparedStatement ps = connection.prepareStatement(sql)) {
                             ResultSet rs = ps.executeQuery();
                             while (rs.next()) {
-                                int idorders = rs.getInt("idorders");
-                                String orderstatus = rs.getString("orderstatus");
+                                int idOrders = rs.getInt("idorders");
+                                String orderStatus = rs.getString("orderstatus");
                                 int length = rs.getInt("length");
                                 int width = rs.getInt("width");
-                                int totalprice = rs.getInt("totalprice");
+                                int totalPrice = rs.getInt("totalprice");
                                 String username = rs.getString("username");
-                                orders = new Orders(idorders, orderstatus, length, width, totalprice, username);
+                                orders = new Orders(idOrders, orderStatus, length, width, totalPrice, username);
                                 pendingOrders.add(orders);
                             }
                         }
