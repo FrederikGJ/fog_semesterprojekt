@@ -31,25 +31,33 @@ public class Orders {
     }
 
 
-    public Orders(int idOrders, String orderStatus, int width, int length, int totalPrice, String username, String comment) {
-        this.idOrders = idOrders;
-    public Orders(int idorders,int orderStatus, int width, int length, int totalPrice, User user) {
-        this.idorders = idorders;
-        this.orderStatus = orderStatus;
-        this.width = width;
-        this.length = length;
-        this.totalPrice = totalPrice;
-        this.user = user;
+
+    public int getIdOrders() {
+        return idOrders;
     }
 
-    public Orders(int orderStatus, int width, int length, int totalPrice, User user) {
-
-        this.orderStatus = orderStatus;
-        this.width = width;
-        this.length = length;
-        this.totalPrice = totalPrice;
-        this.username = username;
-        this.comment = comment;
+    public String getOrderStatus() {
+        return orderStatus;
     }
 
-}
+    public int getWidth() {
+        return width;
+    }
+
+    public int getLength() {
+        return length;
+    }
+
+    public int getTotalPrice() {
+        return totalPrice;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    }

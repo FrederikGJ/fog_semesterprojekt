@@ -34,7 +34,4 @@ public class AdminFacade {
         return AdminMapper.getAllMaterials(connectionPool);
     }
 
-    public static void addToInventory(Materials materials, ConnectionPool connectionPool) throws DatabaseException {
-        AdminMapper.addToInventory(materials, connectionPool);
-    }
 }

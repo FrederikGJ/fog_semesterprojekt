@@ -25,7 +25,7 @@ public class BomMapper {
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
-                ps.setInt(1, order.getIdorders());
+                ps.setInt(1, order.getIdOrders());
                 ps.setInt(2, quantity);
                 ps.setString(3, descriptionOfUSe);
                 ps.setInt(4, material.getIdmaterials());
@@ -33,7 +33,7 @@ public class BomMapper {
                 if (rowsAffected == 1) {
                     bom = new BOM( materials, descriptionOfUSe, quantity);
                 } else {
-                    throw new DatabaseException("The BOM with idorders = " + order.getIdorders() + " and descrition"
+                    throw new DatabaseException("The BOM with idorders = " + order.getIdOrders() + " and descrition"
                             + descriptionOfUSe + " could not be inserted into the database");
                 }
             }
