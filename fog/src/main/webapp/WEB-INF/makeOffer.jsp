@@ -16,11 +16,8 @@
         <div class="row">
             <div class="col-6">
                 <h2>Ordre info</h2>
-                <table class="table table-bordered mt-4">
+                <table class="table mt-4">
                     <thead>
-                        <tr>
-                            <th scope="col">.</th>
-                        </tr>
                     </thead>
                     <tbody>
                         <tr>
@@ -39,6 +36,8 @@
                     <thead class="thead-light">
                         <tr class="table-secondary">
                             <th scope="row">Kundens udfyldte formular</th>
+                            <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
