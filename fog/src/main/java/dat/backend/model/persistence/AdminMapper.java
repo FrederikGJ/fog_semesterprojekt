@@ -17,31 +17,6 @@ import java.util.logging.Logger;
 
 public class AdminMapper {
 
-    static List<Materials> getAllMaterials(String name, int unitPrice,String unit, String description,ConnectionPool connectionPool) throws DatabaseException {
-
-        List<Materials> materialsList = new ArrayList<>();
-        Logger.getLogger("web").log(Level.INFO, "");
-
-        String sql = "SELECT * FROM materials";
-
-        try (Connection connection = connectionPool.getConnection()) {
-            try (PreparedStatement ps = connection.prepareStatement(sql)) {
-                ResultSet rs = ps.executeQuery();
-                while (rs.next()) {
-                    name = rs.getString("name");
-                    unitPrice = rs.getInt("unitprice");
-                    unit = rs.getString("unit");
-                    description = rs.getString("description");
-                   Materials materials = new Materials(name, unitPrice, unit, description );
-                    materialsList.add(materials);
-                }
-            }
-        } catch (SQLException ex) {
-            throw new DatabaseException(ex, "Something went wrong with the database");
-        }
-        return materialsList;
-    }
-
 
     static List<Orders> getAllOrders(ConnectionPool connectionPool) throws DatabaseException {
 
@@ -55,14 +30,14 @@ public class AdminMapper {
             try(PreparedStatement ps = connection.prepareStatement(sql)){
                 ResultSet rs = ps.executeQuery();
                 while(rs.next()) {
-                    int idorders = rs.getInt("idorders");
+                    int idOrders = rs.getInt("idorders");
                     String orderStatus = rs.getString("orderstatus");
                     int length = rs.getInt("length");
                     int width = rs.getInt("width");
                     int totalPrice = rs.getInt("totalprice");
                     String username = rs.getString("username");
                     String comments = rs.getString("comments");
-                    orders = new Orders(idorders, orderStatus, length, width, totalPrice, username, comments);
+                    orders = new Orders(idOrders, orderStatus, length, width, totalPrice, username, comments);
                     ordersList.add(orders);
                 }
             }
@@ -85,14 +60,14 @@ public class AdminMapper {
             try(PreparedStatement ps = connection.prepareStatement(sql)){
                 ResultSet rs = ps.executeQuery();
                 while(rs.next()) {
-                    int idorders = rs.getInt("idorders");
+                    int idOrders = rs.getInt("idorders");
                     String orderStatus = rs.getString("orderstatus");
                     int length = rs.getInt("length");
                     int width = rs.getInt("width");
                     int totalPrice = rs.getInt("totalprice");
                     String username = rs.getString("username");
                     String comments = rs.getString("comments");
-                    orders = new Orders(idorders, orderStatus, length, width, totalPrice, username, comments);
+                    orders = new Orders(idOrders, orderStatus, length, width, totalPrice, username, comments);
                     finishedOrders.add(orders);
                 }
             }
@@ -115,14 +90,14 @@ public class AdminMapper {
             try(PreparedStatement ps = connection.prepareStatement(sql)){
                 ResultSet rs = ps.executeQuery();
                 while(rs.next()) {
-                    int idorders = rs.getInt("idorders");
+                    int idOrders = rs.getInt("idorders");
                     String orderStatus = rs.getString("orderstatus");
                     int length = rs.getInt("length");
                     int width = rs.getInt("width");
                     int totalPrice = rs.getInt("totalprice");
                     String username = rs.getString("username");
                     String comments = rs.getString("comments");
-                    orders = new Orders(idorders, orderStatus, length, width, totalPrice, username, comments);
+                    orders = new Orders(idOrders, orderStatus, length, width, totalPrice, username, comments);
                     ongoingOrders.add(orders);
                 }
             }
@@ -132,7 +107,7 @@ public class AdminMapper {
         return ongoingOrders;
     }
 
-    static Orders getOrdersById(int idorders, String status, ConnectionPool connectionPool) throws DatabaseException {
+    static Orders getOrdersById(int idOrders, String status, ConnectionPool connectionPool) throws DatabaseException {
         Orders orders;
         String sql = "";
 
@@ -147,7 +122,7 @@ public class AdminMapper {
 
         try(Connection connection = connectionPool.getConnection()){
             try(PreparedStatement ps = connection.prepareStatement(sql)){
-                ps.setInt(1, idorders);
+                ps.setInt(1, idOrders);
                 ResultSet rs = ps.executeQuery();
                 if(rs.next()) {
                     String orderStatus = rs.getString("orderstatus");
@@ -156,7 +131,7 @@ public class AdminMapper {
                     int totalPrice = rs.getInt("totalprice");
                     String username = rs.getString("username");
                     String comments = rs.getString("comments");
-                    orders = new Orders(idorders, orderStatus, length, width, totalPrice, username, comments);
+                    orders = new Orders(idOrders, orderStatus, length, width, totalPrice, username, comments);
                     return orders;
                 }
             }
