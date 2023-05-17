@@ -35,7 +35,7 @@
                         <c:forEach var="orders" items="${sessionScope.newOrders}">
                             <c:if test="${sessionScope.user.username == orders.username }">
                                 <tr>
-                                    <td>${orders.idorders}</td>
+                                    <td>${orders.idOrders}</td>
                                     <td>${orders.length}</td>
                                     <td>${orders.width}</td>
                                     <td>${orders.comment}</td>
@@ -64,7 +64,7 @@
                         <c:forEach var="orders" items="${sessionScope.pendingOrders}">
                             <c:if test="${sessionScope.user.username == orders.username }">
                             <tr>
-                                <td>${orders.idorders}</td>
+                                <td>${orders.idOrders}</td>
                                 <td>${orders.length}</td>
                                 <td>${orders.width}</td>
                                 <td>${orders.comment}</td>
@@ -101,7 +101,7 @@
                         <c:forEach var="orders" items="${sessionScope.finishedOrders}">
                             <c:if test="${sessionScope.user.username == orders.username }">
                                 <tr>
-                                    <td>${orders.idorders}</td>
+                                    <td>${orders.idOrders}</td>
                                     <td>${orders.length}</td>
                                     <td>${orders.width}</td>
                                     <td>${orders.comment}</td>
