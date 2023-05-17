@@ -18,38 +18,41 @@
                 <h2>Ordre info</h2>
                 <table class="table table-bordered mt-4">
                     <thead>
+                        <tr>
+                            <th scope="col">.</th>
+                        </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <th scope="row">IDorders</th>
-                            <td colspan="2">${sessionScope.idOrders}<td>
+                            <td>${sessionScope.idOrders}<td>
                         </tr>
                         <tr>
                             <th scope="row">Username</th>
-                            <td colspan="2">${sessionScope.ongoingOrder.username}</td>
+                            <td>${sessionScope.ongoingOrder.username}</td>
                         </tr>
                         <tr>
                             <th scope="row">Status</th>
-                            <td colspan="2">${sessionScope.ongoingOrder.orderStatus}<td>
+                            <td>${sessionScope.ongoingOrder.orderStatus}<td>
                         </tr>
                     </tbody>
                     <thead class="thead-light">
                         <tr class="table-secondary">
-                            <th scope="col" colspan="2">Kundens udfyldte formular</th>
+                            <th scope="row">Kundens udfyldte formular</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <th scope="row">Længde</th>
-                            <td colspan="2">${sessionScope.ongoingOrder.length}</td>
+                            <td>${sessionScope.ongoingOrder.length}</td>
                         </tr>
                         <tr>
                             <th scope="row">Bredde</th>
-                            <td colspan="2">${sessionScope.ongoingOrder.width}</td>
+                            <td>${sessionScope.ongoingOrder.width}</td>
                         </tr>
                         <tr>
                             <th scope="row">Bemærkninger</th>
-                            <td colspan="2">${sessionScope.ongoingOrder.comments}<td>
+                            <td>${sessionScope.ongoingOrder.comments}<td>
                         </tr>
                     </tbody>
                 </table>
@@ -90,27 +93,19 @@
                     <tr>
                         <th scope="col"></th>
                         <th scope="col">.</th>
-                        <th scope="col">..</th>
-                        <th scope="col">...</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
                         <th scope="row">1</th>
                         <td>x</td>
-                        <td>x</td>
-                        <td>x</td>
                     </tr>
                     <tr>
                         <th scope="row">2</th>
                         <td>xx</td>
-                        <td>xx</td>
-                        <td>xx</td>
                     </tr>
                     <tr>
                         <th scope="row">3</th>
-                        <td>xxx</td>
-                        <td>xxx</td>
                         <td>xxx</td>
                     </tr>
                     </tbody>
