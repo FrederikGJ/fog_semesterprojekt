@@ -26,7 +26,30 @@ public class ViewOrders extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
+        response.setContentType("text/html");
+        HttpSession session = request.getSession();
+        try{
+            List<Orders> newOrders = AdminFacade.getNewOrders(connectionPool);
+            session.setAttribute("newOrders", newOrders);
+
+            List<Orders> pendingOrders = AdminFacade.getPendingOrders(connectionPool);
+            session.setAttribute("pendingOrders", pendingOrders);
+
+            List<Orders> finishedOrders = AdminFacade.getFinishedOrders(connectionPool);
+            session.setAttribute("finishedOrders", finishedOrders);
+
+            request.getRequestDispatcher("WEB-INF/viewOrders.jsp").forward(request, response);
+
+        } catch(DatabaseException e){
+            request.setAttribute("errormessage", e.getMessage());
+            request.getRequestDispatcher("error.jsp").forward(request, response);
+        }
+    }
+
+
+
+
+        /*try {
             List<Orders> ordersList = OrdersFacade.getAllOrders(connectionPool); // Henter alle ordre fra databasen, tilføjer og gemmer dem i en ArrayListe
             Map<Integer, Orders> ordersMap = new HashMap<>();
 
@@ -36,12 +59,14 @@ public class ViewOrders extends HttpServlet {
             }
             request.setAttribute("ordersList", ordersList);
 
+
+
             request.getRequestDispatcher("WEB-INF/viewOrders.jsp").forward(request, response);
         } catch (DatabaseException e) {
             request.setAttribute("errormessage", e.getMessage());
             request.getRequestDispatcher("error.jsp").forward(request, response);
-        }
-    }
+        }*/
+
 
 
 

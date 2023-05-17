@@ -11,7 +11,7 @@ public class OrdersFacade {
        OrdersMapper.createOrder(width, length, username, comment, connectionPool);
    }
 
-    public static List<Orders> getAllOrders(ConnectionPool connectionPool) throws DatabaseException {
+    /*public static List<Orders> getAllOrders(ConnectionPool connectionPool) throws DatabaseException {
         return OrdersMapper.getAllOrders(connectionPool);
-    }
+    }*/
 }

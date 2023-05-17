@@ -21,5 +21,13 @@ public class AdminFacade {
         return AdminMapper.getOngoingOrders(connectionPool);
     }
 
+    public static List<Orders> getNewOrders(ConnectionPool connectionPool) throws DatabaseException {
+        return AdminMapper.getNewOrders(connectionPool);
+    }
+
+    public static List<Orders> getPendingOrders(ConnectionPool connectionPool) throws DatabaseException {
+        return AdminMapper.getPendingOrders(connectionPool);
+    }
+
 
 }

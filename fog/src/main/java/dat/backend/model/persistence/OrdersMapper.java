@@ -35,7 +35,7 @@ public class OrdersMapper {
         }
     }
 
-    static List<Orders> getAllOrders(ConnectionPool connectionPool) throws DatabaseException {
+    /*static List<Orders> getAllOrders(ConnectionPool connectionPool) throws DatabaseException {
         List<Orders> ordersList = new ArrayList<>();
         //Logger.getLogger("web").log(Level.INFO, "");
         Orders orders;
@@ -61,5 +61,7 @@ public class OrdersMapper {
             throw new DatabaseException(ex, "Something went wrong");
         }
         return ordersList;
-    }
+    }*/
+
+
 }

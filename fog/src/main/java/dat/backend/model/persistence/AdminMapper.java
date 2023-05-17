@@ -129,5 +129,63 @@ public class AdminMapper {
         return ongoingOrders;
     }
 
+    static List<Orders> getNewOrders(ConnectionPool connectionPool) throws DatabaseException {
+
+        List<Orders> newOrders = new ArrayList<>();
+        //Logger.getLogger("web").log(Level.INFO, "");
+        Orders orders;
+
+        String sql = "SELECT * FROM fog.orders WHERE orderstatus = 'New'";
+
+        try(Connection connection = connectionPool.getConnection()){
+            try(PreparedStatement ps = connection.prepareStatement(sql)){
+                ResultSet rs = ps.executeQuery();
+                while(rs.next()) {
+                    int idorders = rs.getInt("idorders");
+                    String orderstatus = rs.getString("orderstatus");
+                    int length = rs.getInt("length");
+                    int width = rs.getInt("width");
+                    int totalprice = rs.getInt("totalprice");
+                    String username = rs.getString("username");
+                    orders = new Orders(idorders, orderstatus, length, width, totalprice, username);
+                    newOrders.add(orders);
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DatabaseException(ex, "Something went wrong with the database");
+        }
+        return newOrders;
+    }
+
+    static List<Orders> getPendingOrders(ConnectionPool connectionPool) throws DatabaseException {
+
+        List<Orders> pendingOrders = new ArrayList<>();
+        //Logger.getLogger("web").log(Level.INFO, "");
+        Orders orders;
+
+        String sql = "SELECT * FROM fog.orders WHERE orderstatus = 'Pending'";
+
+        try(Connection connection = connectionPool.getConnection()){
+            try(PreparedStatement ps = connection.prepareStatement(sql)){
+                ResultSet rs = ps.executeQuery();
+                while(rs.next()) {
+                    int idorders = rs.getInt("idorders");
+                    String orderstatus = rs.getString("orderstatus");
+                    int length = rs.getInt("length");
+                    int width = rs.getInt("width");
+                    int totalprice = rs.getInt("totalprice");
+                    String username = rs.getString("username");
+                    orders = new Orders(idorders, orderstatus, length, width, totalprice, username);
+                    pendingOrders.add(orders);
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DatabaseException(ex, "Something went wrong with the database");
+        }
+        return pendingOrders;
+    }
+
+
+
 
 }
