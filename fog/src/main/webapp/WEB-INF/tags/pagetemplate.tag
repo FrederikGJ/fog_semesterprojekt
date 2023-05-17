@@ -42,7 +42,7 @@
                     <c:if test="${sessionScope.user == null }">
                         <a style="font-family: Tahoma; font-weight: bold;color: white;"class="nav-item nav-link" href="${pageContext.request.contextPath}/login.jsp">Login</a>
                     </c:if>
-                    <c:if test="${sessionScope.user.role == }">
+                    <c:if test="${sessionScope.user == null}">
                         <a style="font-family: Tahoma; font-weight: bold;color: white;" class="nav-item nav-link" href="${pageContext.request.contextPath}/MakeNewRequest">Bestil carport</a>
                         <a style="font-family: Tahoma; font-weight: bold;color: white;"class="nav-item nav-link" href="${pageContext.request.contextPath}/ViewOrders">Mine bestillinger</a>
                         <a style="font-family: Tahoma; font-weight: bold;color: white;"class="nav-item nav-link" href="${pageContext.request.contextPath}/logout">Log out</a>
