@@ -12,6 +12,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "makeoffer", value = "/makeoffer")
@@ -38,14 +39,15 @@ public class MakeOffer extends HttpServlet
 
         try{
 
-            int idorders  = Integer.parseInt(request.getParameter("idorders"));
-            session.setAttribute("idorders", idorders);
+            int idOrders  = Integer.parseInt(request.getParameter("idOrders"));
+            session.setAttribute("idOrders", idOrders);
 
-            Orders ongoingOrder = AdminFacade.getOrdersById(idorders, "new_pending", connectionPool);
+            Orders ongoingOrder = AdminFacade.getOrdersById(idOrders, "new_pending", connectionPool);
             session.setAttribute("ongoingOrder", ongoingOrder);
 
-            List<BOM> listBOM = BomFacade.readBOM(connectionPool);
-            session.setAttribute("listBOM", listBOM);
+            ArrayList<BOM> bomArrayList = BomFacade.getBOMById(idOrders, connectionPool);
+            session.setAttribute("bomArrayList", bomArrayList);
+
 
 
             // lav egen jsp og servlet til finishedOrder i stedet for MakeOffer

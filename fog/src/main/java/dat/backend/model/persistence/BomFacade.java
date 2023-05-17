@@ -9,13 +9,8 @@ import java.util.ArrayList;
 
 public class BomFacade {
 
-    public static BOM createBOM(int idBOM, Orders order, Materials material, String descriptionOfUSe,
-                                int quantity, Materials materials, ConnectionPool connectionPool) throws DatabaseException {
-        return BomMapper.createBOM(idBOM, order, material, descriptionOfUSe, quantity, materials, connectionPool);
 
-    }
-
-    public static ArrayList<BOM> readBOM(ConnectionPool connectionPool)throws DatabaseException{
-        return BomMapper.readBOM(connectionPool);
+    public static ArrayList<BOM> getBOMById(int idorders, ConnectionPool connectionPool)throws DatabaseException{
+        return BomMapper.getBOMById(idorders, connectionPool);
     }
 }

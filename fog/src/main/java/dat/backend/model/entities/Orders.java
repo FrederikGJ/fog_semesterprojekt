@@ -2,7 +2,7 @@ package dat.backend.model.entities;
 
 
 public class Orders {
-    private int idorders;
+    private int idOrders;
     private String orderStatus;
     private int width;
     private int length;
@@ -11,8 +11,8 @@ public class Orders {
     private String comments;
 
 
-    public Orders(int idorders, String orderStatus, int length, int width, int totalPrice, String username, String comments){
-        this.idorders = idorders;
+    public Orders(int idOrders, String orderStatus, int length, int width, int totalPrice, String username, String comments){
+        this.idOrders = idOrders;
         this.orderStatus = orderStatus;
         this.length = length;
         this.width = width;
@@ -22,9 +22,9 @@ public class Orders {
     }
 
 
-    public int getIdorders()
+    public int getIdOrders()
     {
-        return idorders;
+        return idOrders;
     }
 
     public String getOrderStatus()

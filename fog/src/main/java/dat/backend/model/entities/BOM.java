@@ -6,41 +6,25 @@ import java.util.Map;
 
 public class BOM {
 
-    int idBOM;
-    Materials material;
-    String descriptionOfUSe;
-    int quantity;
+    private int idOrders;
+    private int quantity;
+    private String descriptionOfUse;
 
     //for the read CRUD operation in mapper we have
-    int idmaterials;
+    private int idMaterials;
 
-    public BOM(int idBOM,Materials material, String descriptionOfUSe, int quantity) {
-        this.idBOM = idBOM;
-        this.material = material;
-        this.descriptionOfUSe = descriptionOfUSe;
+
+    public BOM(int idOrders, int quantity, String descriptionOfUse, int idMaterials)
+    {
+        this.idOrders = idOrders;
         this.quantity = quantity;
+        this.descriptionOfUse = descriptionOfUse;
+        this.idMaterials = idMaterials;
     }
 
-    public BOM(int idBOM, int idmaterial, String descriptionOfUSe, int quantity){
-        this.idBOM = idBOM;
-        this.idmaterials = idmaterials;
-        this. descriptionOfUSe = descriptionOfUSe;
-        this.quantity = quantity;
-    }
-
-    public int getIdBOM()
+    public int getIdOrders()
     {
-        return idBOM;
-    }
-
-    public Materials getMaterial()
-    {
-        return material;
-    }
-
-    public String getDescriptionOfUSe()
-    {
-        return descriptionOfUSe;
+        return idOrders;
     }
 
     public int getQuantity()
@@ -48,8 +32,15 @@ public class BOM {
         return quantity;
     }
 
-    public int getIdmaterials()
+    public String getDescriptionOfUse()
     {
-        return idmaterials;
+        return descriptionOfUse;
     }
+
+    public int getIdMaterials()
+    {
+        return idMaterials;
+    }
+
+
 }

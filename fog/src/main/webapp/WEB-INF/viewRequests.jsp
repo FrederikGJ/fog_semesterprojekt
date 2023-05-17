@@ -31,7 +31,7 @@
                         <tbody>
                             <c:forEach var="orders" items="${sessionScope.ongoingOrders}">
                                 <tr>
-                                    <td><button formaction="makeoffer" formmethod="post" name="idorders" value="${orders.idorders}">${orders.idorders}</button></td>
+                                    <td><button formaction="makeoffer" formmethod="post" name="idOrders" value="${orders.idOrders}">${orders.idOrders}</button></td>
                                     <td>${orders.username}</td>
                                     <td>${orders.orderStatus}</td>
                                 </tr>
@@ -53,7 +53,7 @@
                         <tbody>
                             <c:forEach var="orders" items="${sessionScope.finishedOrders}">
                                 <tr>
-                                    <td><button formaction="makeoffer" formmethod="post" name="idorders" value="${orders.idorders}">${orders.idorders}</button></td>
+                                    <td><button formaction="makeoffer" formmethod="post" name="idOrders" value="${orders.idOrders}">${orders.idOrders}</button></td>
                                     <td>${orders.username}</td>
                                     <td>${orders.orderStatus}</td>
                                 </tr>

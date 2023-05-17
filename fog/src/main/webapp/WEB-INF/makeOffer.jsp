@@ -16,17 +16,13 @@
         <div class="row">
             <div class="col-6">
                 <h2>Ordre info</h2>
-                <table class="table table-bordered">
+                <table class="table table-bordered mt-4">
                     <thead>
-                        <tr>
-                            <th scope="col">.</th>
-                            <th scope="col" colspan="2">..</th>
-                        </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <th scope="row">IDorders</th>
-                            <td colspan="2">${sessionScope.idorders}<td>
+                            <td colspan="2">${sessionScope.idOrders}<td>
                         </tr>
                         <tr>
                             <th scope="row">Username</th>
@@ -59,46 +55,37 @@
                 </table>
             </div>
 
-            <div class="col-6 text-center">
+            <div class="col-6">
                 <h2>Stykliste</h2>
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">ID Materials</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach var="BOM" items="${sessionScope.listBOM}">
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>${BOM.quantity}</td>
-                            <td>${BOM.descriptionOfUSe}</td>
-                            <td>${BOM.idmaterials}</td>
-                        </tr>
-                    </c:forEach>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>xx</td>
-                        <td>xx</td>
-                        <td>xx</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>xxx</td>
-                        <td>xxx</td>
-                        <td>xxx</td>
-                    </tr>
-                    </tbody>
-                </table>
+                <form method="post">
+                    <table class="table table-bordered mt-4">
+                        <thead>
+                        </thead>
+                        <thead>
+                            <tr>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">ID Materials</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach var="BOM" items="${sessionScope.bomArrayList}">
+                                <tr>
+                                    <td>${BOM.quantity}</td>
+                                    <td>${BOM.descriptionOfUse}</td>
+                                    <td>${BOM.idMaterials}</td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                </form>
             </div>
         </div>
 
         <div class="row">
             <div class="col-12 text-center mt-4">
                 <h2>Lav tilbud</h2>
-                <table class="table table-bordered">
+                <table class="table table-bordered mt-4">
                     <thead>
                     <tr>
                         <th scope="col"></th>
