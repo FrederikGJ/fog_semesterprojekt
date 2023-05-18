@@ -39,6 +39,7 @@ public class DeleteInventory extends HttpServlet {
             List<Materials> materialsList = AdminFacade.getAllMaterials(connectionPool);
             materialsList.remove(materials);
             session.setAttribute("materialsListUpdate", materialsList); // adding inventory list object to session scope
+            request.setAttribute("msgDelete", "Vare er blevet slettet fra inventar");
             request.getRequestDispatcher("WEB-INF/viewInventory.jsp").forward(request, response);
 
         } catch (DatabaseException e) {

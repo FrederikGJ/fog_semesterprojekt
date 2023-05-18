@@ -6,17 +6,16 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-             ViewInventory
+Inventar
     </jsp:attribute>
 
     <jsp:attribute name="footer">
-            ViewInventory
+            Inventar
     </jsp:attribute>
     <jsp:body>
-
+        <h3>Intast ny vare information og gem i invantar</h3>
         <form action="addtoinventory" method="post">
             <td>
-                <label>Tilføj vare:</label><br>
                 Navn: <input type="text" id="material_name" name="name"/>
                 Pris: <input type="text" id="unitprice" name="unitPrice"/>
                 Enhed: <input type="text" id="unit" name="unit"/>
@@ -27,9 +26,11 @@
                 ${requestScope.msgAdd}
         </form>
 
-
+        <h3>Inventar</h3>
         <form method="post">
+
             <table>
+                    ${requestScope.msgDelete}${requestScope.msgEdit}
                 <tr>
                     <th>Vare ID</th>
                     <th>Navn</th>
