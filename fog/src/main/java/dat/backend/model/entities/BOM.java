@@ -31,6 +31,13 @@ public class BOM {
         this.quantity = quantity;
     }
 
+    public BOM(int idMaterials, String descriptionOfUse, int quantity)
+    {
+        this.idMaterials = idMaterials;
+        this.descriptionOfUse = descriptionOfUse;
+        this.quantity = quantity;
+    }
+
     public int getIdOrders()
     {
         return idOrders;

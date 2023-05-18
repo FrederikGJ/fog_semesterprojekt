@@ -14,15 +14,15 @@
     <jsp:body>
 
         <div class="row">
-            <div class="col-6">
+            <div class="col-md-12 col-lg-6">
                 <h2>Ordre info</h2>
-                <table class="table mt-4">
+                <table class="table table-bordered mt-4">
                     <thead>
                     </thead>
                     <tbody>
                         <tr>
                             <th scope="row">IDorders</th>
-                            <td>${sessionScope.idOrders}<td>
+                            <td>${sessionScope.idOrders}</td>
                         </tr>
                         <tr>
                             <th scope="row">Username</th>
@@ -30,14 +30,12 @@
                         </tr>
                         <tr>
                             <th scope="row">Status</th>
-                            <td>${sessionScope.ongoingOrder.orderStatus}<td>
+                            <td>${sessionScope.ongoingOrder.orderStatus}</td>
                         </tr>
                     </tbody>
                     <thead class="thead-light">
                         <tr class="table-secondary">
-                            <th scope="row">Kundens udfyldte formular</th>
-                            <th></th>
-                            <th></th>
+                            <th scope="row" colspan="2">Kundens udfyldte formular</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,13 +49,13 @@
                         </tr>
                         <tr>
                             <th scope="row">Bemærkninger</th>
-                            <td>${sessionScope.ongoingOrder.comments}<td>
+                            <td>${sessionScope.ongoingOrder.comments}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <div class="col-6">
+            <div class="col-md-12 col-lg-6">
                 <h2>Stykliste</h2>
                 <form method="post">
                     <table class="table table-bordered mt-4">
@@ -78,34 +76,49 @@
                                     <td>${BOM.idMaterials}</td>
                                 </tr>
                             </c:forEach>
+                            <tr>
+                                <thead>
+                                </thead>
+                                <th scope="row" colspan="2">Samlet kostpris</th>
+                                <td>${sessionScope.totalBomPrice}</td>
+                            </tr>
                         </tbody>
                     </table>
                 </form>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-12 text-center mt-4">
+        <div class="row justify-content-center">
+            <div class="col-5 text-center mt-4">
                 <h2>Lav tilbud</h2>
                 <table class="table table-bordered mt-4">
                     <thead>
-                    <tr>
-                        <th scope="col"></th>
-                        <th scope="col">.</th>
-                    </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <th scope="row">1</th>
-                        <td>x</td>
+                        <th scope="row">Dækningsgrad</th>
+                        <td>${sessionScope.operationMargin}</td>
                     </tr>
                     <tr>
-                        <th scope="row">2</th>
-                        <td>xx</td>
+                        <th scope="row">Pris uden moms</th>
+                        <td>${sessionScope.salespriceTaxFree}</td>
                     </tr>
                     <tr>
-                        <th scope="row">3</th>
-                        <td>xxx</td>
+                        <th scope="row">Pris med moms</th>
+                        <td>${sessionScope.salesprice}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Prisændring</th>
+                        <td>beløb</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Prisforslag ved salg</th>
+                        <td><input type="text" class="form-control text-center" id="salesprice" name="${sessionScope.salesprice}" value="${sessionScope.salesprice}"></td>
+                    </tr>
+                    <tr>
+                        <thead>
+                        </thead>
+                        <th scope="row" colspan="2">Send tilbud</th>
                     </tr>
                     </tbody>
                 </table>

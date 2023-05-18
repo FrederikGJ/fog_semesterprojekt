@@ -38,7 +38,7 @@
                                     <td>${orders.idOrders}</td>
                                     <td>${orders.length}</td>
                                     <td>${orders.width}</td>
-                                    <td>${orders.comment}</td>
+                                    <td>${orders.comments}</td>
                                     <td>Ikke beregnet</td>
                                 </tr>
                             </c:if>
@@ -67,7 +67,7 @@
                                 <td>${orders.idOrders}</td>
                                 <td>${orders.length}</td>
                                 <td>${orders.width}</td>
-                                <td>${orders.comment}</td>
+                                <td>${orders.comments}</td>
                                 <td>${orders.totalPrice}</td>
                                 <td>
                                     <form action="#">
@@ -104,7 +104,7 @@
                                     <td>${orders.idOrders}</td>
                                     <td>${orders.length}</td>
                                     <td>${orders.width}</td>
-                                    <td>${orders.comment}</td>
+                                    <td>${orders.comments}</td>
                                     <td>${orders.totalPrice}</td>
                                     <td>
                                         <form action="#">

@@ -13,7 +13,6 @@ public class Orders {
     private String comments;
 
 
-
     public Orders(int idOrders, String orderStatus, int length, int width, int totalPrice, String username, String comments){
         this.idOrders = idOrders;
         this.orderStatus = orderStatus;
@@ -32,6 +31,19 @@ public class Orders {
         this.length = length;
         this.totalPrice = totalPrice;
         this.username = username;
+    }
+
+    public Orders(int width, int length, String username, String comments)
+    {
+        this.width = width;
+        this.length = length;
+        this.username = username;
+        this.comments = comments;
+    }
+
+
+    public Orders()
+    {
     }
 
     public int getIdOrders()
@@ -68,4 +80,22 @@ public class Orders {
     {
         return comments;
     }
+
+
+
+    //dækningsbidrag
+    public double makeGrossProfit(double salespriceTaxFree, double totalBomPrice)
+    {
+    double grossProfit = salespriceTaxFree - totalBomPrice;
+    return grossProfit;
+    }
+
+    //dækningsgraden
+    public double makeOperationMargin(double grossProfit, double salespriceTaxFree)
+    {
+        double operationMargin = grossProfit * 100 / salespriceTaxFree;
+        return operationMargin;
+    }
+
+
 }

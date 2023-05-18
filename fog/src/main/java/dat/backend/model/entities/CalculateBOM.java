@@ -145,9 +145,9 @@ public class CalculateBOM {
     }
 
     //calculator that outputs the price of a given offer based on a bom arraylist
-    public int bomPrice() {
+    public int bomPrice(ArrayList<BOM> allBOM) {
         ConnectionPool connectionPool = new ConnectionPool();
-        ArrayList<BOM> allBOM = new ArrayList<>();
+        //ArrayList<BOM> allBOM = new ArrayList<>();
         try {
             allBOM = BomFacade.readBOM(connectionPool);
         } catch (Exception e){

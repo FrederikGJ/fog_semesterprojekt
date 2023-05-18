@@ -13,7 +13,6 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 @WebServlet(name = "makeoffer", value = "/makeoffer")
 public class MakeOffer extends HttpServlet
@@ -39,6 +38,7 @@ public class MakeOffer extends HttpServlet
 
         try{
 
+
             int idOrders  = Integer.parseInt(request.getParameter("idOrders"));
             session.setAttribute("idOrders", idOrders);
 
@@ -47,6 +47,50 @@ public class MakeOffer extends HttpServlet
 
             ArrayList<BOM> bomArrayList = BomFacade.getBOMById(idOrders, connectionPool);
             session.setAttribute("bomArrayList", bomArrayList);
+
+
+
+
+
+
+//           CalculateBOM calculateBOM = new CalculateBOM();
+//           int totalBomPrice = calculateBOM.bomPrice(bomArrayList);
+//           session.setAttribute("totalBomPrice", totalBomPrice);
+
+
+            //calculation of operation margin (dækningsgraden - fortjenesten i % af salgsprisen)
+            //dækningsgrad = dækningsbidrag x 100 / salgspris
+            //dækningsbidrag: salgspris - kostpris
+
+
+            Orders orders = new Orders();
+
+            double totalBomPrice = 10891.80;
+            session.setAttribute("totalBomPrice", totalBomPrice);
+
+
+            //lavet funktioner til udregning inde i klassen Orders, giver det mening eller skal det ligge et andet sted?
+
+
+            //automatisk dækningsgrad
+            double autoOperationMargin = 39.02;
+
+
+            double salesprice = Math.round(totalBomPrice/(1-(autoOperationMargin/100))*1.25);
+            session.setAttribute("salesprice", salesprice);
+
+
+            double salespriceTaxFree = Math.round(salesprice/1.25);
+            session.setAttribute("salespriceTaxFree", salespriceTaxFree);
+
+            //dækningsbidrag
+            double grossProfit = Math.round(orders.makeGrossProfit(salespriceTaxFree, totalBomPrice));
+            session.setAttribute("grossProfit", grossProfit);
+
+            //dækningsgraden
+            double operationMargin = Math.round(orders.makeOperationMargin(grossProfit, salespriceTaxFree));
+            session.setAttribute("operationMargin", operationMargin);
+
 
 
 
@@ -62,5 +106,6 @@ public class MakeOffer extends HttpServlet
         }
 
     }
+
 
 }
