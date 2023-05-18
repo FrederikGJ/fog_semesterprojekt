@@ -4,8 +4,8 @@
 <%@page errorPage="error.jsp" isErrorPage="false" %>
 
 <t:pagetemplate>
+
     <jsp:attribute name="header">
-         Welcome to the frontpage
     </jsp:attribute>
 
     <jsp:attribute name="footer">
@@ -14,19 +14,34 @@
 
     <jsp:body>
 
-        <p>Startcode for 2nd semester </p>
+            <div class="container">
+                <div class="row">
+                    <img src="${pageContext.request.contextPath}/images/carportFrontpagePicture.png"/>
+                    </div>
+                <div class="row">
+                    <br><br>
+                </div>
+                <div class="row">
+                    <div class="col d-flex justify-content-around">
+                        <br><br>
 
-        <c:if test="${sessionScope.user != null}">
-            <p>You are logged in with the role of "${sessionScope.user.role}".</p>
-        </c:if>
 
-        <c:if test="${sessionScope.user == null}">
-            <p>You are not logged in yet. You can do it here: <a
-                    href="login.jsp">Login</a></p>
+                            <h2>Log ind eller opret en bruger  for at bestille din egen skræddersyede carport</h2>
+                    </div>
+                    <div class="col d-flex justify-content-around">
 
-            <p>You are not a user you can become one here: <a
-                    href="signup.jsp">SignUp</a></p>
-        </c:if>
+
+                            <form action="login.jsp">
+                                <input type="submit" value="Log ind" class="frontbutton">
+                            </form>
+                        <form action="signup.jsp">
+                            <input type="submit" value="Opret bruger" class="frontbutton">
+                        </form>
+                    </div>
+                </div>
+
+
+
 
     </jsp:body>
 

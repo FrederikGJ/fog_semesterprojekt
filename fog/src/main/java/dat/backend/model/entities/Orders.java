@@ -1,7 +1,9 @@
 package dat.backend.model.entities;
 
+import java.util.List;
 
 public class Orders {
+
     private int idOrders;
     private String orderStatus;
     private int width;
@@ -10,6 +12,13 @@ public class Orders {
     private String username;
     private String comments;
 
+    public Orders( int width, int length, String username, String comment) {
+
+        this.width = width;
+        this.length = length;
+        this.username = username;
+        this.comment = comment;
+    }
 
     public Orders(int idOrders, String orderStatus, int length, int width, int totalPrice, String username, String comments){
         this.idOrders = idOrders;

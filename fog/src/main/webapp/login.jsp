@@ -6,16 +6,18 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-             Login
+             Log ind
     </jsp:attribute>
 
     <jsp:attribute name="footer">
-            Login
+            
     </jsp:attribute>
 
     <jsp:body>
 
-        <h3>You can log in here</h3>
+
+
+        <div class="text-center mt-5">
 
         <form action="login" method="post">
             <label for="username">Username: </label>
@@ -24,6 +26,7 @@
             <input type="password" id="password" name="password" value="1234"/>
             <input type="submit"  value="Log in"/>
         </form>
+        </div>
 
     </jsp:body>
 </t:pagetemplate>

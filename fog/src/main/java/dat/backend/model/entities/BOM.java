@@ -9,6 +9,7 @@ public class BOM {
     private int idOrders;
     private int quantity;
     private String descriptionOfUse;
+    private Materials material;
 
     //for the read CRUD operation in mapper we have
     private int idMaterials;

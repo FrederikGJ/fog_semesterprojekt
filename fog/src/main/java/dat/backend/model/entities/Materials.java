@@ -7,7 +7,7 @@ public class Materials {
     private int unitPrice;
     private String unit;
     private String description;
-    
+    private int length;
 
     public Materials(String name, int unitPrice, String unit, String description) {
         this.name = name;
