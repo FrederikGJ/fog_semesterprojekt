@@ -32,36 +32,17 @@ public class DeleteInventory extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
 
-        try
-        {
+        try {
             int idMaterials = Integer.parseInt(request.getParameter("idMaterials"));
             AdminFacade.deleteMaterials(idMaterials, connectionPool);
-        }
-        catch(DatabaseException e)
-        {
+            Materials materials = new Materials(idMaterials);// new materials object to add to list in session scope
+            List<Materials> materialsList = AdminFacade.getAllMaterials(connectionPool);
+            materialsList.remove(materials);
+            session.setAttribute("materialsListUpdate", materialsList); // adding inventory list object to session scope
+            request.getRequestDispatcher("WEB-INF/viewInventory.jsp").forward(request, response);
+
+        } catch (DatabaseException e) {
             e.printStackTrace();
         }
-
-        request.getRequestDispatcher("WEB-INF/viewInventory.jsp").forward(request, response);
-
-//        int idMaterials = Integer.parseInt(request.getParameter("idMaterials"));
-//        Materials materials = new Materials(idMaterials);
-        /*ist<Materials> materialsList = (List<Materials>) session.getAttribute("materialsList"); // adding inventory list object to session scope
-        if(idMaterials)
-        materialsList.remove(idMaterials1);
-        Materials materials = new Materials(idMaterials);*/
-
-//        try {
-////            AdminFacade.deleteMaterials(materials, connectionPool);
-//            //session.setAttribute("idMaterials", idMaterials); // adding inventory list object to session scope
-//
-//            request.getRequestDispatcher("WEB-INF/viewInventory.jsp").forward(request, response);
-//
-//
-//        } catch (DatabaseException e) {
-//            e.printStackTrace();
-//        }
-//
-
     }
 }

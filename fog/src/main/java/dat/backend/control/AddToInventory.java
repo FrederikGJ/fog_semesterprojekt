@@ -37,9 +37,9 @@ public class AddToInventory extends HttpServlet {
         String unit = request.getParameter("unit");
         String description = request.getParameter("description");
         int length = Integer.parseInt(request.getParameter("length"));
-        Materials materials = new Materials(name, unitPrice, unit, description, length);
+        Materials materials = new Materials(name, unitPrice, unit, description, length); // new materials object to add to list in session scope
 
-        List<Materials> materialsList = (List<Materials>) session.getAttribute("materialsList"); // adding inventory list object to session scope
+        List<Materials> materialsList = (List<Materials>) session.getAttribute("materialsList"); // getting inventory list object to session scope
         materialsList.add(materials);
 
         try {
@@ -49,14 +49,12 @@ public class AddToInventory extends HttpServlet {
             request.setAttribute("unit", materials.getUnit());
             request.setAttribute("description", materials.getDescription());
             request.setAttribute("length", materials.getLength());
+            request.setAttribute("msgAdd", "Vare er blevet tilføjet til inventar");
 
+            request.getRequestDispatcher("WEB-INF/viewInventory.jsp").forward(request, response);
 
         } catch (DatabaseException e) {
             e.printStackTrace();
         }
-        request.getRequestDispatcher("WEB-INF/viewInventory.jsp").forward(request, response);
-        request.setAttribute("msg", "Vare er blevet tilføjet til inventar");
-
-
     }
 }

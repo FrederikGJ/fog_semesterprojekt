@@ -45,6 +45,7 @@ public class ViewInventory extends HttpServlet {
                 List<Materials> materialsList = AdminFacade.getAllMaterials(connectionPool);
                 session.setAttribute("materialsList", materialsList); // adding inventory list object to session scope
                 request.getRequestDispatcher("WEB-INF/viewInventory.jsp").forward(request, response);
+
             } catch (DatabaseException e) {
                 request.setAttribute("errormessage", e.getMessage());
                 request.getRequestDispatcher("error.jsp").forward(request, response);
