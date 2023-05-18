@@ -27,7 +27,7 @@ public class Materials {
         this.length = length;
     }
     //Constructor used in deleting Inventory
-    public Materials(int idMaterials) {this.idMaterials = idMaterials;
+    public Materials(int idMaterialsD) {this.idMaterials = idMaterialsD;
     }
 
     public int getIdMaterials() {

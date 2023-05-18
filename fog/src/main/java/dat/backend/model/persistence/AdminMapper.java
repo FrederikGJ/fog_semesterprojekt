@@ -89,7 +89,7 @@ public class AdminMapper {
 */
 
     public static void deleteMaterials(int idMaterials, ConnectionPool connectionPool) throws DatabaseException {
-        String sql = "DELETE FROM fog.materials WHERE idmaterials =?" + idMaterials;
+        String sql = "DELETE FROM fog.materials WHERE idmaterials =?";
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setInt(1, idMaterials);

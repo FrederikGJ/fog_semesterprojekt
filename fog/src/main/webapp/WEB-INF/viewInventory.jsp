@@ -48,7 +48,7 @@ Inventar
                         <td>${materials.description}</td>
                         <td>${materials.length}</td>
                         <td>
-                            <button formaction="deleteinventory" formmethod="post" name="idMaterials"
+                            <button formaction="deleteinventory" formmethod="post" name="idMaterialsD"
                                     value="${materials.idMaterials}">Delete
                             </button>
                         </td>
