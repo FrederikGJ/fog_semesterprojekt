@@ -51,7 +51,7 @@ public class CalculateBOM {
 
 
         //tilføj alle de materials vi har brug for til listen
-        bom.add(new BOM(skruer, "bruges til at skrue med", 1));
+      //  bom.add(new BOM(skruer, "bruges til at skrue med", 1));
 
 
         /*

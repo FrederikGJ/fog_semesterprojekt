@@ -12,13 +12,7 @@ public class Orders {
     private String username;
     private String comments;
 
-    public Orders( int width, int length, String username, String comment) {
 
-        this.width = width;
-        this.length = length;
-        this.username = username;
-        this.comment = comment;
-    }
 
     public Orders(int idOrders, String orderStatus, int length, int width, int totalPrice, String username, String comments){
         this.idOrders = idOrders;
@@ -30,6 +24,15 @@ public class Orders {
         this.comments = comments;
     }
 
+    public Orders(int idOrders, String orderStatus, int width, int length, int totalPrice, String username)
+    {
+        this.idOrders = idOrders;
+        this.orderStatus = orderStatus;
+        this.width = width;
+        this.length = length;
+        this.totalPrice = totalPrice;
+        this.username = username;
+    }
 
     public int getIdOrders()
     {

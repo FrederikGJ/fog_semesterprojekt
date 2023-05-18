@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 public class BomMapper
 {
 
-    static BOM createBOM(Orders order, Materials material, String descriptionOfUSe,
+    static BOM createBOM(Orders order, Materials material, String descriptionOfUse,
                          int quantity, Materials materials, ConnectionPool connectionPool) throws DatabaseException{
         Logger.getLogger("web").log(Level.INFO, "");
         // The logger is used for monitoring
@@ -28,14 +28,14 @@ public class BomMapper
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setInt(1, order.getIdOrders());
                 ps.setInt(2, quantity);
-                ps.setString(3, descriptionOfUSe);
-                ps.setInt(4, material.getIdmaterials());
+                ps.setString(3, descriptionOfUse);
+                ps.setInt(4, material.getIdMaterials());
                 int rowsAffected = ps.executeUpdate();
                 if (rowsAffected == 1) {
-                    bom = new BOM( materials, descriptionOfUSe, quantity);
+                    bom = new BOM(materials, descriptionOfUse, quantity);
                 } else {
                     throw new DatabaseException("The BOM with idorders = " + order.getIdOrders() + " and descrition"
-                            + descriptionOfUSe + " could not be inserted into the database");
+                            + descriptionOfUse + " could not be inserted into the database");
                 }
             }
         } catch (SQLException ex) {

@@ -16,8 +16,43 @@ public class Materials {
         this.description = description;
     }
 
+    public Materials(int idMaterials, String name, int unitPrice, String unit, String description, int length)
+    {
+        this.idMaterials = idMaterials;
+        this.name = name;
+        this.unitPrice = unitPrice;
+        this.unit = unit;
+        this.description = description;
+        this.length = length;
+    }
+
     public int getIdMaterials()
     {
         return idMaterials;
+    }
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public int getUnitPrice()
+    {
+        return unitPrice;
+    }
+
+    public String getUnit()
+    {
+        return unit;
+    }
+
+    public String getDescription()
+    {
+        return description;
+    }
+
+    public int getLength()
+    {
+        return length;
     }
 }
