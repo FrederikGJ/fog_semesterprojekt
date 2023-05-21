@@ -2,7 +2,6 @@ package dat.backend.model.entities;
 
 import dat.backend.model.exceptions.DatabaseException;
 import dat.backend.model.persistence.AdminFacade;
-import dat.backend.model.persistence.AdminMapper;
 import dat.backend.model.persistence.BomFacade;
 import dat.backend.model.persistence.ConnectionPool;
 
@@ -10,59 +9,68 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CalculateBOM {
-    // TODO: I will recieve two integers and they will be used for calculating bom
-    // TODO: make a method that calculate the BOM the price
-    //TODO: replace dummy integers with the real deal
 
-    //dummy integers for the calculations - these will be replaced and so on
-    int l = 400;
-    int b = 300;
-    int idorders = 1; //Orders.getIdOrders;
+    public ArrayList<BOM> createCarportBOM(Orders order, int length, int width, ConnectionPool connectionPool) throws DatabaseException {
 
-    public ArrayList<BOM> createBOM(int length, int width, ConnectionPool connectionPool) throws DatabaseException {
-        // I need to create a new bom from the two integers - the bom has materials and so on.
-        //HUSK hjælpemetoder!
         ArrayList<BOM> bom = new ArrayList<>();
         List<Materials> materials = AdminFacade.getAllMaterials(connectionPool);
 
-        //OM SPÆR: her skal jeg bruge en bom fra databasen
-        //og så skal den int der retuneres sættes som quantitiy
-        //Når jeg har quantity skal jeg også vælge længden
-        raftQuantityCalculator(length);
-        raftLengthCalculator(length);
+        //Materials needed for the construction of a carport with a flat roof
+        Materials rafters = findMaterialByNameAndLength("spær", raftLengthCalculator(length),materials);
+        Materials posts = findMaterialByName("stolpe", materials);
+        Materials beamLength = findMaterialByNameAndLength("rem", beamLengthCalculator(length), materials);
+        Materials beamWidth = findMaterialByNameAndLength("rem", beamWidthCalculator(length), materials);
+        Materials screws = findMaterialByName("skruer", materials);
+        Materials trapezoidalRoofPlate = findMaterialByName("trapezplade", materials);
 
-        //OM pæle : denne skal også sættes som quantity
-        //+ beslag skal have samme quantity som posts (Carport Saddle Bracket)
-        postCalculator(length, width);
+        //Add materials to bom
+        bom.add(new BOM(rafters, "carportens tag fastgøres her", raftQuantityCalculator(length)));
+        bom.add(new BOM(posts,"stolper til caporten", postQuantityCalculator(length, width)));
+        bom.add(new BOM(beamLength, "remme som er konstuktionens langside, her fastgøres spær", 2));
+        bom.add(new BOM(beamWidth, "remme som er konstruktionens for og bagkant", 2));
+        bom.add(new BOM(screws, "bruges til at samle konstruktionen", 1));
+        bom.add(new BOM(trapezoidalRoofPlate, "trapezplader er konstruktionens tag", (raftQuantityCalculator(length)+1)));
 
-        //tilføj rem på length med en if statement
-        beamLengthCalculator(length);
+        //add bom to database
+        for(BOM item : bom){
+            BomFacade.createBOM(order, item.getMaterial(), item.descriptionOfUSe, item.getQuantity(), connectionPool);
+        }
 
-        //tilføj rem width med en if statement
-        beamWidthCalculator(width);
-
-        //tilføj en pakke skruer
-
-
-        //lav et loop der finder et specifikt material.
-        Materials skruer = findMaterial("skruer", materials);
-
-        //raft length finder needs to length as well
-
-
-        //tilføj alle de materials vi har brug for til listen
-      //  bom.add(new BOM(skruer, "bruges til at skrue med", 1));
-
-
-        /*
-        in the end some data will be added through the BomFacade.createBOM();
-        For this i need the ORDER NUMBER (idorders)(idorders gives the ints) and the MATERIAL NUMBER (idmaterials)
-
-        it needs to be a loop that runs through the list of materials and adds the same idbom and idorders to all rows
-         */
         return bom;
     }
 
+    public double bomPrice(Orders order) {
+        ConnectionPool connectionPool = new ConnectionPool();
+        ArrayList<BOM> allBOM = new ArrayList<>();
+        ArrayList<BOM> specificBOMforPriceCalc = new ArrayList<>();
+        double bomPrice = 0;
+
+        //get all BOM from db;
+        try {
+            allBOM = BomFacade.readBOM(connectionPool);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        //  find the bom needed form allBOM
+        for(BOM item : allBOM){
+            if(item.idOrders == order.getIdOrders()){
+                specificBOMforPriceCalc.add(item);
+            }
+        }
+
+        //add up the price
+        for(BOM item : specificBOMforPriceCalc){
+            bomPrice += (item.getQuantity() * item.getMaterial().getUnitPrice());
+        }
+
+        return bomPrice;
+    }
+
+
+
+
+    //all functions below this point are helper functions for createCarportBOM
     private int beamWidthCalculator(int width) {
         if(width <= 300){
             return 300;
@@ -120,7 +128,7 @@ public class CalculateBOM {
         else return 600;
     }
 
-    private Materials findMaterial(String name, List<Materials> materials) {
+    private Materials findMaterialByName(String name, List<Materials> materials) {
         Materials foundMaterial;
         // Iterate through the list of materials
         for (Materials material : materials) {
@@ -132,7 +140,19 @@ public class CalculateBOM {
         return null;
     }
 
-    private int postCalculator(int length, int width) {
+    private Materials findMaterialByNameAndLength(String name, int length, List<Materials> materials) {
+        Materials foundMaterial;
+        // Iterate through the list of materials
+        for (Materials material : materials) {
+            if (material.getName().equals(name) && material.getLength() == length) {
+                foundMaterial = material;
+                return foundMaterial;
+            }
+        }
+        return null;
+    }
+
+    private int postQuantityCalculator(int length, int width) {
         if(length > 450){return 6;}
         else if(width > 450){return 6;}
         else return 4;
@@ -140,22 +160,8 @@ public class CalculateBOM {
     }
 
     private int raftQuantityCalculator(int length) {
-        int numberOfPosts = (length/50)-2;
+        int numberOfPosts = (length/50)-1;
         return numberOfPosts;
     }
 
-    //calculator that outputs the price of a given offer based on a bom arraylist
-    public int bomPrice(ArrayList<BOM> allBOM) {
-        ConnectionPool connectionPool = new ConnectionPool();
-        //ArrayList<BOM> allBOM = new ArrayList<>();
-        try {
-            allBOM = BomFacade.readBOM(connectionPool);
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-
-        //  find the bom needed form allBOM and add the prices together
-
-        return -1111111;
-    }
 }

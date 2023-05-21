@@ -16,8 +16,8 @@ import java.util.logging.Logger;
 public class BomMapper
 {
 
-    static BOM createBOM(Orders order, Materials material, String descriptionOfUse,
-                         int quantity, Materials materials, ConnectionPool connectionPool) throws DatabaseException{
+    static BOM createBOM(Orders order, Materials material, String descriptionOfUSe,
+                         int quantity, ConnectionPool connectionPool) throws DatabaseException{
         Logger.getLogger("web").log(Level.INFO, "");
         // The logger is used for monitoring
         // the behavior of the application, troubleshooting problems, and auditing purposes.
@@ -28,14 +28,14 @@ public class BomMapper
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setInt(1, order.getIdOrders());
                 ps.setInt(2, quantity);
-                ps.setString(3, descriptionOfUse);
+                ps.setString(3, descriptionOfUSe);
                 ps.setInt(4, material.getIdMaterials());
                 int rowsAffected = ps.executeUpdate();
                 if (rowsAffected == 1) {
-                    bom = new BOM(materials, descriptionOfUse, quantity);
+                    bom = new BOM( material, descriptionOfUSe, quantity);
                 } else {
                     throw new DatabaseException("The BOM with idorders = " + order.getIdOrders() + " and descrition"
-                            + descriptionOfUse + " could not be inserted into the database");
+                            + descriptionOfUSe + " could not be inserted into the database");
                 }
             }
         } catch (SQLException ex) {
@@ -56,7 +56,6 @@ public class BomMapper
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ResultSet rs = ps.executeQuery();
                 if (rs.next()) {
-                    //TODO get material name and add it
                     bom = new BOM(rs.getInt(4), rs.getString(3), rs.getInt(2));
                     bomArrayList.add(bom);
                 } else {

@@ -2,6 +2,7 @@ package dat.backend.control;
 
 import dat.backend.model.config.ApplicationStart;
 import dat.backend.model.entities.BOM;
+import dat.backend.model.entities.CalculateBOM;
 import dat.backend.model.entities.Orders;
 import dat.backend.model.exceptions.DatabaseException;
 import dat.backend.model.persistence.AdminFacade;
@@ -50,12 +51,15 @@ public class MakeOffer extends HttpServlet
 
 
 
+            CalculateBOM calBom = new CalculateBOM();
 
+//          double totalBomPrice = 10891.80;
 
+            //createCarport skal vel ske når man bekræfter sin bestilling?
+            //calBom.createCarportBOM(ongoingOrder, ongoingOrder.getLength(), ongoingOrder.getWidth(), connectionPool);
+            double totalBomPrice = calBom.bomPrice(ongoingOrder);
+            session.setAttribute("totalBomPrice", totalBomPrice);
 
-//           CalculateBOM calculateBOM = new CalculateBOM();
-//           int totalBomPrice = calculateBOM.bomPrice(bomArrayList);
-//           session.setAttribute("totalBomPrice", totalBomPrice);
 
 
             //calculation of operation margin (dækningsgraden - fortjenesten i % af salgsprisen)
@@ -63,25 +67,22 @@ public class MakeOffer extends HttpServlet
             //dækningsbidrag: salgspris - kostpris
 
 
-            Orders orders = new Orders();
-
-            double totalBomPrice = 10891.80;
-            session.setAttribute("totalBomPrice", totalBomPrice);
-
-
-            //lavet funktioner til udregning inde i klassen Orders, giver det mening eller skal det ligge et andet sted?
-
 
             //automatisk dækningsgrad
             double autoOperationMargin = 39.02;
 
 
-            double salesprice = Math.round(totalBomPrice/(1-(autoOperationMargin/100))*1.25);
-            session.setAttribute("salesprice", salesprice);
+            double autoSalesprice = Math.round(totalBomPrice/(1-(autoOperationMargin/100))*1.25);
+            session.setAttribute("autoSalesprice", autoSalesprice);
 
+            //skal kigges på til vejledning
+//            double salesprice = Double.parseDouble(request.getParameter("salesprice"));
+//            session.setAttribute("salesprice", salesprice);
 
-            double salespriceTaxFree = Math.round(salesprice/1.25);
+            double salespriceTaxFree = Math.round(autoSalesprice/1.25);
             session.setAttribute("salespriceTaxFree", salespriceTaxFree);
+
+            Orders orders = new Orders();
 
             //dækningsbidrag
             double grossProfit = Math.round(orders.makeGrossProfit(salespriceTaxFree, totalBomPrice));
@@ -92,6 +93,7 @@ public class MakeOffer extends HttpServlet
             session.setAttribute("operationMargin", operationMargin);
 
 
+            //lavet funktioner til udregning inde i klassen Orders, giver det mening eller skal det ligge et andet sted?
 
 
             // lav egen jsp og servlet til finishedOrder i stedet for MakeOffer

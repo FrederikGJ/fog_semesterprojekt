@@ -72,7 +72,7 @@
                             <c:forEach var="BOM" items="${sessionScope.bomArrayList}">
                                 <tr>
                                     <td>${BOM.quantity}</td>
-                                    <td>${BOM.descriptionOfUse}</td>
+                                    <td>${BOM.descriptionOfUSe}</td>
                                     <td>${BOM.idMaterials}</td>
                                 </tr>
                             </c:forEach>
@@ -95,31 +95,36 @@
                     <thead>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th scope="row">Dækningsgrad</th>
-                        <td>${sessionScope.operationMargin}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Pris uden moms</th>
-                        <td>${sessionScope.salespriceTaxFree}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Pris med moms</th>
-                        <td>${sessionScope.salesprice}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Prisændring</th>
-                        <td>beløb</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Prisforslag ved salg</th>
-                        <td><input type="text" class="form-control text-center" id="salesprice" name="${sessionScope.salesprice}" value="${sessionScope.salesprice}"></td>
-                    </tr>
-                    <tr>
-                        <thead>
-                        </thead>
-                        <th scope="row" colspan="2">Send tilbud</th>
-                    </tr>
+                        <tr>
+                            <th scope="row">Dækningsgrad</th>
+                            <td>${sessionScope.operationMargin}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Pris uden moms</th>
+                            <td>${sessionScope.salespriceTaxFree}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Pris med moms</th>
+                            <td>${sessionScope.autoSalesprice}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Prisændring</th>
+                            <td>beløb</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Prisforslag ved salg</th>
+                            <td>
+                                <form method="post">
+                                    <label for="${sessionScope.autoSalesprice}"></label>
+                                    <input type="number" class="form-control text-center" id="${sessionScope.autoSalesprice}" name="${sessionScope.autoSalesprice}" value="${sessionScope.autoSalesprice}"/>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr>
+                            <thead>
+                            </thead>
+                            <th scope="row" colspan="2">Send tilbud</th>
+                        </tr>
                     </tbody>
                 </table>
             </div>

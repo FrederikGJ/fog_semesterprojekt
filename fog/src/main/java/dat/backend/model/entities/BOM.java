@@ -6,57 +6,59 @@ import java.util.Map;
 
 public class BOM {
 
-    private int idOrders;
-    private int quantity;
-    private String descriptionOfUse;
-    private Materials materials;
+    int idOrders;
+    Materials material;
+    String descriptionOfUSe;
+    int quantity;
 
     //for the read CRUD operation in mapper we have
-    private int idMaterials;
+    int idMaterials;
 
 
-    public BOM(int idOrders, int quantity, String descriptionOfUse, int idMaterials)
+    public BOM(int idMaterials, String descriptionOfUSe, int quantity)
+    {
+        this.idMaterials = idMaterials;
+        this.descriptionOfUSe = descriptionOfUSe;
+        this.quantity = quantity;
+    }
+
+    public BOM(int idOrders, String descriptionOfUSe, int quantity, int idMaterials)
     {
         this.idOrders = idOrders;
+        this.descriptionOfUSe = descriptionOfUSe;
         this.quantity = quantity;
-        this.descriptionOfUse = descriptionOfUse;
         this.idMaterials = idMaterials;
     }
 
-
-    public BOM(Materials materials, String descriptionOfUse, int quantity)
-    {
-        this.materials = materials;
-        this.descriptionOfUse = descriptionOfUse;
+    public BOM(Materials material, String descriptionOfUSe, int quantity) {
+        this.material = material;
+        this.descriptionOfUSe = descriptionOfUSe;
         this.quantity = quantity;
     }
 
-    public BOM(int idMaterials, String descriptionOfUse, int quantity)
-    {
+    public BOM(int idOrders, int idMaterials, String descriptionOfUSe, int quantity){
         this.idMaterials = idMaterials;
-        this.descriptionOfUse = descriptionOfUse;
+        this. descriptionOfUSe = descriptionOfUSe;
         this.quantity = quantity;
     }
 
-    public int getIdOrders()
-    {
+    public int getIdOrders() {
         return idOrders;
     }
 
-    public int getQuantity()
-    {
+    public Materials getMaterial() {
+        return material;
+    }
+
+    public String getDescriptionOfUSe() {
+        return descriptionOfUSe;
+    }
+
+    public int getQuantity() {
         return quantity;
     }
 
-    public String getDescriptionOfUse()
-    {
-        return descriptionOfUse;
-    }
-
-    public int getIdMaterials()
-    {
+    public int getIdMaterials() {
         return idMaterials;
     }
-
-
 }
