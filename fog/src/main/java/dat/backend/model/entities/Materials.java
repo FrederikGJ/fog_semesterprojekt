@@ -18,7 +18,7 @@ public class Materials {
         this.length = length;
     }
 
-    // Constructor used in adding to Inventory
+    //Constructor used in adding to Inventory
     public Materials(String name, int unitPrice, String unit, String description, int length) {
         this.name = name;
         this.unitPrice = unitPrice;
@@ -29,6 +29,8 @@ public class Materials {
     //Constructor used in deleting Inventory
     public Materials(int idMaterialsD) {this.idMaterials = idMaterialsD;
     }
+
+    //Constructor used in editing Inventory
 
     public int getIdMaterials() {
         return idMaterials;
@@ -59,6 +61,7 @@ public class Materials {
     }
 
 
+
     @Override
     public String toString() {
         return "Materials{" +
@@ -70,5 +73,19 @@ public class Materials {
                 '}';
     }
 
+    public void setUnitPrice(int unitPrice) {
+        this.unitPrice = unitPrice;
+    }
 
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
+    }
 }

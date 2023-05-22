@@ -41,20 +41,20 @@ public class AddToInventory extends HttpServlet {
 
         List<Materials> materialsList = (List<Materials>) session.getAttribute("materialsList"); // getting inventory list object to session scope
         materialsList.add(materials);
-
         try {
             AdminFacade.addToInventory(materials, connectionPool);
-            request.setAttribute("material_name", materials.getName());
-            request.setAttribute("unitprice", materials.getUnitPrice());
-            request.setAttribute("unit", materials.getUnit());
-            request.setAttribute("description", materials.getDescription());
-            request.setAttribute("length", materials.getLength());
+            session.setAttribute("material_name", materials.getName());
+            session.setAttribute("unitprice", materials.getUnitPrice());
+            session.setAttribute("unit", materials.getUnit());
+            session.setAttribute("description", materials.getDescription());
+            session.setAttribute("length", materials.getLength());
             request.setAttribute("msgAdd", "Vare er blevet tilføjet til inventar");
 
             request.getRequestDispatcher("WEB-INF/viewInventory.jsp").forward(request, response);
 
         } catch (DatabaseException e) {
-            e.printStackTrace();
+            request.setAttribute("errormessage", e.getMessage());
+            request.getRequestDispatcher("error.jsp").forward(request, response);
         }
     }
 }

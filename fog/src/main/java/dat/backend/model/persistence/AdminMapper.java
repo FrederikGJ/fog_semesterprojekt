@@ -1,5 +1,6 @@
 package dat.backend.model.persistence;
 
+import dat.backend.model.entities.BOM;
 import dat.backend.model.entities.Materials;
 import dat.backend.model.exceptions.DatabaseException;
 
@@ -28,7 +29,7 @@ public class AdminMapper {
         }
     }
 
-    static List<Materials> getAllMaterials(ConnectionPool connectionPool) throws DatabaseException {
+    public static List<Materials> getAllMaterials(ConnectionPool connectionPool) throws DatabaseException {
         List<Materials> materialsList = new ArrayList<>();
         String sql = "SELECT * FROM fog.materials";
 
@@ -45,48 +46,26 @@ public class AdminMapper {
         }
         return materialsList;
     }
-    /*static Materials getMaterialsByID(int idMaterials, ConnectionPool connectionPool) throws DatabaseException {
-        List<Materials> materialsList = new ArrayList<>();
-        //Logger.getLogger("web").log(Level.INFO, "");
 
-        String sql = "SELECT * FROM fog.materials WHERE idmaterials = ?";
+    public static void editInventory(int idMaterials, String name, int unitPrice, String unit, String description, int length, ConnectionPool connectionPool) throws DatabaseException, SQLException {
 
+        String sql = "UPDATE fog.materials  set material_name =?, unitprice =?,unit=?, description =?, length=? WHERE idmaterials=?";
         try (Connection connection = connectionPool.getConnection()) {
-            try (PreparedStatement ps = connection.prepareStatement(sql)) {
-                ps.setInt(1, idMaterials);
-                ResultSet rs = ps.executeQuery();
-                Materials materials = null;
-                while (rs.next()) {
-                    materials = new Materials(rs.getInt(0), rs.getString(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getInt(5));
-                    materialsList.add(materials);
-                }
-                return materials;
-            }
-        } catch (SQLException ex) {
-            throw new DatabaseException(ex, "Something went wrong with the database");
-        }
-
-    }
-*/
-   /* public void editMaterials(String name, int unitPrice, String unit, String description, int length, ConnectionPool connectionPool) throws DatabaseException {
-
-        String sql = "UPDATE fog.materials set material_name = ?, unitprice = ?, unit= ?, description = ?, length = ?";
-        try (
-                Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setString(1, name);
                 ps.setInt(2, unitPrice);
                 ps.setString(3, unit);
                 ps.setString(4, description);
-                ps.setInt(5, length);
-                ps.executeQuery();
+                ps.setInt(5,length);
+                ps.setInt(6, idMaterials);
+                ps.executeUpdate();
+            } catch (
+                    SQLException ex) {
+                throw new DatabaseException(ex, "Something went wrong with the database");
             }
-        } catch (
-                SQLException ex) {
-            throw new DatabaseException(ex, "Something went wrong with the database");
         }
     }
-*/
+
 
     public static void deleteMaterials(int idMaterials, ConnectionPool connectionPool) throws DatabaseException {
         String sql = "DELETE FROM fog.materials WHERE idmaterials =?";
@@ -99,5 +78,6 @@ public class AdminMapper {
                 SQLException ex) {
             throw new DatabaseException(ex, "Something went wrong with the database");
         }
+
     }
 }

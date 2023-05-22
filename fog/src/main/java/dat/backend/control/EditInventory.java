@@ -10,10 +10,11 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet(name = "deleteinventory", value = "/deleteinventory")
-public class DeleteInventory extends HttpServlet {
+@WebServlet(name = "editinventory", value = "/editinventory")
+public class EditInventory extends HttpServlet {
     private ConnectionPool connectionPool;
 
 
@@ -32,19 +33,27 @@ public class DeleteInventory extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
 
+        String name = request.getParameter("nameE");
+        int unitPrice = Integer.parseInt(request.getParameter("unitPriceE"));
+        String unit = request.getParameter("unitE");
+        String description = request.getParameter("descriptionE");
+        int length = Integer.parseInt(request.getParameter("lengthE"));
+        int idMaterials = Integer.parseInt(request.getParameter("idMaterialsE"));
+
+
+
         try {
-            int idMaterialsD = Integer.parseInt(request.getParameter("idMaterialsD"));
-            AdminFacade.deleteMaterials(idMaterialsD, connectionPool);
-            Materials materials1 = new Materials(idMaterialsD);// new materials object to add to list in session scope
+            AdminFacade.editMaterials(idMaterials, name, unitPrice, unit, description, length, connectionPool);
             List<Materials> materialsList = AdminFacade.getAllMaterials(connectionPool);
-            materialsList.remove(materials1);
             session.setAttribute("materialsList", materialsList); // adding inventory list object to session scope
-            request.setAttribute("msgDelete", "Vare er blevet slettet fra inventar");
+
+            request.setAttribute("msgEdit", "Vare er blevet ændret i inventar");
             request.getRequestDispatcher("WEB-INF/viewInventory.jsp").forward(request, response);
 
-        } catch (DatabaseException e) {
+        } catch (Exception e) {
             request.setAttribute("errormessage", e.getMessage());
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
+
     }
 }
