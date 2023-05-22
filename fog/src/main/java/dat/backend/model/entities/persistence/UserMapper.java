@@ -1,7 +1,7 @@
-package dat.backend.model.persistence;
+package dat.backend.model.entities.persistence;
 
-import dat.backend.model.entities.User;
-import dat.backend.model.exceptions.DatabaseException;
+import dat.backend.model.entities.entities.User;
+import dat.backend.model.entities.exceptions.DatabaseException;
 
 import java.sql.*;
 import java.util.logging.Level;

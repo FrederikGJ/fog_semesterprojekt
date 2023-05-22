@@ -1,19 +1,15 @@
-package dat.backend.model.persistence;
+package dat.backend.model.entities.persistence;
 
-import dat.backend.model.entities.Materials;
-import dat.backend.model.entities.Orders;
-import dat.backend.model.entities.User;
-import dat.backend.model.exceptions.DatabaseException;
+import dat.backend.model.entities.entities.Materials;
+import dat.backend.model.entities.entities.Orders;
+import dat.backend.model.entities.exceptions.DatabaseException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class AdminMapper {
 

@@ -1,6 +1,6 @@
-package dat.backend.model.services;
+package dat.backend.model.entities.services;
 
-import dat.backend.model.entities.User;
+import dat.backend.model.entities.entities.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

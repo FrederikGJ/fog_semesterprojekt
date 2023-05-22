@@ -1,8 +1,4 @@
-package dat.backend.model.entities;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+package dat.backend.model.entities.entities;
 
 public class BOM {
 

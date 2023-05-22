@@ -1,13 +1,12 @@
 package dat.backend.control;
 
-import dat.backend.model.config.ApplicationStart;
-import dat.backend.model.entities.BOM;
-import dat.backend.model.entities.CalculateBOM;
-import dat.backend.model.entities.Orders;
-import dat.backend.model.exceptions.DatabaseException;
-import dat.backend.model.persistence.AdminFacade;
-import dat.backend.model.persistence.BomFacade;
-import dat.backend.model.persistence.ConnectionPool;
+import dat.backend.model.entities.config.ApplicationStart;
+import dat.backend.model.entities.entities.BOM;
+import dat.backend.model.entities.entities.Orders;
+import dat.backend.model.entities.exceptions.DatabaseException;
+import dat.backend.model.entities.persistence.AdminFacade;
+import dat.backend.model.entities.persistence.BomFacade;
+import dat.backend.model.entities.persistence.ConnectionPool;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -51,21 +50,19 @@ public class MakeOffer extends HttpServlet
 
 
 
-            CalculateBOM calBom = new CalculateBOM();
+            //CalculateBOM calBom = new CalculateBOM();
 
-//          double totalBomPrice = 10891.80;
+            double totalBomPrice = 10891.80;
 
             //createCarport skal vel ske når man bekræfter sin bestilling?
             //calBom.createCarportBOM(ongoingOrder, ongoingOrder.getLength(), ongoingOrder.getWidth(), connectionPool);
-            double totalBomPrice = calBom.bomPrice(ongoingOrder);
+            //double totalBomPrice = calBom.bomPrice(ongoingOrder);
             session.setAttribute("totalBomPrice", totalBomPrice);
-
 
 
             //calculation of operation margin (dækningsgraden - fortjenesten i % af salgsprisen)
             //dækningsgrad = dækningsbidrag x 100 / salgspris
             //dækningsbidrag: salgspris - kostpris
-
 
 
             //automatisk dækningsgrad
@@ -75,23 +72,30 @@ public class MakeOffer extends HttpServlet
             double autoSalesprice = Math.round(totalBomPrice/(1-(autoOperationMargin/100))*1.25);
             session.setAttribute("autoSalesprice", autoSalesprice);
 
-            //skal kigges på til vejledning
-//            double salesprice = Double.parseDouble(request.getParameter("salesprice"));
-//            session.setAttribute("salesprice", salesprice);
+            String salespriceString = request.getParameter("salesprice");
+            double salesprice = autoSalesprice;
+            if (salespriceString != null)
+            {
+                salesprice = Double.parseDouble(salespriceString);
+            }
+            session.setAttribute("salesprice", salesprice);
 
-            double salespriceTaxFree = Math.round(autoSalesprice/1.25);
-            session.setAttribute("salespriceTaxFree", salespriceTaxFree);
+
+            double salespriceTaxFree = salesprice/1.25;
+            String salesPriceTaxFreeTwoDecimals = String.format("%.2f", salespriceTaxFree);
+            session.setAttribute("salespriceTaxFree", salesPriceTaxFreeTwoDecimals);
 
             Orders orders = new Orders();
 
             //dækningsbidrag
-            double grossProfit = Math.round(orders.makeGrossProfit(salespriceTaxFree, totalBomPrice));
-            session.setAttribute("grossProfit", grossProfit);
+            double grossProfit = orders.makeGrossProfit(salespriceTaxFree, totalBomPrice);
+            String grossProfitTwoDecimals = String.format("%.2f", grossProfit);
+            session.setAttribute("grossProfit", grossProfitTwoDecimals);
 
             //dækningsgraden
-            double operationMargin = Math.round(orders.makeOperationMargin(grossProfit, salespriceTaxFree));
-            session.setAttribute("operationMargin", operationMargin);
-
+            double operationMargin = orders.makeOperationMargin(grossProfit, salespriceTaxFree);
+            String operationMarginTwoDecimals = String.format("%.2f", operationMargin);
+            session.setAttribute("operationMargin", operationMarginTwoDecimals);
 
             //lavet funktioner til udregning inde i klassen Orders, giver det mening eller skal det ligge et andet sted?
 

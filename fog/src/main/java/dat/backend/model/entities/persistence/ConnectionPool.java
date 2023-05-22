@@ -1,4 +1,4 @@
-package dat.backend.model.persistence;
+package dat.backend.model.entities.persistence;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;

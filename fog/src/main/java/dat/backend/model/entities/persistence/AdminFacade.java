@@ -1,8 +1,8 @@
-package dat.backend.model.persistence;
+package dat.backend.model.entities.persistence;
 
-import dat.backend.model.entities.Materials;
-import dat.backend.model.entities.Orders;
-import dat.backend.model.exceptions.DatabaseException;
+import dat.backend.model.entities.entities.Materials;
+import dat.backend.model.entities.entities.Orders;
+import dat.backend.model.entities.exceptions.DatabaseException;
 
 import java.util.List;
 

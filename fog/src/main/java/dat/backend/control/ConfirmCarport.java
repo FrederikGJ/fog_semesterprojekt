@@ -1,14 +1,13 @@
 package dat.backend.control;
 
-import dat.backend.model.config.ApplicationStart;
-import dat.backend.model.entities.CalculateBOM;
-import dat.backend.model.entities.ListOfOrders;
-import dat.backend.model.entities.Orders;
-import dat.backend.model.entities.User;
-import dat.backend.model.exceptions.DatabaseException;
-import dat.backend.model.persistence.ConnectionPool;
-import dat.backend.model.persistence.OrdersFacade;
-import dat.backend.model.persistence.UserFacade;
+import dat.backend.model.entities.config.ApplicationStart;
+import dat.backend.model.entities.entities.CalculateBOM;
+import dat.backend.model.entities.entities.ListOfOrders;
+import dat.backend.model.entities.entities.Orders;
+import dat.backend.model.entities.entities.User;
+import dat.backend.model.entities.exceptions.DatabaseException;
+import dat.backend.model.entities.persistence.ConnectionPool;
+import dat.backend.model.entities.persistence.OrdersFacade;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -45,6 +44,9 @@ public class ConfirmCarport extends HttpServlet {
             Orders order = new Orders(width, length, username, comment);
             ListOfOrders orderList = new ListOfOrders();
             orderList.add(order);
+            CalculateBOM calBom = new CalculateBOM();
+            calBom.createCarportBOM(order, length, width, connectionPool);
+
         } catch (DatabaseException e) {
             e.printStackTrace();
         }

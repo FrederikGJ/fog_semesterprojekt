@@ -1,19 +1,16 @@
 package dat.backend.control;
 
-import dat.backend.model.config.ApplicationStart;
-import dat.backend.model.entities.Orders;
-import dat.backend.model.exceptions.DatabaseException;
-import dat.backend.model.persistence.AdminFacade;
-import dat.backend.model.persistence.ConnectionPool;
-import dat.backend.model.persistence.OrdersFacade;
+import dat.backend.model.entities.config.ApplicationStart;
+import dat.backend.model.entities.entities.Orders;
+import dat.backend.model.entities.exceptions.DatabaseException;
+import dat.backend.model.entities.persistence.AdminFacade;
+import dat.backend.model.entities.persistence.ConnectionPool;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @WebServlet(name = "ViewOrders", value = "/ViewOrders")
 public class ViewOrders extends HttpServlet {

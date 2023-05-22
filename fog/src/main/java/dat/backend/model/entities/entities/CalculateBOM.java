@@ -1,16 +1,17 @@
-package dat.backend.model.entities;
+package dat.backend.model.entities.entities;
 
-import dat.backend.model.exceptions.DatabaseException;
-import dat.backend.model.persistence.AdminFacade;
-import dat.backend.model.persistence.BomFacade;
-import dat.backend.model.persistence.ConnectionPool;
+import dat.backend.model.entities.exceptions.DatabaseException;
+import dat.backend.model.entities.persistence.AdminFacade;
+import dat.backend.model.entities.persistence.BomFacade;
+import dat.backend.model.entities.persistence.ConnectionPool;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CalculateBOM {
 
-    public ArrayList<BOM> createCarportBOM(Orders order, int length, int width, ConnectionPool connectionPool) throws DatabaseException {
+    public ArrayList<BOM> createCarportBOM(Orders order, int length, int width, ConnectionPool connectionPool) throws DatabaseException
+    {
 
         ArrayList<BOM> bom = new ArrayList<>();
         List<Materials> materials = AdminFacade.getAllMaterials(connectionPool);
@@ -63,7 +64,6 @@ public class CalculateBOM {
         for(BOM item : specificBOMforPriceCalc){
             bomPrice += (item.getQuantity() * item.getMaterial().getUnitPrice());
         }
-
         return bomPrice;
     }
 
@@ -71,7 +71,7 @@ public class CalculateBOM {
 
 
     //all functions below this point are helper functions for createCarportBOM
-    private int beamWidthCalculator(int width) {
+    public int beamWidthCalculator(int width) {
         if(width <= 300){
             return 300;
         }
@@ -87,10 +87,11 @@ public class CalculateBOM {
         else if (width <= 540){
             return 540;
         }
-        else return 600;
+        else if(width == 600){return 600;}
+        return 600;
     }
 
-    private int beamLengthCalculator(int length) {
+    public int beamLengthCalculator(int length) {
         if(length <= 300){
             return 300;
         }
@@ -106,10 +107,11 @@ public class CalculateBOM {
         else if (length <= 540){
             return 540;
         }
-        else return 600;
+        else if(length == 600){return 600;}
+        return 600;
     }
 
-    private int raftLengthCalculator(int length) {
+    public int raftLengthCalculator(int length) {
         if(length <= 300){
             return 300;
         }
@@ -125,10 +127,11 @@ public class CalculateBOM {
         else if (length <= 540){
             return 540;
         }
-        else return 600;
+        else if(length == 600){return 600;}
+        return 600;
     }
 
-    private Materials findMaterialByName(String name, List<Materials> materials) {
+    public Materials findMaterialByName(String name, List<Materials> materials) {
         Materials foundMaterial;
         // Iterate through the list of materials
         for (Materials material : materials) {
@@ -140,7 +143,7 @@ public class CalculateBOM {
         return null;
     }
 
-    private Materials findMaterialByNameAndLength(String name, int length, List<Materials> materials) {
+    public Materials findMaterialByNameAndLength(String name, int length, List<Materials> materials) {
         Materials foundMaterial;
         // Iterate through the list of materials
         for (Materials material : materials) {
@@ -152,16 +155,18 @@ public class CalculateBOM {
         return null;
     }
 
-    private int postQuantityCalculator(int length, int width) {
+    public int postQuantityCalculator(int length, int width) {
         if(length > 450){return 6;}
         else if(width > 450){return 6;}
         else return 4;
 
     }
 
-    private int raftQuantityCalculator(int length) {
+    public int raftQuantityCalculator(int length) {
         int numberOfPosts = (length/50)-1;
         return numberOfPosts;
     }
+
+
 
 }

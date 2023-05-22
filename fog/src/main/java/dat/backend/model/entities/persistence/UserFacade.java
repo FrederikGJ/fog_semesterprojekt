@@ -1,11 +1,12 @@
-package dat.backend.model.persistence;
+package dat.backend.model.entities.persistence;
 
-import dat.backend.model.entities.User;
-import dat.backend.model.exceptions.DatabaseException;
+import dat.backend.model.entities.entities.User;
+import dat.backend.model.entities.exceptions.DatabaseException;
 
 public class UserFacade {
 
-    public static User login(String username, String password, ConnectionPool connectionPool) throws DatabaseException {
+    public static User login(String username, String password, ConnectionPool connectionPool) throws DatabaseException
+    {
         return UserMapper.login(username, password, connectionPool);
     }
 

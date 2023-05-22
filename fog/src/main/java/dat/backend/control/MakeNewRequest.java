@@ -1,11 +1,6 @@
 package dat.backend.control;
 
-import dat.backend.model.entities.Orders;
-import dat.backend.model.entities.User;
-import dat.backend.model.exceptions.DatabaseException;
-import dat.backend.model.persistence.ConnectionPool;
-import dat.backend.model.persistence.OrdersFacade;
-import dat.backend.model.persistence.OrdersMapper;
+import dat.backend.model.entities.persistence.ConnectionPool;
 
 import javax.servlet.*;
 import javax.servlet.http.*;

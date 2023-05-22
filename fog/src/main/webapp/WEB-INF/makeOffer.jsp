@@ -115,8 +115,10 @@
                             <th scope="row">Prisforslag ved salg</th>
                             <td>
                                 <form method="post">
-                                    <label for="${sessionScope.autoSalesprice}"></label>
-                                    <input type="number" class="form-control text-center" id="${sessionScope.autoSalesprice}" name="${sessionScope.autoSalesprice}" value="${sessionScope.autoSalesprice}"/>
+                                    <label for="${sessionScope.salesprice}"></label>
+                                    <input type="hidden" name="idOrders" value="${sessionScope.idOrders}"/>
+                                    <input type="number" class="form-control text-center" id="${sessionScope.salesprice}" name="salesprice" value="${sessionScope.salesprice}"/>
+                                    <button formaction="makeoffer" >Opdater</button>
                                 </form>
                             </td>
                         </tr>

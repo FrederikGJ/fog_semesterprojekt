@@ -1,6 +1,6 @@
-package dat.backend.model.config;
+package dat.backend.model.entities.config;
 
-import dat.backend.model.persistence.ConnectionPool;
+import dat.backend.model.entities.persistence.ConnectionPool;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
