@@ -21,9 +21,9 @@ public class AdminFacade {
     }
 
     public static void editMaterials(int idMaterials,String name, int unitPrice, String unit, String description, int length, ConnectionPool connectionPool) throws DatabaseException, SQLException {
-        AdminMapper.editInventory(idMaterials, name, unitPrice, unit, description, length, connectionPool );
+        AdminMapper.editInventory(idMaterials, name, unitPrice, unit, description, length, connectionPool);
 
-
+    }
     public static List<Orders> getAllOrders(ConnectionPool connectionPool) throws DatabaseException {
         return AdminMapper.getAllOrders(connectionPool);
     }
@@ -35,6 +35,5 @@ public class AdminFacade {
     public static List<Orders> getOngoingOrders(ConnectionPool connectionPool) throws DatabaseException {
         return AdminMapper.getOngoingOrders(connectionPool);
     }
-
 
 }

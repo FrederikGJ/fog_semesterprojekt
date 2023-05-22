@@ -13,25 +13,6 @@ import java.util.List;
 
 public class AdminMapper {
 
-    public static void addToInventory(Materials materials, ConnectionPool connectionPool) throws DatabaseException {
-
-        String sql = "INSERT INTO fog.materials (material_name, unitprice, unit, description, length) VALUES (?,?,?,?,?)";
-
-        try (Connection connection = connectionPool.getConnection()) {
-            try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-                ps.setString(1, materials.getName());
-                ps.setInt(2, materials.getUnitPrice());
-                ps.setString(3, materials.getUnit());
-                ps.setString(4, materials.getDescription());
-                ps.setInt(5, materials.getLength());
-                ps.executeUpdate();
-
-            }
-        } catch (SQLException ex) {
-            throw new DatabaseException(ex, "Something went wrong with the database");
-        }
-    }
-
     public static List<Materials> getAllMaterials(ConnectionPool connectionPool) throws DatabaseException {
         List<Materials> materialsList = new ArrayList<>();
         String sql = "SELECT * FROM fog.materials";
@@ -48,6 +29,23 @@ public class AdminMapper {
             throw new DatabaseException(ex, "Something went wrong with the database");
         }
         return materialsList;
+    }
+
+    public static void addToInventory(Materials materials, ConnectionPool connectionPool) throws DatabaseException {
+
+        String sql = "INSERT INTO fog.materials (material_name, unitprice, unit, description, length) VALUES (?,?,?,?,?)";
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+                ps.setString(1, materials.getName());
+                ps.setInt(2, materials.getUnitPrice());
+                ps.setString(3, materials.getUnit());
+                ps.setString(4, materials.getDescription());
+                ps.setInt(5, materials.getLength());
+                ps.executeUpdate();
+            }
+        } catch (SQLException ex) {
+            throw new DatabaseException(ex, "Something went wrong with the database");
+        }
     }
 
     public static void editInventory(int idMaterials, String name, int unitPrice, String unit, String description, int length, ConnectionPool connectionPool) throws DatabaseException, SQLException {
@@ -69,7 +67,6 @@ public class AdminMapper {
         }
     }
 
-
     public static void deleteMaterials(int idMaterials, ConnectionPool connectionPool) throws DatabaseException {
         String sql = "DELETE FROM fog.materials WHERE idmaterials =?";
         try (Connection connection = connectionPool.getConnection()) {
@@ -81,17 +78,14 @@ public class AdminMapper {
                 SQLException ex) {
             throw new DatabaseException(ex, "Something went wrong with the database");
         }
-
     }
 
     static List<Orders> getAllOrders(ConnectionPool connectionPool) throws DatabaseException {
 
         List<Orders> ordersList = new ArrayList<>();
-        //Logger.getLogger("web").log(Level.INFO, "");
         Orders orders;
 
         String sql = "SELECT * FROM fog.orders";
-
         try(Connection connection = connectionPool.getConnection()){
             try(PreparedStatement ps = connection.prepareStatement(sql)){
                 ResultSet rs = ps.executeQuery();
@@ -116,11 +110,9 @@ public class AdminMapper {
     static List<Orders> getFinishedOrders(ConnectionPool connectionPool) throws DatabaseException {
 
         List<Orders> finishedOrders = new ArrayList<>();
-        //Logger.getLogger("web").log(Level.INFO, "");
         Orders orders;
 
         String sql = "SELECT * FROM fog.orders WHERE orderstatus = 'Finished'";
-
         try(Connection connection = connectionPool.getConnection()){
             try(PreparedStatement ps = connection.prepareStatement(sql)){
                 ResultSet rs = ps.executeQuery();
@@ -141,15 +133,11 @@ public class AdminMapper {
         return finishedOrders;
     }
 
-
     static List<Orders> getOngoingOrders(ConnectionPool connectionPool) throws DatabaseException {
-
         List<Orders> ongoingOrders = new ArrayList<>();
-        //Logger.getLogger("web").log(Level.INFO, "");
         Orders orders;
 
         String sql = "SELECT * FROM fog.orders WHERE orderstatus = 'New' OR orderstatus = 'Pending' ORDER BY orderstatus ASC";
-
         try(Connection connection = connectionPool.getConnection()){
             try(PreparedStatement ps = connection.prepareStatement(sql)){
                 ResultSet rs = ps.executeQuery();
@@ -169,6 +157,4 @@ public class AdminMapper {
         }
         return ongoingOrders;
     }
-
-
 }
