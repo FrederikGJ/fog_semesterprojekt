@@ -14,9 +14,9 @@ public class BomFacade {
         return BomMapper.getBOMById(idorders, connectionPool);
     }
 
-    public static BOM createBOM(Orders order, Materials material, String descriptionOfUSe,
+    public static void createBOM(Orders order, Materials material, String descriptionOfUSe,
                                 int quantity, ConnectionPool connectionPool) throws DatabaseException {
-        return BomMapper.createBOM(order, material, descriptionOfUSe, quantity, connectionPool);
+        BomMapper.createBOM(order, material, descriptionOfUSe, quantity, connectionPool);
 
     }
 

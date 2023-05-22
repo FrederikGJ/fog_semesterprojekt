@@ -11,20 +11,13 @@ public class BOM {
     int idMaterials;
 
 
-    public BOM(int idMaterials, String descriptionOfUSe, int quantity)
+    public BOM(int quantity, String descriptionOfUSe,int idMaterials)
     {
-        this.idMaterials = idMaterials;
-        this.descriptionOfUSe = descriptionOfUSe;
         this.quantity = quantity;
+        this.descriptionOfUSe = descriptionOfUSe;
+        this.idMaterials = idMaterials;
     }
 
-    public BOM(int idOrders, String descriptionOfUSe, int quantity, int idMaterials)
-    {
-        this.idOrders = idOrders;
-        this.descriptionOfUSe = descriptionOfUSe;
-        this.quantity = quantity;
-        this.idMaterials = idMaterials;
-    }
 
     public BOM(Materials material, String descriptionOfUSe, int quantity) {
         this.material = material;
@@ -32,10 +25,13 @@ public class BOM {
         this.quantity = quantity;
     }
 
-    public BOM(int idOrders, int idMaterials, String descriptionOfUSe, int quantity){
-        this.idMaterials = idMaterials;
-        this. descriptionOfUSe = descriptionOfUSe;
+
+    public BOM(int idOrders, int quantity, String descriptionOfUse, int idMaterials)
+    {
+        this.idOrders = idOrders;
         this.quantity = quantity;
+        this.descriptionOfUSe = descriptionOfUse;
+        this.idMaterials = idMaterials;
     }
 
     public int getIdOrders() {

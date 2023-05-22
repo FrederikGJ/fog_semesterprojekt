@@ -2,6 +2,7 @@ package dat.backend.control;
 
 import dat.backend.model.entities.config.ApplicationStart;
 import dat.backend.model.entities.entities.BOM;
+import dat.backend.model.entities.entities.CalculateBOM;
 import dat.backend.model.entities.entities.Orders;
 import dat.backend.model.entities.exceptions.DatabaseException;
 import dat.backend.model.entities.persistence.AdminFacade;
@@ -45,18 +46,22 @@ public class MakeOffer extends HttpServlet
             Orders ongoingOrder = AdminFacade.getOrdersById(idOrders, "new_pending", connectionPool);
             session.setAttribute("ongoingOrder", ongoingOrder);
 
-            ArrayList<BOM> bomArrayList = BomFacade.getBOMById(idOrders, connectionPool);
-            session.setAttribute("bomArrayList", bomArrayList);
+            CalculateBOM calBom = new CalculateBOM();
+            calBom.createCarportBOM(ongoingOrder, ongoingOrder.getLength(), ongoingOrder.getWidth(), connectionPool);
+
+
+          ArrayList<BOM> bomArrayList = BomFacade.getBOMById(idOrders, connectionPool);
+          session.setAttribute("bomArrayList", bomArrayList);
 
 
 
-            //CalculateBOM calBom = new CalculateBOM();
 
-            double totalBomPrice = 10891.80;
 
-            //createCarport skal vel ske når man bekræfter sin bestilling?
-            //calBom.createCarportBOM(ongoingOrder, ongoingOrder.getLength(), ongoingOrder.getWidth(), connectionPool);
-            //double totalBomPrice = calBom.bomPrice(ongoingOrder);
+          //double totalBomPrice = 10891.80;
+
+
+
+            double totalBomPrice = calBom.bomPrice(ongoingOrder);
             session.setAttribute("totalBomPrice", totalBomPrice);
 
 
@@ -86,6 +91,12 @@ public class MakeOffer extends HttpServlet
             session.setAttribute("salespriceTaxFree", salesPriceTaxFreeTwoDecimals);
 
             Orders orders = new Orders();
+
+            //price change from autoSalesprice with operationMargin on 39.02 to new salesprice.
+            double priceChange = salesprice - autoSalesprice;
+            String priceChangeTwoDecimals = String.format("%.2f", priceChange);
+            session.setAttribute("priceChange", priceChangeTwoDecimals);
+
 
             //dækningsbidrag
             double grossProfit = orders.makeGrossProfit(salespriceTaxFree, totalBomPrice);

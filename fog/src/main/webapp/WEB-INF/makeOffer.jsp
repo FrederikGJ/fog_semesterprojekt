@@ -105,11 +105,11 @@
                         </tr>
                         <tr>
                             <th scope="row">Pris med moms</th>
-                            <td>${sessionScope.autoSalesprice}</td>
+                            <td>${sessionScope.salesprice}</td>
                         </tr>
                         <tr>
                             <th scope="row">Prisændring</th>
-                            <td>beløb</td>
+                            <td>${sessionScope.priceChange}</td>
                         </tr>
                         <tr>
                             <th scope="row">Prisforslag ved salg</th>
@@ -117,8 +117,8 @@
                                 <form method="post">
                                     <label for="${sessionScope.salesprice}"></label>
                                     <input type="hidden" name="idOrders" value="${sessionScope.idOrders}"/>
-                                    <input type="number" class="form-control text-center" id="${sessionScope.salesprice}" name="salesprice" value="${sessionScope.salesprice}"/>
-                                    <button formaction="makeoffer" >Opdater</button>
+                                    <input class="mt-2" type="number" class="form-control text-center" id="${sessionScope.salesprice}" name="salesprice" value="${sessionScope.salesprice}"/>
+                                    <button class="mt-2" formaction="makeoffer" >Opdater</button>
                                 </form>
                             </td>
                         </tr>
