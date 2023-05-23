@@ -5,27 +5,29 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-         Welcome to the logged in area
+
     </jsp:attribute>
 
   <jsp:attribute name="footer">
-        Logged in area
+
     </jsp:attribute>
 
   <jsp:body>
 
 
+      <h1>Velkommen ${sessionScope.user.username}</h1>
 
       <form action="viewinventory" method="post">
-          <input style="color: white; background-color: indigo; border: solid 5px indigo; border-radius: 5px; text-decoration: none"
-                 type="submit" value="Se alt inventar">
+          <input type="submit" value="Se alt inventar" class="frontbutton">
       </form>
-      <br>
-      <br>
-      <br>
+      <br><br>
+
       <form action="viewrequests" method="post">
-          <input type="submit" value="Se alle ordre">
+          <input type="submit" value="Se alle ordre"class="frontbutton">
       </form>
+
+
+
 
 
 
@@ -33,6 +35,7 @@
       <p>You are not logged in yet. You can do it here: <a
               href="../login.jsp">Login</a></p>
     </c:if>
+
 
   </jsp:body>
 

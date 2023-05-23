@@ -40,12 +40,12 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <c:if test="${sessionScope.user == null }">
-                        <a style="font-family: Tahoma; font-weight: bold;color: white;"class="nav-item nav-link" href="${pageContext.request.contextPath}/login.jsp">Login</a>
+                        <a style="font-family: Tahoma; font-weight: bold;color: white;"class="nav-item nav-link" href="${pageContext.request.contextPath}/login.jsp">Log ind</a>
                     </c:if>
                     <c:if test="${sessionScope.user != null}">
                         <a style="font-family: Tahoma; font-weight: bold;color: white;" class="nav-item nav-link" href="${pageContext.request.contextPath}/MakeNewRequest">Bestil carport</a>
                         <a style="font-family: Tahoma; font-weight: bold;color: white;"class="nav-item nav-link" href="${pageContext.request.contextPath}/ViewOrders">Mine bestillinger</a>
-                        <a style="font-family: Tahoma; font-weight: bold;color: white;"class="nav-item nav-link" href="${pageContext.request.contextPath}/logout">Log out</a>
+                        <a style="font-family: Tahoma; font-weight: bold;color: white;"class="nav-item nav-link" href="${pageContext.request.contextPath}/logout">Log ud</a>
                         <p style="font-family: Tahoma; font-weight: bold;color: white;"class="nav-item nav-link" class="nav-item nav-link">${sessionScope.user.username}</p>
                     </c:if>
                 </div>
@@ -64,16 +64,16 @@
     <hr/>
     <div class="row mt-4">
         <div class="col">
-            Nørgaardsvej 30<br/>
-            2800 Lyngby
+            Johannes Fog A/S&copy;
         </div>
         <div class="col">
-            <jsp:invoke fragment="footer"/><br/>
-            <p>&copy; 2022 Cphbusiness</p>
+            <p>Firskovvej 20 <br>
+                2800 Lyngby
+
+            </p>
         </div>
         <div class="col">
-            Datamatikeruddannelsen<br/>
-            2. semester efterår 2022
+            CVR-nr. 16314439
         </div>
     </div>
 

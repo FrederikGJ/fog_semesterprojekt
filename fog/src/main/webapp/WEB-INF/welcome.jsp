@@ -48,8 +48,17 @@
             </div>
             <div class="row">
                 <div class="col d-flex justify-content-center">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium consequatur delectus distinctio perferendis placeat, sapiente tempore. Aliquam, in, ipsa. Deserunt ducimus eveniet id illum ipsum maiores minima nobis, nulla obcaecati officia optio quia ratione veniam voluptas, voluptatibus. Ad, aliquam animi assumenda dicta dolorem dolorum expedita facere impedit inventore iste libero, magnam maxime molestias perferendis quam repudiandae rerum similique. Alias commodi consequuntur culpa distinctio dolorem doloremque eos eum expedita facilis fuga fugiat harum ipsam laborum maiores mollitia nam natus, nisi non numquam omnis pariatur porro quam qui quidem quo quod quos reiciendis rem, repellat reprehenderit similique sit sunt suscipit tempore totam unde vel! Aliquam atque consequatur cupiditate delectus deserunt dolorem earum ex expedita harum id laudantium, magnam molestias, nostrum odit pariatur placeat possimus praesentium quaerat quasi quidem ratione rem, repudiandae sint voluptate voluptatibus? Ad dolores doloribus ea et facilis harum iusto, laboriosam, laborum mollitia obcaecati omnis pariatur saepe sed sit ullam?.</p>
-
+                    <br><br>
+                  <p>
+                      Gør det nemt at lave-det-selv. Få byg-selv carporten leveret som komplet byggesæt med monteringsvejledning,
+                      så kommer du både godt og hurtigt fra start. Selv for den erfarne handyman kan det være meget tidskrævende
+                      at gå i gang med at designe og bygge en carport helt fra bunden. Med byg-selv carporte kan du tage udgangspunkt
+                      i en række standardmodeller i træ, som kan leveres i forskellige længder og størrelser, med og uden skur,
+                      fladt tag eller tag med rejsning. Har du herudover behov for en ekstra meter i bredden, ønsker du en anden
+                      beklædning end standardmodellen, eller vil du have et redskabsskur med isolering, kan du få lavet et konkret
+                      tilbud på en carport i nøjagtig de mål, du ønsker. Vi hjælper selvfølgelig med at dimensionere stolper, remme,
+                      spær, så du får noget, som lever op til den gældende lovgivning.
+                  </p>
                 </div>
                 <div class="col-sm d-flex justify-content-center">
                     <img src="${pageContext.request.contextPath}/images/carportExample.png"/>

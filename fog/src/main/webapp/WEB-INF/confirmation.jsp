@@ -15,11 +15,11 @@
         <h1>Din carport er nu bestilt!</h1>
 
         <form action="Welcome"  method="get">
-            <input type="submit" value="Startside">
+            <input type="submit" value="Startside" class="frontbutton">
         </form>
         <br>
         <form action="ViewOrders" method="get">
-            <input type="submit" value="Mine bestillinger">
+            <input type="submit" value="Mine bestillinger" class="frontbutton">
         </form>
 
 
