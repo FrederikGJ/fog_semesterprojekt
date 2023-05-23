@@ -5,6 +5,7 @@ import dat.backend.model.entities.persistence.AdminFacade;
 import dat.backend.model.entities.persistence.BomFacade;
 import dat.backend.model.entities.persistence.ConnectionPool;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,14 +37,14 @@ public class CalculateBOM {
         for(BOM item : bom){
             BomFacade.createBOM(order, item.getMaterial(), item.descriptionOfUSe, item.getQuantity(), connectionPool);
         }
-
         return bom;
     }
 
-    public double bomPrice(Orders order) {
+    public double bomPrice(Orders orders, int choosenID) {
         ConnectionPool connectionPool = new ConnectionPool();
+        Materials materials = new Materials(choosenID);
         ArrayList<BOM> allBOM = new ArrayList<>();
-        ArrayList<BOM> specificBOMforPriceCalc = new ArrayList<>();
+        //ArrayList<BOM> specificBOMforPriceCalc = new ArrayList<>();
         double bomPrice = 0;
 
         //get all BOM from db;
@@ -53,22 +54,15 @@ public class CalculateBOM {
             e.printStackTrace();
         }
 
-        //  find the bom needed form allBOM
+        //  find the bom needed from allBOM
         for(BOM item : allBOM){
-            if(item.idOrders == order.getIdOrders()){
-                specificBOMforPriceCalc.add(item);
+            if(choosenID == orders.getIdOrders()){
+                bomPrice = (item.getQuantity() * materials.getUnitPrice());
             }
-        }
 
-        //add up the price
-        for(BOM item : specificBOMforPriceCalc){
-            bomPrice += (item.getQuantity() * item.getMaterial().getUnitPrice());
         }
         return bomPrice;
     }
-
-
-
 
     //all functions below this point are helper functions for createCarportBOM
     public int beamWidthCalculator(int width) {
@@ -166,7 +160,5 @@ public class CalculateBOM {
         int numberOfPosts = (length/50)-1;
         return numberOfPosts;
     }
-
-
 
 }
