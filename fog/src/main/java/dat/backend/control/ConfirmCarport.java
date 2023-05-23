@@ -37,6 +37,8 @@ public class ConfirmCarport extends HttpServlet {
         User user = (User) session.getAttribute("user"); // Henter user ud fra session scope
         String username = user.getUsername();
         String comment = request.getParameter("comment");
+        request.getRequestDispatcher("WEB-INF/confirmation.jsp").forward(request, response);
+
 
 
         try {

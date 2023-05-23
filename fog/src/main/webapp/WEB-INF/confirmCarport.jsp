@@ -5,11 +5,11 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-         Welcome to the frontpage
+
     </jsp:attribute>
 
     <jsp:attribute name="footer">
-        Welcome to the frontpage
+
     </jsp:attribute>
 
     <jsp:body>
@@ -30,6 +30,8 @@
             </tr>
             <caption>${requestScope.comment}</caption>
         </table>
+        <br>
+
         <form action="ConfirmCarport" method="post">
             <input type="number" hidden name="length" value="${requestScope.length}">
             <input type="number" hidden name="width" value="${requestScope.width}">
