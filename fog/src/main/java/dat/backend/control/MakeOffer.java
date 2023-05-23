@@ -54,12 +54,8 @@ public class MakeOffer extends HttpServlet
           session.setAttribute("bomArrayList", bomArrayList);
 
 
-
-
-
           //double totalBomPrice = 10891.80;
-
-
+            
 
             double totalBomPrice = calBom.bomPrice(ongoingOrder);
             session.setAttribute("totalBomPrice", totalBomPrice);
