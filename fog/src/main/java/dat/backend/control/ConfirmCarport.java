@@ -37,10 +37,12 @@ public class ConfirmCarport extends HttpServlet {
         User user = (User) session.getAttribute("user"); // Henter user ud fra session scope
         String username = user.getUsername();
         String comment = request.getParameter("comment");
+        request.getRequestDispatcher("WEB-INF/confirmation.jsp").forward(request, response);
+
 
 
         try {
-            OrdersFacade.createOrder( width, length, username, comment, connectionPool);
+            OrdersFacade.createOrder(width, length, username, comment, connectionPool);
             Orders order = new Orders(width, length, username, comment);
             ListOfOrders orderList = new ListOfOrders();
             orderList.add(order);
