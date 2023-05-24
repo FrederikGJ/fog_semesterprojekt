@@ -64,16 +64,16 @@
                         <c:forEach var="orders" items="${sessionScope.pendingOrders}">
                             <c:if test="${sessionScope.user.username == orders.username }">
                             <tr>
+
                                 <td>${orders.idorders}</td>
                                 <td>${orders.length}</td>
                                 <td>${orders.width}</td>
                                 <td>${orders.comment}</td>
                                 <td>${orders.totalPrice}</td>
                                 <td>
-                                    <form action="#">
-                                        <input type="submit" value="Accepter" name="accept">
-                                        <br><br>
-                                        <input type="submit" value="Afvis" name="decline">
+                                    <form action="acceptcarport" method="post">
+                                        <input type="hidden" value="${orders.idorders}" name="idOrders">
+                                        <input type="submit" value="Accepter">
                                     </form>
                                 </td>
 

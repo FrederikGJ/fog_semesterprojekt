@@ -35,33 +35,21 @@ public class OrdersMapper {
         }
     }
 
-    /*static List<Orders> getAllOrders(ConnectionPool connectionPool) throws DatabaseException {
-        List<Orders> ordersList = new ArrayList<>();
-        //Logger.getLogger("web").log(Level.INFO, "");
-        Orders orders;
-
-        String sql = "SELECT * FROM fog.orders";
+    static void statusFinished (int idOrders, ConnectionPool connectionPool) throws DatabaseException {
+        Logger.getLogger("web").log(Level.INFO, "");
+        String sql = "update  fog.orders set orderstatus =? where idorder=?";
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
-                ResultSet rs = ps.executeQuery();
-                while (rs.next()) { // Så længe der stadigvæk er flere ordre på databasen fortsætter den
-                    int idorders = rs.getInt("idorders");
-                    String orderstatus = rs.getString("orderstatus");
-                    int length = rs.getInt("length");
-                    int width = rs.getInt("width");
-                    int totalprice = rs.getInt("totalprice");
-                    String username = rs.getString("username");
-                    String comments = rs.getString("comments");
-
-                    orders = new Orders(idorders, orderstatus, length, width, totalprice, username, comments);
-                    ordersList.add(orders);
-                }
+                ps.setString(1, "Finished");
+                ps.setInt(2, idOrders);
+                ps.executeUpdate();
             }
         } catch (SQLException ex) {
-            throw new DatabaseException(ex, "Something went wrong");
+            throw new DatabaseException(ex, "Could not change status in database");
         }
-        return ordersList;
-    }*/
+    }
+
+
 
 
 }
