@@ -39,6 +39,7 @@ public class BOM {
     public int getIdOrders() {
         return idOrders;
     }
+
     public Materials getMaterial(){
         return material;
     }

@@ -42,26 +42,31 @@ public class CalculateBOM {
 
     public double bomPrice(Orders orders, int choosenID) {
         ConnectionPool connectionPool = new ConnectionPool();
-        Materials materials = new Materials(choosenID);
+        //Materials materials = new Materials(choosenID);
         ArrayList<BOM> allBOM = new ArrayList<>();
-        //ArrayList<BOM> specificBOMforPriceCalc = new ArrayList<>();
+        ArrayList<BOM> specificBOMForPriceCalc = new ArrayList<>();
         double bomPrice = 0;
 
         //get all BOM from db;
         try {
             allBOM = BomFacade.readBOM(connectionPool);
+            for (BOM bom : allBOM) {
+                bomPrice = (bom.getQuantity() * bom.material.getUnitPrice());
+            }
+
         } catch (Exception e){
             e.printStackTrace();
         }
 
-        //  find the bom needed from allBOM
+        /*//  find the bom needed from allBOM
         for(BOM item : allBOM){
             if(choosenID == orders.getIdOrders()){
                 bomPrice = (item.getQuantity() * materials.getUnitPrice());
             }
 
-        }
+        }*/
         return bomPrice;
+
     }
 
     //all functions below this point are helper functions for createCarportBOM

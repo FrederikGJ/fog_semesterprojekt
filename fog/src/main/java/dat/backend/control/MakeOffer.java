@@ -3,6 +3,7 @@ package dat.backend.control;
 import dat.backend.model.entities.config.ApplicationStart;
 import dat.backend.model.entities.entities.BOM;
 import dat.backend.model.entities.entities.CalculateBOM;
+import dat.backend.model.entities.entities.Materials;
 import dat.backend.model.entities.entities.Orders;
 import dat.backend.model.entities.exceptions.DatabaseException;
 import dat.backend.model.entities.persistence.AdminFacade;
@@ -53,11 +54,17 @@ public class MakeOffer extends HttpServlet
           ArrayList<BOM> bomArrayList = BomFacade.getBOMById(idOrders, connectionPool);
           session.setAttribute("bomArrayList", bomArrayList);
 
+            for (BOM bom : bomArrayList) {
+                if(idOrders == bom.getIdOrders()){
+                    double totalBomPrice = calBom.bomPrice(ongoingOrder, idOrders);
+                    session.setAttribute("totalBomPrice", totalBomPrice);
+                }
+            }
+
 
           //double totalBomPrice = 10891.80;
-
-            double totalBomPrice = calBom.bomPrice(ongoingOrder, idOrders);
-            session.setAttribute("totalBomPrice", totalBomPrice);
+            //double totalBomPrice = calBom.bomPrice(ongoingOrder, idOrders);
+           // session.setAttribute("totalBomPrice", totalBomPrice);
 
 
             //calculation of operation margin (dækningsgraden - fortjenesten i % af salgsprisen)
@@ -68,7 +75,7 @@ public class MakeOffer extends HttpServlet
             //automatisk dækningsgrad
             double autoOperationMargin = 39.02;
 
-
+session.getAttribute("totalBomPrice");
             double autoSalesprice = Math.round(totalBomPrice/(1-(autoOperationMargin/100))*1.25);
             session.setAttribute("autoSalesprice", autoSalesprice);
 
