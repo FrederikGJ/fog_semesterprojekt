@@ -1,7 +1,5 @@
 package dat.backend.model.entities.entities;
 
-import java.util.List;
-
 public class Orders {
 
     private int idOrders;
@@ -41,12 +39,10 @@ public class Orders {
         this.comments = comments;
     }
 
-    public Orders()
-    {
-    }
+    public Orders() { }
 
-    public Orders(int idOrdersD) {
-        this.idOrders = idOrdersD;
+    public Orders(int idOrders) {
+        this.idOrders = idOrders;
     }
 
     public int getIdOrders()

@@ -17,14 +17,14 @@ public class AdminFacade {
         AdminMapper.addToInventory(materials, connectionPool);
     }
 
-    public static void deleteMaterials(int idMaterials,  ConnectionPool connectionPool) throws DatabaseException {
+    public static void deleteMaterials(int idMaterials, ConnectionPool connectionPool) throws DatabaseException {
         AdminMapper.deleteMaterials(idMaterials, connectionPool);
     }
 
-    public static void editMaterials(int idMaterials,String name, int unitPrice, String unit, String description, int length, ConnectionPool connectionPool) throws DatabaseException, SQLException {
+    public static void editMaterials(int idMaterials, String name, int unitPrice, String unit, String description, int length, ConnectionPool connectionPool) throws DatabaseException, SQLException {
         AdminMapper.editInventory(idMaterials, name, unitPrice, unit, description, length, connectionPool);
-
     }
+
     public static List<Orders> getAllOrders(ConnectionPool connectionPool) throws DatabaseException {
         return AdminMapper.getAllOrders(connectionPool);
     }
@@ -45,12 +45,11 @@ public class AdminFacade {
         return AdminMapper.getPendingOrders(connectionPool);
     }
 
-    public static Orders getOrdersById(int idOrders, String status, ConnectionPool connectionPool) throws DatabaseException
-    {
+    public static Orders getOrdersById(int idOrders, String status, ConnectionPool connectionPool) throws DatabaseException {
         return AdminMapper.getOrdersById(idOrders, status, connectionPool);
     }
 
     public static void deleteOrders(int idOrders, ConnectionPool connectionPool) throws DatabaseException {
-        AdminMapper.deleteOrders(idOrders,connectionPool);
+        AdminMapper.deleteOrders(idOrders, connectionPool);
     }
 }

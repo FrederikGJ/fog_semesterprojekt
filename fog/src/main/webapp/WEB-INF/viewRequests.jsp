@@ -22,8 +22,8 @@
             <div class="col-6">
                 <h3>Nye forespørgsler: </h3>
                 <form method="get">
-                        ${requestScope.msgDelete}
                     <table class="table table-hover">
+                            ${requestScope.msgDelete}
                         <tr>
                             <th>IDorders</th>
                             <th>Username</th>
