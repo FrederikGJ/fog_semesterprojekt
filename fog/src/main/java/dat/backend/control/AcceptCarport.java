@@ -2,7 +2,9 @@ package dat.backend.control;
 
 
 import dat.backend.model.entities.config.ApplicationStart;
+import dat.backend.model.entities.entities.Orders;
 import dat.backend.model.entities.exceptions.DatabaseException;
+import dat.backend.model.entities.persistence.AdminFacade;
 import dat.backend.model.entities.persistence.ConnectionPool;
 import dat.backend.model.entities.persistence.OrdersFacade;
 
@@ -31,12 +33,26 @@ public class AcceptCarport extends HttpServlet {
         HttpSession session = request.getSession();
        int idOrders = Integer.parseInt(request.getParameter("idOrders"));
 
-        try {
-            OrdersFacade.statusFinished(idOrders, connectionPool);
-        request.getRequestDispatcher("WEB-INF/confirmPurchase.jsp").forward(request, response);
-     } catch (DatabaseException e) {
+        try{
+//
+//            int idOrders = (int) session.getAttribute("idOrders");
+//
+//            Orders ongoingOrder = AdminFacade.getOrdersById(idOrders, "new_pending", connectionPool);
+//            session.setAttribute("ongoingorder", ongoingOrder);
+//
+
+
+
+
+           OrdersFacade.statusFinished(idOrders, connectionPool);
+            request.getRequestDispatcher("WEB-INF/confirmPurchase.jsp").forward(request, response);
+
+        }catch (DatabaseException e) {
            e.printStackTrace();
-       }
+        }
     }
+
+
+
     }
 
