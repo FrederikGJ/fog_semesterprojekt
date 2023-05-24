@@ -18,9 +18,9 @@
            <h1>Se alle ordre</h1>
        </div>
 
-        <div class="row">
+        <div class="row mt-5">
             <div class="col-6">
-                <h3>Igangværende: </h3>
+                <h3>Nye forespørgsler: </h3>
                 <form method="get">
                     <table class="table table-hover">
                         <tr>
@@ -29,7 +29,7 @@
                             <th>Status</th>
                         </tr>
                         <tbody>
-                            <c:forEach var="orders" items="${sessionScope.ongoingOrders}">
+                            <c:forEach var="orders" items="${sessionScope.newOrders}">
                                 <tr>
                                     <td><button formaction="makeoffer" formmethod="post" name="idOrders" value="${orders.idOrders}">${orders.idOrders}</button></td>
                                     <td>${orders.username}</td>
@@ -42,6 +42,30 @@
             </div>
 
             <div class="col-6">
+                <h3>Igangværende: </h3>
+                <form method="get">
+                    <table class="table table-hover">
+                        <tr>
+                            <th>IDorders</th>
+                            <th>Username</th>
+                            <th>Status</th>
+                        </tr>
+                        <tbody>
+                        <c:forEach var="orders" items="${sessionScope.pendingOrders}">
+                            <tr>
+                                <td><button formaction="pendingorders" formmethod="post" name="idOrders" value="${orders.idOrders}">${orders.idOrders}</button></td>
+                                <td>${orders.username}</td>
+                                <td>${orders.orderStatus}</td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-12">
                 <h3>Afsluttede: </h3>
                 <form method="get">
                     <table class="table table-hover">
@@ -63,7 +87,6 @@
                 </form>
             </div>
         </div>
-
 
     </jsp:body>
 
