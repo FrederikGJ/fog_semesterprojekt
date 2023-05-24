@@ -64,5 +64,11 @@ public class BOM {
         return idMaterials;
     }
 
+    public void setMaterial(Materials material) {
+        this.material = material;
+    }
 
+    public void setIdMaterials(int idMaterials) {
+        this.idMaterials = idMaterials;
+    }
 }

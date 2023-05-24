@@ -59,7 +59,6 @@ public class CalculateBOM {
 
 
 
-
             for (BOM bom : allBOM) {
                 bomPrice = (bom.getQuantity() * bom.material.getUnitPrice());
             }
