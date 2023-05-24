@@ -20,7 +20,7 @@ class OrdersTest {
         assertNotEquals(unexpected, orders.makeGrossProfit(salespriceTaxFree,totalBomPrice));
     }
 
-    //the delta values are the margin of error between the expected calue and the
+    //the delta values are the margin of error between the expected value and the actual value
     @Test
     public void testMakeOperationMargin_positiveValues() {
         double grossProfit = 50.0;
@@ -45,15 +45,5 @@ class OrdersTest {
         assertEquals(expected, orders.makeOperationMargin(grossProfit, salespriceTaxFree), 0.01);
     }
 
-    /*
 
-    public double makeOperationMargin(double grossProfit, double salespriceTaxFree) {
-        if (salespriceTaxFree == 0) {
-            throw new ArithmeticException("Division by zero is not allowed");
-        }
-        double operationMargin = grossProfit * 100 / salespriceTaxFree;
-        return operationMargin;
-    }
-
-     */
 }
