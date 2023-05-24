@@ -43,8 +43,9 @@ public class CalculateBOM {
     public double bomPrice(Orders orders, int choosenID) {
         ConnectionPool connectionPool = new ConnectionPool();
         //Materials materials = new Materials(choosenID);
-        ArrayList<BOM> allBOM = new ArrayList<>();
-        ArrayList<BOM> specificBOMForPriceCalc = new ArrayList<>();
+        List<BOM> allBOM = new ArrayList<>();
+        List<BOM> specificBOMForPriceCalc = new ArrayList<>();
+        List<Materials> allMaterials = new ArrayList<>();
         double bomPrice = 0;
 
         //get all BOM from db;
@@ -54,7 +55,9 @@ public class CalculateBOM {
             //idMaterials skal bruges til at koble på hver bom i allbom
             //hvordan gør jeg det?????
 
-            
+            allMaterials = AdminFacade.getAllMaterials(connectionPool);
+
+
 
 
             for (BOM bom : allBOM) {
