@@ -33,8 +33,12 @@ public class ViewRequests extends HttpServlet{
 
 
         try{
-            List<Orders> ongoingOrders = AdminFacade.getOngoingOrders(connectionPool);
-            session.setAttribute("ongoingOrders", ongoingOrders);
+
+            List<Orders> newOrders = AdminFacade.getNewOrders(connectionPool);
+            session.setAttribute("newOrders", newOrders);
+
+            List<Orders> pendingOrders = AdminFacade.getPendingOrders(connectionPool);
+            session.setAttribute("pendingOrders", pendingOrders);
 
             List<Orders> finishedOrders = AdminFacade.getFinishedOrders(connectionPool);
             session.setAttribute("finishedOrders", finishedOrders);

@@ -70,10 +70,9 @@
                                 <td>${orders.comments}</td>
                                 <td>${orders.totalPrice}</td>
                                 <td>
-                                    <form action="#">
-                                        <input type="submit" value="Accepter" name="accept">
-                                        <br><br>
-                                        <input type="submit" value="Afvis" name="decline">
+                                    <form action="acceptcarport" method="post">
+                                        <input type="hidden" value="${orders.idOrders}" name="idOrders">
+                                        <input type="submit" value="Accepter">
                                     </form>
                                 </td>
 
