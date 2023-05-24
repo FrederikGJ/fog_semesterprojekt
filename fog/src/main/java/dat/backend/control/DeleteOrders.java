@@ -32,12 +32,13 @@ public class DeleteOrders extends HttpServlet {
         HttpSession session = request.getSession();
 
         try {
-            int idOrdersD = Integer.parseInt(request.getParameter("idOrdersD"));
-            AdminFacade.deleteOrders(idOrdersD, connectionPool);
-            Orders orders1 = new Orders(idOrdersD);
+            int idOrders = Integer.parseInt(request.getParameter("idOrdersD"));
+            AdminFacade.deleteOrders(idOrders, connectionPool);
+            Orders orders = new Orders(idOrders);
             List<Orders> ongoingOrders = AdminFacade.getOngoingOrders(connectionPool);
-            ongoingOrders.remove(orders1);
+            ongoingOrders.remove(orders);
             session.setAttribute("ongoingOrders", ongoingOrders);
+
             request.setAttribute("msgDelete", "Ordren er blevet slettet fra systemet");
 
         } catch (DatabaseException e) {
@@ -46,7 +47,6 @@ public class DeleteOrders extends HttpServlet {
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
         request.getRequestDispatcher("WEB-INF/viewRequests.jsp").forward(request, response);
-
     }
 }
 
