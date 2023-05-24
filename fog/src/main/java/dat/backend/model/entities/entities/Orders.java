@@ -45,6 +45,10 @@ public class Orders {
     {
     }
 
+    public Orders(int idOrders) {
+        this.idOrders = idOrders;
+    }
+
     public int getIdOrders()
     {
         return idOrders;

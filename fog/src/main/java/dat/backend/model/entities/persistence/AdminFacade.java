@@ -40,4 +40,7 @@ public class AdminFacade {
     }
 
 
+    public static void deleteOrders(int idOrders, ConnectionPool connectionPool) throws DatabaseException {
+        AdminMapper.deleteOrders(idOrders,connectionPool);
+    }
 }

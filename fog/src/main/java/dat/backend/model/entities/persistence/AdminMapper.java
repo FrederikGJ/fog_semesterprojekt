@@ -213,6 +213,17 @@ public class AdminMapper {
         return pendingOrders;
     }
 
-
+    public static void deleteOrders(int idOrders, ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "DELETE FROM fog.orders WHERE idorders =?";
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, idOrders);
+                ps.executeUpdate();
+            }
+        } catch (
+                SQLException ex) {
+            throw new DatabaseException(ex, "Something went wrong with the database");
+        }
+    }
 
 }
