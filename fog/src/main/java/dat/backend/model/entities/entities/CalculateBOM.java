@@ -57,6 +57,14 @@ public class CalculateBOM {
 
             allMaterials = AdminFacade.getAllMaterials(connectionPool);
 
+            for(BOM bom : allBOM){
+                for(Materials material : allMaterials){
+                    if(bom.idMaterials == material.getIdMaterials()){
+                        bom.setMaterial(material);
+                    }
+                }
+            }
+
 
 
             for (BOM bom : allBOM) {
