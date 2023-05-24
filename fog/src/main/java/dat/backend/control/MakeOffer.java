@@ -42,7 +42,7 @@ public class MakeOffer extends HttpServlet
             int idOrders  = Integer.parseInt(request.getParameter("idOrders"));
             session.setAttribute("idOrders", idOrders);
 
-            Orders ongoingOrder = AdminFacade.getOrdersById(idOrders, "new_pending", connectionPool);
+            Orders ongoingOrder = AdminFacade.getOrdersById(idOrders, "new", connectionPool);
             session.setAttribute("ongoingOrder", ongoingOrder);
 
 
@@ -104,7 +104,6 @@ public class MakeOffer extends HttpServlet
             double operationMargin = orders.makeOperationMargin(grossProfit, salespriceTaxFree);
             String operationMarginTwoDecimals = String.format("%.2f", operationMargin);
             session.setAttribute("operationMargin", operationMarginTwoDecimals);
-
 
 
 //            String autoAdminComment = "Bemaerkning fra Fog: ";

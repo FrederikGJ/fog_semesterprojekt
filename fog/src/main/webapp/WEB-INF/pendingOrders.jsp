@@ -13,9 +13,15 @@
 
     <jsp:body>
 
-        <div class="row">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+                <h1>Afventer kunden</h1>
+            </div>
+        </div>
+
+        <div class="row mt-5">
             <div class="col-md-12 col-lg-6">
-                <h2>Ordre info</h2>
+                <h2 class="text-center">Ordre info</h2>
                 <form action="pendingorders" method="post">
                 <table class="table table-bordered mt-4">
                     <thead>
@@ -54,7 +60,7 @@
             </div>
 
             <div class="col-md-12 col-lg-6">
-                <h2>Stykliste</h2>
+                <h2 class="text-center">Stykliste</h2>
                 <form action="pendingorders" method="post">
                     <table class="table table-bordered mt-4">
                         <thead>
@@ -86,7 +92,7 @@
             </div>
         </div>
 
-        <div class="row justify-content-center">
+        <div class="row justify-content-center mt-4">
             <div class="col-5 text-center mt-4">
                 <h2>Se sendte tilbud</h2>
                 <table class="table table-bordered mt-4">
@@ -103,12 +109,19 @@
                         </tr>
                         <tr>
                             <th scope="row">Pris med moms</th>
-                            <td>${sessionScope.salesprice}</td>
+                            <td>${sessionScope.pendingOrder.totalPrice}</td>
                         </tr>
                         <tr>
                             <th scope="row">Prisændring</th>
                             <td>${sessionScope.priceChange}</td>
                         </tr>
+                    </tbody>
+                    <thead class="thead-light">
+                        <tr class="table-secondary">
+                            <th scope="row" colspan="2">Sendt til kunden</th>
+                        </tr>
+                    </thead>
+                    <tbody>
                         <tr>
                             <th scope="row">Sendte salgspris</th>
                             <td>${sessionScope.pendingOrder.totalPrice}</td>

@@ -126,9 +126,12 @@ public class AdminMapper {
         String sql = "";
 
         switch (status){
-            case "new_pending":
-               sql = "SELECT * FROM fog.orders WHERE  idorders = ? AND orderstatus = 'New' OR orderstatus = 'Pending' ORDER BY orderstatus ASC";
+            case "new":
+               sql = "SELECT * FROM fog.orders WHERE  idorders = ? AND orderstatus = 'New' ORDER BY orderstatus ASC";
                break;
+            case "pending":
+                sql = "SELECT * FROM fog.orders WHERE  idorders = ? AND orderstatus = 'Pending' ORDER BY orderstatus ASC";
+                break;
             case "finished":
                 sql = "SELECT * FROM fog.orders WHERE idorders = ? AND orderstatus = 'Finished' ORDER BY orderstatus ASC";
                 break;
