@@ -259,15 +259,33 @@ public class AdminMapper {
     }
 
     public static void deleteOrders(int idOrders, ConnectionPool connectionPool) throws DatabaseException {
-        String sql = "START TRANSACTION; DELETE FROM fog.BOM WHERE idorders = ?; DELETE FROM fog.orders WHERE idorders = ?; COMMIT;"; //FREDERIKS IDE
         try (Connection connection = connectionPool.getConnection()) {
-            try (PreparedStatement ps = connection.prepareStatement(sql)) {
-                ps.setInt(1, idOrders);
-                ps.setInt(1, idOrders);
-                ps.executeUpdate();
+            try {
+                connection.setAutoCommit(false);
+                try (PreparedStatement ps = connection.prepareStatement("DELETE FROM fog.BOM WHERE idorders = ?;")) {
+                    ps.setInt(1, idOrders);
+                    ps.executeUpdate();
+                }
+                try (PreparedStatement ps = connection.prepareStatement("DELETE FROM fog.orders WHERE idorders = ?;")) {
+                    ps.setInt(1, idOrders);
+                    ps.executeUpdate();
+                }
+                connection.commit();
+            } catch (SQLException ex) {
+                if (connection != null) {
+                    try {
+                        connection.rollback();
+                    } catch (SQLException e) {
+                        throw new DatabaseException(e, "Failed to rollback transaction");
+                    }
+                }
+                throw new DatabaseException(ex, "Something went wrong with the database");
+            } finally {
+                connection.setAutoCommit(true);
             }
         } catch (SQLException ex) {
-            throw new DatabaseException(ex, "Something went wrong with the database");
+            throw new DatabaseException(ex, "Failed to establish a database connection");
         }
     }
+
 }
