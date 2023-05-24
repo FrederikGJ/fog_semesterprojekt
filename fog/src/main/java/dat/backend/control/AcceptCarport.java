@@ -1,12 +1,10 @@
 package dat.backend.control;
 
-import dat.backend.model.config.ApplicationStart;
-import dat.backend.model.entities.ListOfOrders;
-import dat.backend.model.entities.Orders;
-import dat.backend.model.entities.User;
-import dat.backend.model.exceptions.DatabaseException;
-import dat.backend.model.persistence.ConnectionPool;
-import dat.backend.model.persistence.OrdersFacade;
+
+import dat.backend.model.entities.config.ApplicationStart;
+import dat.backend.model.entities.exceptions.DatabaseException;
+import dat.backend.model.entities.persistence.ConnectionPool;
+import dat.backend.model.entities.persistence.OrdersFacade;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -35,13 +33,10 @@ public class AcceptCarport extends HttpServlet {
 
         try {
             OrdersFacade.statusFinished(idOrders, connectionPool);
-            request.getRequestDispatcher("WEB-INF/confirmPurchase.jsp").forward(request, response);
-        } catch (DatabaseException e) {
-            e.printStackTrace();
-        }
+        request.getRequestDispatcher("WEB-INF/confirmPurchase.jsp").forward(request, response);
+     } catch (DatabaseException e) {
+           e.printStackTrace();
+       }
+    }
     }
 
-
-
-
-}

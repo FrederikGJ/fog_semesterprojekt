@@ -54,4 +54,20 @@ public class OrdersMapper {
         }
 
     }
+
+
+    static void statusFinished(int idOrders, ConnectionPool connectionPool) throws DatabaseException {
+        Logger.getLogger("web").log(Level.INFO, "");
+        String sql = "update  fog.orders set orderstatus =? where idorder=?";
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setString(1, "Finished");
+                ps.setInt(2, idOrders);
+                ps.executeUpdate();
+            }
+        } catch (SQLException ex) {
+            throw new DatabaseException(ex, "Could not change status in database");
+        }
+    }
+
 }
