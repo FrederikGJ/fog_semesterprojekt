@@ -39,7 +39,6 @@ public class ViewRequests extends HttpServlet{
             List<Orders> finishedOrders = AdminFacade.getFinishedOrders(connectionPool);
             session.setAttribute("finishedOrders", finishedOrders);
 
-
             request.getRequestDispatcher("WEB-INF/viewRequests.jsp").forward(request, response);
 
         } catch(DatabaseException e){

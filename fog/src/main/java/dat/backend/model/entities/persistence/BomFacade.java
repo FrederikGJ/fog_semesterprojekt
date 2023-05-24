@@ -6,6 +6,7 @@ import dat.backend.model.entities.entities.Orders;
 import dat.backend.model.entities.exceptions.DatabaseException;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class BomFacade {
 
@@ -22,6 +23,10 @@ public class BomFacade {
 
     public static ArrayList<BOM> readBOM(ConnectionPool connectionPool)throws DatabaseException{
         return BomMapper.readBOM(connectionPool);
+    }
+
+    public static List<Integer> getIdOrdersFromBom(ConnectionPool connectionPool) throws DatabaseException{
+        return BomMapper.getIdOrdersFromBom(connectionPool);
     }
 
 }

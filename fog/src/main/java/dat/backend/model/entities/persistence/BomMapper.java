@@ -103,4 +103,29 @@ public class BomMapper
         return bomArrayList;
     }
 
+
+    //it is used in an if-statement in the servlet 'MakeOffer', to make sure the same BOM is not added again the database.
+    static List<Integer> getIdOrdersFromBom(ConnectionPool connectionPool) throws DatabaseException {
+        List<Integer> idOrdersList = new ArrayList<>();
+        Logger.getLogger("web").log(Level.INFO, "");
+        int idOrders;
+
+        String sql = "SELECT idorders FROM fog.BOM";
+
+        try(Connection connection = connectionPool.getConnection()){
+            try(PreparedStatement ps = connection.prepareStatement(sql)){
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    idOrders = rs.getInt("idorders");
+                    idOrdersList.add(idOrders);
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DatabaseException(ex, "Something went wrong with the database when you tried to get idOrders from BOM");
+        }
+        return idOrdersList;
+    }
+
+
+
 }
