@@ -50,6 +50,13 @@ public class CalculateBOM {
         //get all BOM from db;
         try {
             allBOM = BomFacade.readBOM(connectionPool);
+
+            //idMaterials skal bruges til at koble på hver bom i allbom
+            //hvordan gør jeg det?????
+
+            
+
+
             for (BOM bom : allBOM) {
                 bomPrice = (bom.getQuantity() * bom.material.getUnitPrice());
             }
@@ -58,13 +65,6 @@ public class CalculateBOM {
             e.printStackTrace();
         }
 
-        /*//  find the bom needed from allBOM
-        for(BOM item : allBOM){
-            if(choosenID == orders.getIdOrders()){
-                bomPrice = (item.getQuantity() * materials.getUnitPrice());
-            }
-
-        }*/
         return bomPrice;
 
     }
