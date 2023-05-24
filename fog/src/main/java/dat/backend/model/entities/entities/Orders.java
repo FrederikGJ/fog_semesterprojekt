@@ -94,8 +94,10 @@ public class Orders {
     }
 
     //dækningsgraden
-    public double makeOperationMargin(double grossProfit, double salespriceTaxFree)
-    {
+    public double makeOperationMargin(double grossProfit, double salespriceTaxFree) {
+        if (salespriceTaxFree == 0) {
+            throw new ArithmeticException("Division by zero is not allowed");
+        }
         double operationMargin = grossProfit * 100 / salespriceTaxFree;
         return operationMargin;
     }
