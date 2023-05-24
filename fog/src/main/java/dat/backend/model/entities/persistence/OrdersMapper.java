@@ -35,4 +35,23 @@ public class OrdersMapper {
     }
 
 
+    static void updateOrder(String orderStatus, double totalPrice, String comments, int idOrders, ConnectionPool connectionPool) throws DatabaseException
+    {
+        String sql = "UPDATE fog.orders SET orderstatus = ?, totalPrice = ?, comments = ? WHERE idorders = ?";
+        try (Connection connection = connectionPool.getConnection())
+        {
+            try (PreparedStatement ps = connection.prepareStatement(sql))
+            {
+                ps.setString(1, orderStatus);
+                ps.setDouble(2, totalPrice);
+                ps.setString(3, comments);
+                ps.setInt(4, idOrders);
+                ps.executeUpdate();
+            }
+        } catch (SQLException e){
+            throw new DatabaseException("Something went wrong when you tried to update order in the database");
+
+        }
+
+    }
 }

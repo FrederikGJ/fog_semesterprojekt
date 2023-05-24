@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,9 +25,8 @@ public class BomMapper
         Logger.getLogger("web").log(Level.INFO, "");
 
         BOM bom;
+
         String sql = "insert into fog.BOM (idorders, quantity, description, idmaterials) values (?,?,?,?)";
-
-
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -58,16 +58,17 @@ public class BomMapper
         ArrayList<BOM> bomArrayList = new ArrayList<>();
         BOM bom;
         //**
-        String sql = "SELECT * FROM fog.BOM";
+        String sql = "SELECT * FROM fog.BOM (idorders)";
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ResultSet rs = ps.executeQuery();
                 while(rs.next()) {
-                    int idmaterials = rs.getInt(4);
+                    int idMaterials = rs.getInt(4);
                     String description = rs.getString(3);
                     int quantity = rs.getInt(2);
-                    bom = new BOM(idmaterials, description, quantity);
+                    int idOrders = rs.getInt(1);
+                    bom = new BOM(idOrders, quantity, description, idMaterials);
                     bomArrayList.add(bom);
                 }
             }
@@ -103,5 +104,30 @@ public class BomMapper
         }
         return bomArrayList;
     }
+
+
+    //it is used in an if-statement in the servlet 'MakeOffer', to make sure the same BOM is not added again the database.
+    static List<Integer> getIdOrdersFromBom(ConnectionPool connectionPool) throws DatabaseException {
+        List<Integer> idOrdersList = new ArrayList<>();
+        Logger.getLogger("web").log(Level.INFO, "");
+        int idOrders;
+
+        String sql = "SELECT idorders FROM fog.BOM";
+
+        try(Connection connection = connectionPool.getConnection()){
+            try(PreparedStatement ps = connection.prepareStatement(sql)){
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    idOrders = rs.getInt("idorders");
+                    idOrdersList.add(idOrders);
+                }
+            }
+        } catch (SQLException ex) {
+            throw new DatabaseException(ex, "Something went wrong with the database when you tried to get idOrders from BOM");
+        }
+        return idOrdersList;
+    }
+
+
 
 }

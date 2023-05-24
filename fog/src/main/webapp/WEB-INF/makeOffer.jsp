@@ -118,17 +118,28 @@
                                     <label for="${sessionScope.salesprice}"></label>
                                     <input type="hidden" name="idOrders" value="${sessionScope.idOrders}"/>
                                     <input class="mt-2" type="number" class="form-control text-center" id="${sessionScope.salesprice}" name="salesprice" value="${sessionScope.salesprice}"/>
-                                    <button class="mt-2" formaction="makeoffer" >Opdater</button>
+                                    <input class="mt-2" type="submit" action="makeoffer" value="Opdater"/>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Bemærkninger</th>
+                            <td>
+                                <form action="sendoffer" method="post">
+                                    <label for="${requestScope.adminComment}"></label>
+                                    <input type="text" value="Fog bemaerkninger: " name="adminComment">
                                 </form>
                             </td>
                         </tr>
                         <tr>
                             <thead>
                             </thead>
-                            <th scope="row" colspan="2">Send tilbud</th>
                         </tr>
                     </tbody>
                 </table>
+                <form action="sendoffer" method="post">
+                    <th><input type="submit" value="Send tilbud"></th>
+                </form>
             </div>
         </div>
 
