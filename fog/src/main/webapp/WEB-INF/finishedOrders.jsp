@@ -22,7 +22,7 @@
         <div class="row mt-5">
             <div class="col-md-12 col-lg-6">
                 <h2 class="text-center">Ordre info</h2>
-                <form action="pendingorders" method="post">
+                <form action="finishedorders" method="post">
                     <table class="table table-bordered mt-4">
                         <thead>
                         </thead>
@@ -33,11 +33,11 @@
                         </tr>
                         <tr>
                             <th scope="row">Username</th>
-                            <td>${sessionScope.pendingOrder.username}</td>
+                            <td>${sessionScope.finishedOrder.username}</td>
                         </tr>
                         <tr>
                             <th scope="row">Status</th>
-                            <td>${sessionScope.pendingOrder.orderStatus}</td>
+                            <td>${sessionScope.finishedOrder.orderStatus}</td>
                         </tr>
                         </tbody>
                         <thead class="thead-light">
@@ -48,11 +48,11 @@
                         <tbody>
                         <tr>
                             <th scope="row">Længde</th>
-                            <td>${sessionScope.pendingOrder.length}</td>
+                            <td>${sessionScope.finishedOrder.length}</td>
                         </tr>
                         <tr>
                             <th scope="row">Bredde</th>
-                            <td>${sessionScope.pendingOrder.width}</td>
+                            <td>${sessionScope.finishedOrder.width}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -61,7 +61,7 @@
 
             <div class="col-md-12 col-lg-6">
                 <h2 class="text-center">Stykliste</h2>
-                <form action="pendingorders" method="post">
+                <form action="finishedorders" method="post">
                     <table class="table table-bordered mt-4">
                         <thead>
                         </thead>
@@ -94,7 +94,7 @@
 
         <div class="row justify-content-center mt-4">
             <div class="col-5 text-center mt-4">
-                <h2>Se sendte tilbud</h2>
+                <h2>Se accepteret tilbud</h2>
                 <table class="table table-bordered mt-4">
                     <thead>
                     </thead>
@@ -109,7 +109,7 @@
                     </tr>
                     <tr>
                         <th scope="row">Pris med moms</th>
-                        <td>${sessionScope.pendingOrder.totalPrice}</td>
+                        <td>${sessionScope.finishedOrder.totalPrice}</td>
                     </tr>
                     <tr>
                         <th scope="row">Prisændring</th>
@@ -118,17 +118,17 @@
                     </tbody>
                     <thead class="thead-light">
                     <tr class="table-secondary">
-                        <th scope="row" colspan="2">Sendt til kunden</th>
+                        <th scope="row" colspan="2">Tilbuddet</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <th scope="row">Sendte salgspris</th>
-                        <td>${sessionScope.pendingOrder.totalPrice}</td>
+                        <th scope="row">Accepteret salgspris</th>
+                        <td>${sessionScope.finishedOrder.totalPrice}</td>
                     </tr>
                     <tr>
                         <th scope="row">Bemærkninger</th>
-                        <td>${sessionScope.pendingOrder.comments}</td>
+                        <td>${sessionScope.finishedOrder.comments}</td>
                     </tr>
                     <tr>
                     <thead>
