@@ -54,9 +54,10 @@ public class MakeOffer extends HttpServlet
           ArrayList<BOM> bomArrayList = BomFacade.getBOMById(idOrders, connectionPool);
           session.setAttribute("bomArrayList", bomArrayList);
 
+          double totalBomPrice = 0;
             for (BOM bom : bomArrayList) {
                 if(idOrders == bom.getIdOrders()){
-                    double totalBomPrice = calBom.bomPrice(ongoingOrder, idOrders);
+                    totalBomPrice = calBom.bomPrice(ongoingOrder, idOrders);
                     session.setAttribute("totalBomPrice", totalBomPrice);
                 }
             }
@@ -64,7 +65,7 @@ public class MakeOffer extends HttpServlet
 
           //double totalBomPrice = 10891.80;
             //double totalBomPrice = calBom.bomPrice(ongoingOrder, idOrders);
-           // session.setAttribute("totalBomPrice", totalBomPrice);
+           //session.setAttribute("totalBomPrice", totalBomPrice);
 
 
             //calculation of operation margin (dækningsgraden - fortjenesten i % af salgsprisen)
@@ -75,7 +76,7 @@ public class MakeOffer extends HttpServlet
             //automatisk dækningsgrad
             double autoOperationMargin = 39.02;
 
-session.getAttribute("totalBomPrice");
+//session.getAttribute("totalBomPrice");
             double autoSalesprice = Math.round(totalBomPrice/(1-(autoOperationMargin/100))*1.25);
             session.setAttribute("autoSalesprice", autoSalesprice);
 
