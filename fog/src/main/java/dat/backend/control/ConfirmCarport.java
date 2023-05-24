@@ -14,7 +14,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "ConfirmCarport", value = "/ConfirmCarport")
+@WebServlet(name = "confirmcarport", value = "/confirmcarport")
 public class ConfirmCarport extends HttpServlet {
     private ConnectionPool connectionPool;
 

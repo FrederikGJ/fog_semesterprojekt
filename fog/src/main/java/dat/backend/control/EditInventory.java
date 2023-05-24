@@ -1,16 +1,15 @@
 package dat.backend.control;
 
-import dat.backend.model.config.ApplicationStart;
-import dat.backend.model.entities.Materials;
-import dat.backend.model.exceptions.DatabaseException;
-import dat.backend.model.persistence.AdminFacade;
-import dat.backend.model.persistence.ConnectionPool;
+import dat.backend.model.entities.config.ApplicationStart;
+import dat.backend.model.entities.entities.Materials;
+import dat.backend.model.entities.persistence.AdminFacade;
+import dat.backend.model.entities.persistence.ConnectionPool;
+
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet(name = "editinventory", value = "/editinventory")

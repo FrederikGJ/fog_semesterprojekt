@@ -1,12 +1,12 @@
 package dat.backend.control;
 
-import dat.backend.model.config.ApplicationStart;
-import dat.backend.model.entities.Materials;
-import dat.backend.model.entities.Orders;
-import dat.backend.model.exceptions.DatabaseException;
-import dat.backend.model.persistence.AdminFacade;
-import dat.backend.model.persistence.AdminMapper;
-import dat.backend.model.persistence.ConnectionPool;
+
+import dat.backend.model.entities.config.ApplicationStart;
+import dat.backend.model.entities.entities.Materials;
+import dat.backend.model.entities.exceptions.DatabaseException;
+import dat.backend.model.entities.persistence.AdminFacade;
+import dat.backend.model.entities.persistence.ConnectionPool;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,9 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 @WebServlet(name = "viewinventory", urlPatterns = {"/viewinventory"})

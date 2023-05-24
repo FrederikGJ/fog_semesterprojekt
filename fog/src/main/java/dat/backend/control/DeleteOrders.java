@@ -32,9 +32,9 @@ public class DeleteOrders extends HttpServlet {
         HttpSession session = request.getSession();
 
         try {
-            int idOrders = Integer.parseInt(request.getParameter("idOrdersD"));
-            AdminFacade.deleteOrders(idOrders, connectionPool);
-            Orders orders1 = new Orders(idOrders);
+            int idOrdersD = Integer.parseInt(request.getParameter("idOrdersD"));
+            AdminFacade.deleteOrders(idOrdersD, connectionPool);
+            Orders orders1 = new Orders(idOrdersD);
             List<Orders> ongoingOrders = AdminFacade.getOngoingOrders(connectionPool);
             ongoingOrders.remove(orders1);
             session.setAttribute("ongoingOrders", ongoingOrders);
