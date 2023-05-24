@@ -263,6 +263,7 @@ public class AdminMapper {
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setInt(1, idOrders);
+                ps.setInt(1, idOrders);
                 ps.executeUpdate();
             }
         } catch (SQLException ex) {
