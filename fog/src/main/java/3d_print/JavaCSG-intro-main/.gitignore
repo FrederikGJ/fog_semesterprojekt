@@ -1,9 +1,0 @@
-# Compiled class file
-*.class
-
-# Target directory
-/target/
-
-*.scad
-*.stl
-OpenSCAD/ModuleCache/AllStrings/AllStrings.txt
