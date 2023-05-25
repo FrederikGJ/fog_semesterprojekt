@@ -3,6 +3,7 @@ package dat.backend.control;
 import dat.backend.model.entities.config.ApplicationStart;
 import dat.backend.model.entities.entities.BOM;
 import dat.backend.model.entities.entities.CalculateBOM;
+import dat.backend.model.entities.entities.Materials;
 import dat.backend.model.entities.entities.Orders;
 import dat.backend.model.entities.exceptions.DatabaseException;
 import dat.backend.model.entities.persistence.AdminFacade;
@@ -21,7 +22,8 @@ public class MakeOffer extends HttpServlet
 {
     private ConnectionPool connectionPool;
 
-    public void init(){
+    public void init()
+    {
         this.connectionPool = ApplicationStart.getConnectionPool();
     }
 
@@ -62,20 +64,26 @@ public class MakeOffer extends HttpServlet
             session.setAttribute("bomArrayList", bomArrayList);
 
 
-            double totalBomPrice = 10891.80;
+            double totalBomPrice = 0;
+            for (BOM bom : bomArrayList) {
+                if(idOrders == bom.getIdOrders()){
+                    totalBomPrice = calBom.bomPrice(ongoingOrder, idOrders);
+                    session.setAttribute("totalBomPrice", totalBomPrice);
+                }
+            }
 
-            //double totalBomPrice = calBom.bomPrice(ongoingOrder);
-            session.setAttribute("totalBomPrice", totalBomPrice);
+            //double totalBomPrice = 10891.80;
+            //double totalBomPrice = calBom.bomPrice(ongoingOrder, idOrders);
+            //session.setAttribute("totalBomPrice", totalBomPrice);
 
 
+            //automatisk dækningsgrad
             double autoOperationMargin = 39.02;
 
             double autoSalesprice = Math.round(totalBomPrice/(1-(autoOperationMargin/100))*1.25);
             session.setAttribute("autoSalesprice", autoSalesprice);
 
             String salespriceString = request.getParameter("salesprice");
-
-
             double salesprice = autoSalesprice;
             if (salespriceString != null)
             {

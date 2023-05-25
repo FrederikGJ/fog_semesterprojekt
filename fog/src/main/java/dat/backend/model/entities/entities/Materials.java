@@ -26,6 +26,10 @@ public class Materials {
         this.length = length;
     }
 
+    public Materials(int idMaterials) {
+        this.idMaterials = idMaterials;
+    }
+
     public int getIdMaterials()
     {
         return idMaterials;

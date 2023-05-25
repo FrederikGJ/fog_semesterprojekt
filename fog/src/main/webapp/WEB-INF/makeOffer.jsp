@@ -71,6 +71,7 @@
                         <tbody>
                             <c:forEach var="BOM" items="${sessionScope.bomArrayList}">
                                 <tr>
+
                                     <td>${BOM.quantity}</td>
                                     <td>${BOM.descriptionOfUSe}</td>
                                     <td>${BOM.idMaterials}</td>

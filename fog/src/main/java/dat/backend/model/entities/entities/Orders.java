@@ -1,7 +1,5 @@
 package dat.backend.model.entities.entities;
 
-import java.util.List;
-
 public class Orders {
 
     private int idOrders;
@@ -41,8 +39,10 @@ public class Orders {
         this.comments = comments;
     }
 
-    public Orders()
-    {
+    public Orders() { }
+
+    public Orders(int idOrders) {
+        this.idOrders = idOrders;
     }
 
     public int getIdOrders()
@@ -90,8 +90,10 @@ public class Orders {
     }
 
     //dækningsgraden
-    public double makeOperationMargin(double grossProfit, double salespriceTaxFree)
-    {
+    public double makeOperationMargin(double grossProfit, double salespriceTaxFree) {
+        if (salespriceTaxFree == 0) {
+            throw new ArithmeticException("Division by zero is not allowed");
+        }
         double operationMargin = grossProfit * 100 / salespriceTaxFree;
         return operationMargin;
     }

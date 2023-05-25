@@ -23,6 +23,7 @@
                 <h3>Nye forespørgsler: </h3>
                 <form method="get">
                     <table class="table table-hover">
+                            ${requestScope.msgDelete}
                         <tr>
                             <th>IDorders</th>
                             <th>Username</th>
@@ -34,6 +35,7 @@
                                     <td><button formaction="makeoffer" formmethod="post" name="idOrders" value="${orders.idOrders}">${orders.idOrders}</button></td>
                                     <td>${orders.username}</td>
                                     <td>${orders.orderStatus}</td>
+                                    <td><button formaction="deleteorders" formmethod="post" name="idOrdersD" value="${orders.idOrders}">Slet</button></td>
                                 </tr>
                             </c:forEach>
                         </tbody>

@@ -1,5 +1,7 @@
 package dat.backend.model.entities.entities;
 
+import java.util.List;
+
 public class BOM {
 
     int idOrders;
@@ -11,12 +13,12 @@ public class BOM {
     int idMaterials;
 
 
-    public BOM(int quantity, String descriptionOfUSe,int idMaterials)
+   /* public BOM(int quantity, String descriptionOfUSe,int idMaterials)
     {
         this.quantity = quantity;
         this.descriptionOfUSe = descriptionOfUSe;
         this.idMaterials = idMaterials;
-    }
+    }*/
 
 
     public BOM(Materials material, String descriptionOfUSe, int quantity) {
@@ -34,11 +36,19 @@ public class BOM {
         this.idMaterials = idMaterials;
     }
 
+    public BOM(int idOrders, int quantity, String descriptionOfUse, Materials material)
+    {
+        this.idOrders = idOrders;
+        this.quantity = quantity;
+        this.descriptionOfUSe = descriptionOfUse;
+        this.material = material;
+    }
+
     public int getIdOrders() {
         return idOrders;
     }
 
-    public Materials getMaterial() {
+    public Materials getMaterial(){
         return material;
     }
 
@@ -52,5 +62,13 @@ public class BOM {
 
     public int getIdMaterials() {
         return idMaterials;
+    }
+
+    public void setMaterial(Materials material) {
+        this.material = material;
+    }
+
+    public void setIdMaterials(int idMaterials) {
+        this.idMaterials = idMaterials;
     }
 }

@@ -5,6 +5,7 @@ import dat.backend.model.entities.persistence.AdminFacade;
 import dat.backend.model.entities.persistence.BomFacade;
 import dat.backend.model.entities.persistence.ConnectionPool;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,39 +37,47 @@ public class CalculateBOM {
         for(BOM item : bom){
             BomFacade.createBOM(order, item.getMaterial(), item.descriptionOfUSe, item.getQuantity(), connectionPool);
         }
-
         return bom;
     }
 
-    public double bomPrice(Orders order) {
+    public double bomPrice(Orders orders, int choosenID) {
         ConnectionPool connectionPool = new ConnectionPool();
-        ArrayList<BOM> allBOM = new ArrayList<>();
-        ArrayList<BOM> specificBOMforPriceCalc = new ArrayList<>();
+        //Materials materials = new Materials(choosenID);
+        List<BOM> allBOM = new ArrayList<>();
+        List<BOM> specificBOMForPriceCalc = new ArrayList<>();
+        List<Materials> allMaterials = new ArrayList<>();
         double bomPrice = 0;
 
         //get all BOM from db;
         try {
             allBOM = BomFacade.readBOM(connectionPool);
+
+            //idMaterials skal bruges til at koble på hver bom i allbom
+            //hvordan gør jeg det?????
+
+            allMaterials = AdminFacade.getAllMaterials(connectionPool);
+
+            for(BOM bom : allBOM){
+                for(Materials material : allMaterials){
+                    if(bom.idMaterials == material.getIdMaterials()){
+                        bom.setMaterial(material);
+                    }
+                }
+            }
+
+
+
+            for (BOM bom : allBOM) {
+                bomPrice = (bom.getQuantity() * bom.material.getUnitPrice());
+            }
+
         } catch (Exception e){
             e.printStackTrace();
         }
 
-        //  find the bom needed form allBOM
-        for(BOM item : allBOM){
-            if(item.idOrders == order.getIdOrders()){
-                specificBOMforPriceCalc.add(item);
-            }
-        }
-
-        //add up the price
-        for(BOM item : specificBOMforPriceCalc){
-            bomPrice += (item.getQuantity() * item.getMaterial().getUnitPrice());
-        }
         return bomPrice;
+
     }
-
-
-
 
     //all functions below this point are helper functions for createCarportBOM
     public int beamWidthCalculator(int width) {
@@ -166,7 +175,5 @@ public class CalculateBOM {
         int numberOfPosts = (length/50)-1;
         return numberOfPosts;
     }
-
-
 
 }

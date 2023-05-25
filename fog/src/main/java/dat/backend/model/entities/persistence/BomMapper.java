@@ -25,8 +25,9 @@ public class BomMapper
         Logger.getLogger("web").log(Level.INFO, "");
 
         BOM bom;
-
         String sql = "insert into fog.BOM (idorders, quantity, description, idmaterials) values (?,?,?,?)";
+
+
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -57,25 +58,23 @@ public class BomMapper
         Logger.getLogger("web").log(Level.INFO, "");
         ArrayList<BOM> bomArrayList = new ArrayList<>();
         BOM bom;
-        //**
-        String sql = "SELECT * FROM fog.BOM (idorders)";
+        String sql = "SELECT * FROM fog.BOM ";
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ResultSet rs = ps.executeQuery();
                 while(rs.next()) {
-                    int idMaterials = rs.getInt(4);
-                    String description = rs.getString(3);
-                    int quantity = rs.getInt(2);
-                    int idOrders = rs.getInt(1);
-                    bom = new BOM(idOrders, quantity, description, idMaterials);
-                    bomArrayList.add(bom);
+                    int idorders= rs.getInt("idorders");
+                    int quantity = rs.getInt("quantity");
+                    String description = rs.getString("description");
+                    int idmaterials = rs.getInt("idmaterials");
+                     bom = new BOM(idorders, quantity, description, idmaterials );
+                     bomArrayList.add(bom);
                 }
             }
         } catch (SQLException ex) {
             throw new DatabaseException(ex, "Something went wrong with the database when you tried to read BOM");
         }
-
         return bomArrayList;
     }
 
