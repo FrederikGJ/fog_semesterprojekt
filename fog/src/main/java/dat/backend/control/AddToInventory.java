@@ -32,7 +32,6 @@ public class AddToInventory extends HttpServlet {
         response.setContentType("text/html");
         HttpSession session = request.getSession();
 
-        /*
         String name = request.getParameter("name");
         int unitPrice = Integer.parseInt(request.getParameter("unitPrice"));
         String unit = request.getParameter("unit");
@@ -57,7 +56,5 @@ public class AddToInventory extends HttpServlet {
             request.setAttribute("errormessage", e.getMessage());
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
-
-         */
     }
 }

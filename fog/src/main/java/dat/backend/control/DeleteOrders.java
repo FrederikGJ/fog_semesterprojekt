@@ -35,10 +35,9 @@ public class DeleteOrders extends HttpServlet {
             int idOrders = Integer.parseInt(request.getParameter("idOrdersD"));
             AdminFacade.deleteOrders(idOrders, connectionPool);
             Orders orders = new Orders(idOrders);
-            List<Orders> ongoingOrders = AdminFacade.getOngoingOrders(connectionPool);
-            ongoingOrders.remove(orders);
-            session.setAttribute("ongoingOrders", ongoingOrders);
-
+            List<Orders> newOrders = AdminFacade.getNewOrders(connectionPool);
+            newOrders.remove(orders);
+            session.setAttribute("newOrders", newOrders);
             request.setAttribute("msgDelete", "Ordren er blevet slettet fra systemet");
 
         } catch (DatabaseException e) {

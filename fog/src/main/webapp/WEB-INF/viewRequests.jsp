@@ -58,6 +58,7 @@
                                 <td><button formaction="pendingorders" formmethod="post" name="idOrders" value="${orders.idOrders}">${orders.idOrders}</button></td>
                                 <td>${orders.username}</td>
                                 <td>${orders.orderStatus}</td>
+
                             </tr>
                         </c:forEach>
                         </tbody>

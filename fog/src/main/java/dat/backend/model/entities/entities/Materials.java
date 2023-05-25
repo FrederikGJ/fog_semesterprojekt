@@ -9,11 +9,12 @@ public class Materials {
     private String description;
     private int length;
 
-    public Materials(String name, int unitPrice, String unit, String description) {
+    public Materials(String name, int unitPrice, String unit, String description, int length) {
         this.name = name;
         this.unitPrice = unitPrice;
         this.unit = unit;
         this.description = description;
+        this.length = length;
     }
 
     public Materials(int idMaterials, String name, int unitPrice, String unit, String description, int length)
