@@ -11,7 +11,7 @@ public class OrdersFacade {
 //   }
 
     public static void updateOrder(String orderStatus, double totalPrice, String comments, int idOrders, ConnectionPool connectionPool) throws DatabaseException {
-        dat.backend.model.entities.persistence.OrdersMapper.updateOrder(orderStatus, totalPrice, comments, idOrders, connectionPool);
+        OrdersMapper.updateOrder(orderStatus, totalPrice, comments, idOrders, connectionPool);
     }
 
 

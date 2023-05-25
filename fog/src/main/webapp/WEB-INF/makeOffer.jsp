@@ -126,7 +126,7 @@
                             <th scope="row">Bemærkninger</th>
                             <td>
                                 <form action="sendoffer" method="post">
-                                    <label for="${requestScope.adminComment}"></label>
+                                    <label for=></label>
                                     <input type="text" value="Fog bemaerkninger: " name="adminComment">
                                 </form>
                             </td>
