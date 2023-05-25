@@ -128,7 +128,7 @@
                             <td>
                                 <form action="sendoffer" method="post">
                                     <label for=></label>
-                                    <input type="text" value="Fog bemaerkninger: " name="adminComment">
+                                    <input type="text" value="Fog bemaerkninger: " name="adminComment"/>
                                 </form>
                             </td>
                         </tr>
