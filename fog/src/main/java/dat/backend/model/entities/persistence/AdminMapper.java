@@ -78,9 +78,6 @@ public class AdminMapper {
     }
 
 
-
-
-
     static List<Orders> getAllOrders(ConnectionPool connectionPool) throws DatabaseException {
 
         List<Orders> ordersList = new ArrayList<>();

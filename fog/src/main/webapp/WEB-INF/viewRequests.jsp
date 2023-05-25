@@ -19,7 +19,7 @@
        </div>
 
         <div class="row mt-5">
-            <div class="col-6">
+            <div class="col-12">
                 <h3>Nye forespørgsler: </h3>
                 <form method="get">
                     <table class="table table-hover">
@@ -28,6 +28,7 @@
                             <th>IDorders</th>
                             <th>Username</th>
                             <th>Status</th>
+                            <th>Slet</th>
                         </tr>
                         <tbody>
                             <c:forEach var="orders" items="${sessionScope.newOrders}">
@@ -43,7 +44,7 @@
                 </form>
             </div>
 
-            <div class="col-6">
+            <div class="col-12">
                 <h3>Igangværende: </h3>
                 <form method="get">
                     <table class="table table-hover">
@@ -51,6 +52,7 @@
                             <th>IDorders</th>
                             <th>Username</th>
                             <th>Status</th>
+                            <th>Slet</th>
                         </tr>
                         <tbody>
                         <c:forEach var="orders" items="${sessionScope.pendingOrders}">
@@ -58,6 +60,7 @@
                                 <td><button formaction="pendingorders" formmethod="post" name="idOrders" value="${orders.idOrders}">${orders.idOrders}</button></td>
                                 <td>${orders.username}</td>
                                 <td>${orders.orderStatus}</td>
+                                <td><button formaction="deleteorders" formmethod="post" name="idOrdersD" value="${orders.idOrders}">Slet</button></td>
                             </tr>
                         </c:forEach>
                         </tbody>
@@ -75,6 +78,7 @@
                             <th>IDorders</th>
                             <th>Username</th>
                             <th>Status</th>
+                            <th>Slet</th>
                         </tr>
                         <tbody>
                             <c:forEach var="orders" items="${sessionScope.finishedOrders}">
@@ -82,6 +86,7 @@
                                     <td><button formaction="finishedorders" formmethod="post" name="idOrders" value="${orders.idOrders}">${orders.idOrders}</button></td>
                                     <td>${orders.username}</td>
                                     <td>${orders.orderStatus}</td>
+                                    <td><button formaction="deleteorders" formmethod="post" name="idOrdersD" value="${orders.idOrders}">Slet</button></td>
                                 </tr>
                             </c:forEach>
                         </tbody>

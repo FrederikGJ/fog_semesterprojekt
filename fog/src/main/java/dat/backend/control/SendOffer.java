@@ -40,7 +40,7 @@ public class SendOffer extends HttpServlet
 
             int idOrders = (int) session.getAttribute("idOrders");
 
-            Orders ongoingOrder = AdminFacade.getOrdersById(idOrders, "new_pending", connectionPool);
+            Orders ongoingOrder = AdminFacade.getOrdersById(idOrders, "new", connectionPool);
             session.setAttribute("ongoingOrder", ongoingOrder);
 
             String newOrderStatus = ongoingOrder.getOrderStatus();

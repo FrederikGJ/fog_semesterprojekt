@@ -128,7 +128,6 @@ public class MakeOffer extends HttpServlet
 
             //lavet funktioner til udregning inde i klassen Orders, giver det mening eller skal det ligge et andet sted?
 
-
             // lav egen jsp og servlet til finishedOrder i stedet for MakeOffer
             // Orders finishedOrder = AdminFacade.getOrdersById(idorders, "finished", connectionPool);
             // session.setAttribute("finishedOrder", finishedOrder);
