@@ -40,7 +40,7 @@ public class SendOffer extends HttpServlet
 
             int idOrders = (int) session.getAttribute("idOrders");
 
-            Orders ongoingOrder = AdminFacade.getOrdersById(idOrders, "new_pending", connectionPool);
+            Orders ongoingOrder = AdminFacade.getOrdersById(idOrders, "new", connectionPool);
             session.setAttribute("ongoingOrder", ongoingOrder);
 
             String newOrderStatus = ongoingOrder.getOrderStatus();
@@ -53,11 +53,11 @@ public class SendOffer extends HttpServlet
 
 
             String customerComment = ongoingOrder.getComments();
-
-            String adminComment = request.getParameter("adminComment");
-            request.setAttribute("adminComment", adminComment);
-
-            String totalComments = customerComment + ". " + adminComment;
+//
+//            String adminComment = request.getParameter("adminComment");
+//            request.setAttribute("adminComment", adminComment);
+//
+//            String totalComments = customerComment + ". " + adminComment;
 
 
 //            String adminComment = request.getParameter("adminComment");
@@ -66,7 +66,7 @@ public class SendOffer extends HttpServlet
 //            String adminComment = (String) session.getAttribute("adminComment");
 //            session.setAttribute("adminComment", adminComment);
 
-            OrdersFacade.updateOrder(newOrderStatus, salesprice, totalComments, idOrders, connectionPool);
+            OrdersFacade.updateOrder(newOrderStatus, salesprice, customerComment, idOrders, connectionPool);
 
             request.getRequestDispatcher("WEB-INF/sendOffer.jsp").forward(request, response);
 

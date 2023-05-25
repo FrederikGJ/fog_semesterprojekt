@@ -37,7 +37,7 @@ public class AcceptCarport extends HttpServlet {
 
             int idOrders = Integer.parseInt(request.getParameter("idOrders"));
 
-            Orders pendingOrder = AdminFacade.getOrdersById(idOrders, "new_pending", connectionPool);
+            Orders pendingOrder = AdminFacade.getOrdersById(idOrders, "pending", connectionPool);
             session.setAttribute("pendingOrder ", pendingOrder);
 
             String newOrderStatus = pendingOrder.getOrderStatus();

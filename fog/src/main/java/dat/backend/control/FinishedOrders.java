@@ -16,8 +16,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "pendingorders", value = "/pendingorders")
-public class PendingOrders extends HttpServlet
+@WebServlet(name = "finishedorders", value = "/finishedorders")
+public class FinishedOrders extends HttpServlet
 {
     private ConnectionPool connectionPool;
 
@@ -43,8 +43,8 @@ public class PendingOrders extends HttpServlet
             int idOrders = Integer.parseInt(request.getParameter("idOrders"));
             session.setAttribute("idOrders", idOrders);
 
-            Orders pendingOrder = AdminFacade.getOrdersById(idOrders, "pending", connectionPool);
-            session.setAttribute("pendingOrder", pendingOrder);
+            Orders finishedOrder = AdminFacade.getOrdersById(idOrders, "finished", connectionPool);
+            session.setAttribute("finishedOrder", finishedOrder);
 
             List<Integer> listOfIdOrders = BomFacade.getIdOrdersFromBom(connectionPool);
 
@@ -53,7 +53,7 @@ public class PendingOrders extends HttpServlet
             //if the current order already exits in the database, it will not be added again.
             if(!listOfIdOrders.contains(idOrders))
             {
-                calBom.createCarportBOM(pendingOrder, pendingOrder.getLength(), pendingOrder.getWidth(), connectionPool);
+                calBom.createCarportBOM(finishedOrder, finishedOrder.getLength(), finishedOrder.getWidth(), connectionPool);
                 ArrayList<BOM> bomArrayList = BomFacade.getBOMById(idOrders, connectionPool);
                 session.setAttribute("bomArrayList", bomArrayList);
             }
@@ -73,7 +73,7 @@ public class PendingOrders extends HttpServlet
             double autoSalesprice = Math.round(totalBomPrice/(1-(autoOperationMargin/100))*1.25);
             session.setAttribute("autoSalesprice", autoSalesprice);
 
-            double salesprice = pendingOrder.getTotalPrice();
+            double salesprice = finishedOrder.getTotalPrice();
 
             double salespriceTaxFree = salesprice/1.25;
             String salesPriceTaxFreeTwoDecimals = String.format("%.2f", salespriceTaxFree);
@@ -97,7 +97,7 @@ public class PendingOrders extends HttpServlet
             session.setAttribute("operationMargin", operationMarginTwoDecimals);
 
 
-            request.getRequestDispatcher("WEB-INF/pendingOrders.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/finishedOrders.jsp").forward(request, response);
 
         } catch (DatabaseException e)
         {

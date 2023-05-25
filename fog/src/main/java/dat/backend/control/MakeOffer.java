@@ -44,17 +44,27 @@ public class MakeOffer extends HttpServlet
             int idOrders  = Integer.parseInt(request.getParameter("idOrders"));
             session.setAttribute("idOrders", idOrders);
 
-            Orders ongoingOrder = AdminFacade.getOrdersById(idOrders, "new_pending", connectionPool);
+            Orders ongoingOrder = AdminFacade.getOrdersById(idOrders, "new", connectionPool);
             session.setAttribute("ongoingOrder", ongoingOrder);
 
+
+            List<Integer> listOfIdOrders = BomFacade.getIdOrdersFromBom(connectionPool);
+
             CalculateBOM calBom = new CalculateBOM();
-            calBom.createCarportBOM(ongoingOrder, ongoingOrder.getLength(), ongoingOrder.getWidth(), connectionPool);
+
+            //if the current order already exits in the database, it will not be added again.
+           if(!listOfIdOrders.contains(idOrders))
+            {
+                calBom.createCarportBOM(ongoingOrder, ongoingOrder.getLength(), ongoingOrder.getWidth(), connectionPool);
+                ArrayList<BOM> bomArrayList = BomFacade.getBOMById(idOrders, connectionPool);
+                session.setAttribute("bomArrayList", bomArrayList);
+            }
+
+            ArrayList<BOM> bomArrayList = BomFacade.getBOMById(idOrders, connectionPool);
+            session.setAttribute("bomArrayList", bomArrayList);
 
 
-          ArrayList<BOM> bomArrayList = BomFacade.getBOMById(idOrders, connectionPool);
-          session.setAttribute("bomArrayList", bomArrayList);
-
-          double totalBomPrice = 0;
+            double totalBomPrice = 0;
             for (BOM bom : bomArrayList) {
                 if(idOrders == bom.getIdOrders()){
                     totalBomPrice = calBom.bomPrice(ongoingOrder, idOrders);
@@ -62,21 +72,14 @@ public class MakeOffer extends HttpServlet
                 }
             }
 
-
-          //double totalBomPrice = 10891.80;
-            //double totalBomPrice = calBom.bomPrice(ongoingOrder, idOrders);
-           //session.setAttribute("totalBomPrice", totalBomPrice);
-
-
-            //calculation of operation margin (dækningsgraden - fortjenesten i % af salgsprisen)
-            //dækningsgrad = dækningsbidrag x 100 / salgspris
-            //dækningsbidrag: salgspris - kostpris
+//            double totalBomPrice = 10891.80;
+//            //double totalBomPrice = calBom.bomPrice(ongoingOrder, idOrders);
+//            session.setAttribute("totalBomPrice", totalBomPrice);
 
 
             //automatisk dækningsgrad
             double autoOperationMargin = 39.02;
 
-//session.getAttribute("totalBomPrice");
             double autoSalesprice = Math.round(totalBomPrice/(1-(autoOperationMargin/100))*1.25);
             session.setAttribute("autoSalesprice", autoSalesprice);
 
@@ -100,7 +103,6 @@ public class MakeOffer extends HttpServlet
             String priceChangeTwoDecimals = String.format("%.2f", priceChange);
             session.setAttribute("priceChange", priceChangeTwoDecimals);
 
-
             //dækningsbidrag
             double grossProfit = orders.makeGrossProfit(salespriceTaxFree, totalBomPrice);
             String grossProfitTwoDecimals = String.format("%.2f", grossProfit);
@@ -111,8 +113,20 @@ public class MakeOffer extends HttpServlet
             String operationMarginTwoDecimals = String.format("%.2f", operationMargin);
             session.setAttribute("operationMargin", operationMarginTwoDecimals);
 
-            //lavet funktioner til udregning inde i klassen Orders, giver det mening eller skal det ligge et andet sted?
 
+//            String autoAdminComment = "Bemaerkning fra Fog: ";
+//            session.setAttribute("autoAdminComment", autoAdminComment);
+//
+//            String adminCommentString = request.getParameter("adminComment");
+//
+//            String adminComment = autoAdminComment;
+//            if(adminCommentString != null)
+//            {
+//                adminComment = adminCommentString;
+//           }
+//            session.setAttribute("adminComment", adminComment);
+
+            //lavet funktioner til udregning inde i klassen Orders, giver det mening eller skal det ligge et andet sted?
 
             // lav egen jsp og servlet til finishedOrder i stedet for MakeOffer
             // Orders finishedOrder = AdminFacade.getOrdersById(idorders, "finished", connectionPool);
