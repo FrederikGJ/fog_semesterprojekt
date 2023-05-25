@@ -6,7 +6,6 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-             Log ind
     </jsp:attribute>
 
     <jsp:attribute name="footer">
@@ -15,17 +14,29 @@
 
     <jsp:body>
 
+        <div class="row text-center">
+            <div class="col-12">
+                <h1>Log ind</h1>
+            </div>
+        </div>
 
+        <div class="row mt-4">
+        </div>
 
-        <div class="text-center mt-5">
-
-        <form action="login" method="post">
-            <label for="username">Username: </label>
-            <input type="text" id="username" name="username"/>
-            <label for="password">Password: </label>
-            <input type="password" id="password" name="password"/>
-            <input type="submit"  value="Log in"/>
-        </form>
+        <div class="row text-center mt-5">
+            <form action="login" method="post">
+                <div class="col-12">
+                    <label class="mr-3" for="username">Username: </label>
+                    <input type="text" id="username" name="username"/>
+                </div>
+                <div class="col-12 mt-4">
+                    <label for="password">Password: </label>
+                    <input type="password" id="password" name="password"/>
+                </div>
+                <div class="col-12 mt-4">
+                    <input type="submit"  value="Log in"/>
+                </div>
+            </form>
         </div>
 
     </jsp:body>
