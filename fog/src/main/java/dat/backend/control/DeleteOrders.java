@@ -34,10 +34,10 @@ public class DeleteOrders extends HttpServlet {
         try {
             int idOrders = Integer.parseInt(request.getParameter("idOrdersD"));
             AdminFacade.deleteOrders(idOrders, connectionPool);
-            Orders orders = new Orders(idOrders);
+            Orders orders = new Orders(idOrders); // Creating a new materials object to remove from list in session scop
             List<Orders> newOrders = AdminFacade.getNewOrders(connectionPool);
             newOrders.remove(orders);
-            session.setAttribute("newOrders", newOrders);
+            session.setAttribute("newOrders", newOrders);// Adding the new inventory list object to session scope
             request.setAttribute("msgDelete", "Ordren er blevet slettet fra systemet");
 
         } catch (DatabaseException e) {

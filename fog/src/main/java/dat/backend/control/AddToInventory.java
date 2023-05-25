@@ -37,9 +37,9 @@ public class AddToInventory extends HttpServlet {
         String unit = request.getParameter("unit");
         String description = request.getParameter("description");
         int length = Integer.parseInt(request.getParameter("length"));
-        Materials materials = new Materials(name, unitPrice, unit, description, length); // new materials object to add to list in session scope
+        Materials materials = new Materials(name, unitPrice, unit, description, length); // Creating a new materials object to add to list in session scope
 
-        List<Materials> materialsList = (List<Materials>) session.getAttribute("materialsList"); // getting inventory list object to session scope
+        List<Materials> materialsList = (List<Materials>) session.getAttribute("materialsList"); // Getting inventory list object to session scope
         materialsList.add(materials);
         try {
             AdminFacade.addToInventory(materials, connectionPool);

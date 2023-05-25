@@ -29,8 +29,8 @@ public class AdminMapper {
     }
 
     public static void addToInventory(Materials materials, ConnectionPool connectionPool) throws DatabaseException {
-
         String sql = "INSERT INTO fog.materials (material_name, unitprice, unit, description, length) VALUES (?,?,?,?,?)";
+
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
                 ps.setString(1, materials.getName());
@@ -46,8 +46,8 @@ public class AdminMapper {
     }
 
     public static void editInventory(int idMaterials, String name, int unitPrice, String unit, String description, int length, ConnectionPool connectionPool) throws DatabaseException, SQLException {
-
         String sql = "UPDATE fog.materials  set material_name =?, unitprice =?,unit=?, description =?, length=? WHERE idmaterials=?";
+
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setString(1, name);
@@ -66,6 +66,7 @@ public class AdminMapper {
 
     public static void deleteMaterials(int idMaterials, ConnectionPool connectionPool) throws DatabaseException {
         String sql = "DELETE FROM fog.materials WHERE idmaterials =?";
+
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setInt(1, idMaterials);
@@ -78,11 +79,8 @@ public class AdminMapper {
     }
 
     static List<Orders> getAllOrders(ConnectionPool connectionPool) throws DatabaseException {
-
         List<Orders> ordersList = new ArrayList<>();
-        //Logger.getLogger("web").log(Level.INFO, "");
         Orders orders;
-
         String sql = "SELECT * FROM fog.orders";
 
         try (Connection connection = connectionPool.getConnection()) {
@@ -108,11 +106,8 @@ public class AdminMapper {
 
 
     static List<Orders> getFinishedOrders(ConnectionPool connectionPool) throws DatabaseException {
-
         List<Orders> finishedOrders = new ArrayList<>();
-        //Logger.getLogger("web").log(Level.INFO, "");
         Orders orders;
-
         String sql = "SELECT * FROM fog.orders WHERE orderstatus = 'Finished'";
 
         try (Connection connection = connectionPool.getConnection()) {
@@ -138,11 +133,8 @@ public class AdminMapper {
 
 
     static List<Orders> getOngoingOrders(ConnectionPool connectionPool) throws DatabaseException {
-
         List<Orders> ongoingOrders = new ArrayList<>();
-        //Logger.getLogger("web").log(Level.INFO, "");
         Orders orders;
-
         String sql = "SELECT * FROM fog.orders WHERE orderstatus = 'New' OR orderstatus = 'Pending' ORDER BY orderstatus ASC";
 
         try (Connection connection = connectionPool.getConnection()) {
@@ -202,11 +194,8 @@ public class AdminMapper {
 
 
     static List<Orders> getNewOrders(ConnectionPool connectionPool) throws DatabaseException {
-
         List<Orders> newOrders = new ArrayList<>();
-        //Logger.getLogger("web").log(Level.INFO, "");
         Orders orders;
-
         String sql = "SELECT * FROM fog.orders WHERE orderstatus = 'New'";
 
         try (Connection connection = connectionPool.getConnection()) {
@@ -231,11 +220,8 @@ public class AdminMapper {
 
 
     static List<Orders> getPendingOrders(ConnectionPool connectionPool) throws DatabaseException {
-
         List<Orders> pendingOrders = new ArrayList<>();
-        //Logger.getLogger("web").log(Level.INFO, "");
         Orders orders;
-
         String sql = "SELECT * FROM fog.orders WHERE orderstatus = 'Pending'";
 
         try (Connection connection = connectionPool.getConnection()) {
@@ -272,20 +258,10 @@ public class AdminMapper {
                 }
                 connection.commit();
             } catch (SQLException ex) {
-                if (connection != null) {
-                    try {
-                        connection.rollback();
-                    } catch (SQLException e) {
-                        throw new DatabaseException(e, "Failed to rollback transaction");
-                    }
-                }
                 throw new DatabaseException(ex, "Something went wrong with the database");
-            } finally {
-                connection.setAutoCommit(true);
             }
         } catch (SQLException ex) {
-            throw new DatabaseException(ex, "Failed to establish a database connection");
+            throw new DatabaseException(ex, "Something went wrong with the database");
         }
     }
-
 }

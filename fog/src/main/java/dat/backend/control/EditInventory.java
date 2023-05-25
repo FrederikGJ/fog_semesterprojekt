@@ -39,20 +39,17 @@ public class EditInventory extends HttpServlet {
         int length = Integer.parseInt(request.getParameter("lengthE"));
         int idMaterials = Integer.parseInt(request.getParameter("idMaterialsE"));
 
-
-
         try {
             AdminFacade.editMaterials(idMaterials, name, unitPrice, unit, description, length, connectionPool);
             List<Materials> materialsList = AdminFacade.getAllMaterials(connectionPool);
-            session.setAttribute("materialsList", materialsList); // adding inventory list object to session scope
-
+            session.setAttribute("materialsList", materialsList); // Adding inventory list with new object to session scope
             request.setAttribute("msgEdit", "Vare er blevet ændret i inventar");
-            request.getRequestDispatcher("WEB-INF/viewInventory.jsp").forward(request, response);
 
         } catch (Exception e) {
             request.setAttribute("errormessage", e.getMessage());
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
+        request.getRequestDispatcher("WEB-INF/viewInventory.jsp").forward(request, response);
 
     }
 }

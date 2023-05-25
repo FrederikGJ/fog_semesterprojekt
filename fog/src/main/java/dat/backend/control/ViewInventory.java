@@ -1,12 +1,10 @@
 package dat.backend.control;
 
-
 import dat.backend.model.entities.config.ApplicationStart;
 import dat.backend.model.entities.entities.Materials;
 import dat.backend.model.entities.exceptions.DatabaseException;
 import dat.backend.model.entities.persistence.AdminFacade;
 import dat.backend.model.entities.persistence.ConnectionPool;
-
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,23 +39,13 @@ public class ViewInventory extends HttpServlet {
             HttpSession session = request.getSession();
             try {
                 List<Materials> materialsList = AdminFacade.getAllMaterials(connectionPool);
-                session.setAttribute("materialsList", materialsList); // adding inventory list object to session scope
-                request.getRequestDispatcher("WEB-INF/viewInventory.jsp").forward(request, response);
+                session.setAttribute("materialsList", materialsList); // Adding inventory list object to session scope
 
             } catch (DatabaseException e) {
                 request.setAttribute("errormessage", e.getMessage());
                 request.getRequestDispatcher("error.jsp").forward(request, response);
             }
+            request.getRequestDispatcher("WEB-INF/viewInventory.jsp").forward(request, response);
         }
     }
 }
-
-
-
-
-
-
-
-
-
-

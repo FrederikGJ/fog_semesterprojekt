@@ -33,18 +33,19 @@ public class DeleteInventory extends HttpServlet {
         HttpSession session = request.getSession();
 
         try {
-            int idMaterialsD = Integer.parseInt(request.getParameter("idMaterialsD"));
-            AdminFacade.deleteMaterials(idMaterialsD, connectionPool);
-            Materials materials1 = new Materials(idMaterialsD);// new materials object to add to list in session scope
+            int idMaterials = Integer.parseInt(request.getParameter("idMaterialsD"));
+            AdminFacade.deleteMaterials(idMaterials, connectionPool);
+            Materials materials = new Materials(idMaterials);// Creating a new materials object to remove from list in session scope
             List<Materials> materialsList = AdminFacade.getAllMaterials(connectionPool);
-            materialsList.remove(materials1);
-            session.setAttribute("materialsList", materialsList); // adding inventory list object to session scope
-            request.setAttribute("msgDelete", "Vare er blevet slettet fra inventar");
-            request.getRequestDispatcher("WEB-INF/viewInventory.jsp").forward(request, response);
+            materialsList.remove(materials);
+            session.setAttribute("materialsList", materialsList); // Adding the new inventory list object to session scope
+            request.setAttribute("msgDelete", "Varen er blevet slettet fra inventar");
 
         } catch (DatabaseException e) {
             request.setAttribute("errormessage", e.getMessage());
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
+        request.getRequestDispatcher("WEB-INF/viewInventory.jsp").forward(request, response);
+
     }
 }
