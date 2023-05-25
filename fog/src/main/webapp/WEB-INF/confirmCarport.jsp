@@ -32,7 +32,7 @@
         </table>
         <br>
 
-        <form action="ConfirmCarport" method="post">
+        <form action="confirmcarport" method="post">
             <input type="number" hidden name="length" value="${requestScope.length}">
             <input type="number" hidden name="width" value="${requestScope.width}">
             <input type="text" hidden name="comment" value="${requestScope.comment}">
