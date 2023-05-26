@@ -16,21 +16,23 @@
             <div class="container">
 
                 <div class="row">
-                    <img src="${pageContext.request.contextPath}/images/carportFrontpagePicture.png"/>
+                        <img src="${pageContext.request.contextPath}/images/carportFrontpagePicture.png"/>
                 </div>
                 <div class="row">
                     <br><br>
                 </div>
 
-                <div class="row mb-4">
-                    <div class="col d-flex justify-content-around">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-6 d-flex justify-content-around mb-4">
                         <br><br>
                         <h2>Log ind eller opret en bruger  for at bestille din egen skræddersyede carport</h2>
                     </div>
-                    <div class="col d-flex justify-content-around">
+                    <div class="col-sm-12 col-md-6 col-lg-3 d-flex justify-content-around mb-4">
                         <form action="login.jsp">
                             <input type="submit" value="Log ind" class="frontbutton">
                         </form>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-3 d-flex justify-content-around mb-4">
                         <form action="signup.jsp">
                             <input type="submit" value="Opret bruger" class="frontbutton">
                         </form>
