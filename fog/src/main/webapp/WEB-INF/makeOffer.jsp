@@ -92,6 +92,7 @@
         <div class="row justify-content-center">
             <div class="col-5 text-center mt-4">
                 <h2>Lav tilbud</h2>
+                <form method="post">
                 <table class="table table-bordered mt-4">
                     <thead>
                     </thead>
@@ -115,21 +116,20 @@
                         <tr>
                             <th scope="row">Prisforslag ved salg</th>
                             <td>
-                                <form method="post">
+
                                     <label for="${sessionScope.salesprice}"></label>
                                     <input type="hidden" name="idOrders" value="${sessionScope.idOrders}"/>
                                     <input class="mt-2" type="number" class="form-control text-center" id="${sessionScope.salesprice}" name="salesprice" value="${sessionScope.salesprice}"/>
-                                    <input class="mt-2" type="submit" action="makeoffer" value="Opdater"/>
-                                </form>
+                                    <button class="mt-2" type="submit" formaction="makeoffer"/>Opdater</button>
+
                             </td>
                         </tr>
                         <tr>
                             <th scope="row">Bemærkninger</th>
                             <td>
-                                <form action="sendoffer" method="post">
-                                    <label for=></label>
-                                    <input type="text" value="Fog bemaerkninger: " name="adminComment">
-                                </form>
+
+                                    <label for="${requestScope.adminComment}"></label>
+                                    <input type="text" value="Fog bemærkninger: " name="adminComment"/>
                             </td>
                         </tr>
                         <tr>
@@ -138,8 +138,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <form action="sendoffer" method="post">
-                    <th><input type="submit" value="Send tilbud"></th>
+                    <th><button formaction="sendoffer" type="submit">Send tilbud</button></th>
                 </form>
             </div>
         </div>

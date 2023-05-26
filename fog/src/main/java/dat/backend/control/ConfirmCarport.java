@@ -32,14 +32,14 @@ public class ConfirmCarport extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
+        request.setCharacterEncoding("UTF-8");
+
         int length = Integer.parseInt(request.getParameter("length"));
         int width = Integer.parseInt(request.getParameter("width"));
         User user = (User) session.getAttribute("user"); // Henter user ud fra session scope
         String username = user.getUsername();
         String comment = request.getParameter("comment");
         request.getRequestDispatcher("WEB-INF/confirmation.jsp").forward(request, response);
-
-
 
         try {
             OrdersFacade.createOrder(width, length, username, comment, connectionPool);

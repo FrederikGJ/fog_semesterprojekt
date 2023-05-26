@@ -25,6 +25,8 @@ public class ViewOrders extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         HttpSession session = request.getSession();
+        request.setCharacterEncoding("UTF-8");
+
         try{
             List<Orders> newOrders = AdminFacade.getNewOrders(connectionPool);
             session.setAttribute("newOrders", newOrders);

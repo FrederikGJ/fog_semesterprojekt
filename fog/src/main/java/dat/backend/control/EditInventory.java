@@ -31,6 +31,7 @@ public class EditInventory extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
+        request.setCharacterEncoding("UTF-8");
 
         String name = request.getParameter("nameE");
         int unitPrice = Integer.parseInt(request.getParameter("unitPriceE"));

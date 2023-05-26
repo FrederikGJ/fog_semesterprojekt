@@ -24,25 +24,24 @@ public class SendOffer extends HttpServlet
 
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-    {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-    {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         response.setContentType("text/html");
         HttpSession session = request.getSession();
+        request.setCharacterEncoding("UTF-8");
 
-        try
-        {
+        try{
 
             int idOrders = (int) session.getAttribute("idOrders");
 
             Orders ongoingOrder = AdminFacade.getOrdersById(idOrders, "new", connectionPool);
             session.setAttribute("ongoingOrder", ongoingOrder);
 
+            //changing orderstatus from new to pending
             String newOrderStatus = ongoingOrder.getOrderStatus();
             session.setAttribute("newOrderStatus", newOrderStatus);
             newOrderStatus = "Pending";
@@ -53,24 +52,18 @@ public class SendOffer extends HttpServlet
 
 
             String customerComment = ongoingOrder.getComments();
-//
-//            String adminComment = request.getParameter("adminComment");
-//            request.setAttribute("adminComment", adminComment);
-//
-//            String totalComments = customerComment + ". " + adminComment;
 
+            String adminComment = request.getParameter("adminComment");
+            request.setAttribute("adminComment", adminComment);
 
-//            String adminComment = request.getParameter("adminComment");
-//            session.setAttribute("adminComment", adminComment);
-//
-//            String adminComment = (String) session.getAttribute("adminComment");
-//            session.setAttribute("adminComment", adminComment);
+            String totalComments = customerComment + ". " + adminComment;
 
-            OrdersFacade.updateOrder(newOrderStatus, salesprice, customerComment, idOrders, connectionPool);
+            OrdersFacade.updateOrder(newOrderStatus, salesprice, totalComments, idOrders, connectionPool);
+
 
             request.getRequestDispatcher("WEB-INF/sendOffer.jsp").forward(request, response);
 
-        } catch(DatabaseException e){
+        }catch(DatabaseException e){
             request.setAttribute("errormessage", e.getMessage());
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }

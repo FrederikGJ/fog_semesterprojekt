@@ -31,6 +31,7 @@ public class AddToInventory extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         HttpSession session = request.getSession();
+        request.setCharacterEncoding("UTF-8");
 
         String name = request.getParameter("name");
         int unitPrice = Integer.parseInt(request.getParameter("unitPrice"));

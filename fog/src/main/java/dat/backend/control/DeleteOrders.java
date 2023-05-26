@@ -38,7 +38,17 @@ public class DeleteOrders extends HttpServlet {
             List<Orders> newOrders = AdminFacade.getNewOrders(connectionPool);
             newOrders.remove(orders);
             session.setAttribute("newOrders", newOrders);// Adding the new inventory list object to session scope
+
+            List<Orders> pendingOrders = AdminFacade.getPendingOrders(connectionPool);
+            pendingOrders.remove(orders);
+            session.setAttribute("pendingOrders", pendingOrders);
+
+            List<Orders> finishedOrders = AdminFacade.getFinishedOrders(connectionPool);
+            finishedOrders.remove(orders);
+            session.setAttribute("finishedOrders",finishedOrders);
+
             request.setAttribute("msgDelete", "Ordren er blevet slettet fra systemet");
+
 
         } catch (DatabaseException e) {
             e.printStackTrace();

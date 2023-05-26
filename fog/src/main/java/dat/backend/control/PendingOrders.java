@@ -27,19 +27,17 @@ public class PendingOrders extends HttpServlet
 
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-    {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-    {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         response.setContentType("text/html");
         HttpSession session = request.getSession();
+        request.setCharacterEncoding("UTF-8");
 
-        try
-        {
+        try{
             int idOrders = Integer.parseInt(request.getParameter("idOrders"));
             session.setAttribute("idOrders", idOrders);
 
@@ -51,8 +49,7 @@ public class PendingOrders extends HttpServlet
             CalculateBOM calBom = new CalculateBOM();
 
             //if the current order already exits in the database, it will not be added again.
-            if(!listOfIdOrders.contains(idOrders))
-            {
+            if(!listOfIdOrders.contains(idOrders)){
                 calBom.createCarportBOM(pendingOrder, pendingOrder.getLength(), pendingOrder.getWidth(), connectionPool);
                 ArrayList<BOM> bomArrayList = BomFacade.getBOMById(idOrders, connectionPool);
                 session.setAttribute("bomArrayList", bomArrayList);
@@ -62,17 +59,22 @@ public class PendingOrders extends HttpServlet
             session.setAttribute("bomArrayList", bomArrayList);
 
 
-            double totalBomPrice = 10891.80;
+            //calculates the totalBomPrice for existing order
+            double totalBomPrice = 0;
+            for (BOM bom : bomArrayList){
+                if(idOrders == bom.getIdOrders()){
+                    totalBomPrice = calBom.bomPrice(pendingOrder, idOrders);
+                    session.setAttribute("totalBomPrice", totalBomPrice);
+                }
+            }
 
-            //double totalBomPrice = calBom.bomPrice(ongoingOrder);
-            session.setAttribute("totalBomPrice", totalBomPrice);
-
-
+            //autoOperationMargin = automatisk dækningsgrad
             double autoOperationMargin = 39.02;
 
             double autoSalesprice = Math.round(totalBomPrice/(1-(autoOperationMargin/100))*1.25);
             session.setAttribute("autoSalesprice", autoSalesprice);
 
+            //salesprice = the offered price
             double salesprice = pendingOrder.getTotalPrice();
 
             double salespriceTaxFree = salesprice/1.25;
@@ -81,17 +83,17 @@ public class PendingOrders extends HttpServlet
 
             Orders orders = new Orders();
 
-            //price change from autoSalesprice with operationMargin on 39.02 to new salesprice.
+            //price change from autoSalesprice with operationMargin on 39.02 to the edited "new" salesprice.
             double priceChange = salesprice - autoSalesprice;
             String priceChangeTwoDecimals = String.format("%.2f", priceChange);
             session.setAttribute("priceChange", priceChangeTwoDecimals);
 
-            //dækningsbidrag
+            //grossProfit = dækningsbidrag
             double grossProfit = orders.makeGrossProfit(salespriceTaxFree, totalBomPrice);
             String grossProfitTwoDecimals = String.format("%.2f", grossProfit);
             session.setAttribute("grossProfit", grossProfitTwoDecimals);
 
-            //dækningsgraden
+            //operationMargin = dækningsgraden
             double operationMargin = orders.makeOperationMargin(grossProfit, salespriceTaxFree);
             String operationMarginTwoDecimals = String.format("%.2f", operationMargin);
             session.setAttribute("operationMargin", operationMarginTwoDecimals);
@@ -99,8 +101,7 @@ public class PendingOrders extends HttpServlet
 
             request.getRequestDispatcher("WEB-INF/pendingOrders.jsp").forward(request, response);
 
-        } catch (DatabaseException e)
-        {
+        }catch (DatabaseException e){
             e.printStackTrace();
         }
 
