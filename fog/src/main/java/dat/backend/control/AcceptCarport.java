@@ -38,7 +38,7 @@ public class AcceptCarport extends HttpServlet {
             int idOrders = Integer.parseInt(request.getParameter("idOrders"));
 
             Orders pendingOrder = AdminFacade.getOrdersById(idOrders, "pending", connectionPool);
-            session.setAttribute("pendingOrder ", pendingOrder);
+            session.setAttribute("pendingOrders ", pendingOrder);
 
             String newOrderStatus = pendingOrder.getOrderStatus();
             session.setAttribute("newOrderStatus", newOrderStatus);
@@ -49,7 +49,8 @@ public class AcceptCarport extends HttpServlet {
             request.getRequestDispatcher("WEB-INF/confirmPurchase.jsp").forward(request, response);
 
         }catch (DatabaseException e) {
-           e.printStackTrace();
+           request.setAttribute("errormessage", e.getMessage());
+            request.getRequestDispatcher("error.jsp").forward(request, response);
         }
     }
 

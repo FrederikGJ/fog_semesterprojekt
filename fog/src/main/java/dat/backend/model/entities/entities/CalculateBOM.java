@@ -1,5 +1,6 @@
 package dat.backend.model.entities.entities;
 
+import dat.backend.model.entities.config.ApplicationStart;
 import dat.backend.model.entities.exceptions.DatabaseException;
 import dat.backend.model.entities.persistence.AdminFacade;
 import dat.backend.model.entities.persistence.BomFacade;
@@ -41,7 +42,7 @@ public class CalculateBOM {
     }
 
     public double bomPrice(Orders orders, int choosenID) {
-        ConnectionPool connectionPool = new ConnectionPool();
+        ConnectionPool connectionPool = ApplicationStart.getConnectionPool();
         //Materials materials = new Materials(choosenID);
         List<BOM> allBOM = new ArrayList<>();
         List<BOM> specificBOMForPriceCalc = new ArrayList<>();

@@ -14,11 +14,11 @@
 
         <h1>Din carport er nu købt!</h1>
 
-        <form action="Welcome"  method="get">
+        <form action="welcome.jsp"  method="get">
             <input type="submit" value="Startside" class="frontbutton">
         </form>
         <br>
-        <form action="ViewOrders" method="get">
+        <form action="viewOrders.jsp" method="get">
             <input type="submit" value="Mine bestillinger" class="frontbutton">
         </form>
 

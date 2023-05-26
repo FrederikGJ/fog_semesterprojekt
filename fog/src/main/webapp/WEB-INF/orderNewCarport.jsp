@@ -12,7 +12,7 @@
 
     <jsp:body>
         <h1>Vælg mål på din carport</h1>
-        <form action="MakeNewRequest" method="post">
+        <form action="makenewrequest" method="post">
             <label for="length">Vælg carportens længde:</label>
             <select name="length" id="length">
                 <option value="400">400cm</option>

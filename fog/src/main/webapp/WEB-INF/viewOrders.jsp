@@ -13,8 +13,6 @@
     </jsp:attribute>
 
     <jsp:body>
-
-
         <div class="row col-12 mb-4">
             <h1>Oversigt over ordre for ${sessionScope.user.username}</h1>
         </div>
@@ -47,42 +45,47 @@
                 </form>
             </div>
 
-        <div class="row">
-            <div class="col-6">
-                <h3>Tilbud: </h3>
-                <form method="get">
-                    <table>
-                        <tr>
-                            <th>OrdreID</th>
-                            <th>Længde</th>
-                            <th>Bredde</th>
-                            <th>Bemærkninger</th>
-                            <th>Fuld pris</th>
-                            <th>Svar</th>
-                        </tr>
-
-                        <c:forEach var="orders" items="${sessionScope.pendingOrders}">
-                            <c:if test="${sessionScope.user.username == orders.username }">
+            <div class="row">
+                <div class="col-6">
+                    <h3>Tilbud: </h3>
+                    <form method="get">
+                        <table>
                             <tr>
-                                <td>${orders.idOrders}</td>
-                                <td>${orders.length}</td>
-                                <td>${orders.width}</td>
-                                <td>${orders.comments}</td>
-                                <td>${orders.totalPrice}</td>
-                                <td>
-                                    <form action="acceptcarport" method="post">
-                                        <input type="hidden" value="${orders.idOrders}" name="idOrders">
-                                        <input type="submit" value="Accepter">
-                                    </form>
-                                </td>
-
+                                <th>OrdreID</th>
+                                <th>Længde</th>
+                                <th>Bredde</th>
+                                <th>Bemærkninger</th>
+                                <th>Fuld pris</th>
                             </tr>
-                            </c:if>
-                        </c:forEach>
-                    </table>
-                </form>
+
+                            <c:forEach var="orders" items="${sessionScope.pendingOrders}">
+                                <c:if test="${sessionScope.user.username == orders.username }">
+                                    <tr>
+                                            ${requestScope.msgDecline}
+                                        <form action="acceptcarport" method="post">
+                                            <td>${orders.idOrders}</td>
+                                            <td>${orders.length}</td>
+                                            <td>${orders.width}</td>
+                                            <td>${orders.comments}</td>
+                                            <td>${orders.totalPrice}</td>
+                                            <td>
+                                                <button type="submit" value="${orders.idOrders}" name="idOrders">
+                                                    Accepter
+                                                </button>
+                                            </td>
+                                        </form>
+                                        <td>
+                                            <button formaction="declinecarport" formmethod="post" name="idOrdersD"
+                                                    value="${orders.idOrders}"> Afvis
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </c:if>
+                            </c:forEach>
+                        </table>
+                    </form>
+                </div>
             </div>
-        </div>
 
             <div class="col-6">
                 <h3>Afsluttede: </h3>
@@ -117,11 +120,5 @@
                 </form>
             </div>
         </div>
-
-
-
-
-
     </jsp:body>
-
 </t:pagetemplate>
