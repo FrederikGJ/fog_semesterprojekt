@@ -21,18 +21,14 @@
     </jsp:attribute>
 
     <jsp:body>
-
-
         <div class="text-center mt-5">
-            <form action="/action_page.php" method="get">
-                <label for="fname">First name:</label>
-                <input type="text" id="fname" name="fname"><br><br>
-                <label for="lname">Last name:</label>
-                <input type="text" id="lname" name="lname"><br><br>
-                <button type="submit">Submit</button>
-                <button type="submit" formaction="/action_page2.php">Submit to another page</button>
+            <form action="signup" method="post">
+                <label for="username">Angiv navn:</label>
+                <input type="text" id="username" name="username"><br><br>
+                <label for="password">Angiv kode:</label>
+                <input type="password" id="password" name="password"><br><br>
+                <button type="submit">Opret bruger</button>
             </form>
         </div>
-
     </jsp:body>
 </t:pagetemplate>

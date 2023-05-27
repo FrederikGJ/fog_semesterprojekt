@@ -59,7 +59,6 @@
                                     value="${materials.idMaterials}">Slet
                             </button>
                         </td>
-
                     </tr>
                 </c:forEach>
             </table>
