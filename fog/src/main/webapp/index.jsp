@@ -11,13 +11,13 @@
     <jsp:attribute name="footer">
         Welcome to the frontpage
     </jsp:attribute>
-
     <jsp:body>
-            <div class="container">
 
+            <div class="container">
                 <div class="row">
                         <img src="${pageContext.request.contextPath}/images/carportFrontpagePicture.png"/>
                 </div>
+
                 <div class="row">
                     <br><br>
                 </div>
@@ -32,14 +32,13 @@
                             <input type="submit" value="Log ind" class="frontbutton">
                         </form>
                     </div>
-                    <div class="col-sm-12 col-md-6 col-lg-3 d-flex justify-content-around mb-4">
+                    <div class="col-sm-12 col-md-6 col-lg-3 d-flex justify-content-around mb-5">
                         <form action="signup.jsp">
                             <input type="submit" value="Opret bruger" class="frontbutton">
                         </form>
                     </div>
                 </div>
-
             </div>
-    </jsp:body>
 
+    </jsp:body>
 </t:pagetemplate>

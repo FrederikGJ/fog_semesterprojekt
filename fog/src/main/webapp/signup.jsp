@@ -13,22 +13,38 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-           Opret ny bruger
     </jsp:attribute>
 
     <jsp:attribute name="footer">
-
     </jsp:attribute>
-
     <jsp:body>
-        <div class="text-center mt-5">
-            <form action="signup" method="post">
-                <label for="username">Angiv navn:</label>
-                <input type="text" id="username" name="username"><br><br>
-                <label for="password">Angiv kode:</label>
-                <input type="password" id="password" name="password"><br><br>
-                <button type="submit">Opret bruger</button>
-            </form>
+
+        <div class="container">
+            <div class="row text-center mt-5">
+                <div class="col-12">
+                    <h1>Opret ny bruger</h1>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+            </div>
+
+            <div class="row text-center mt-5">
+                <form action="signup" method="post">
+                    <div class="col-12">
+                        <label style="text-indent: -1em;" for="username">Brugernavn: </label>
+                        <input type="text" id="username" name="username"><br><br>
+                    </div>
+                    <div class="col-12">
+                        <label style="text-indent: -2em;" for="password">Adgangskode:</label>
+                        <input type="password" id="password" name="password"><br><br>
+                    </div>
+                    <div class="col-12">
+                        <input type="submit" value="Opret bruger"/>
+                    </div>
+                </form>
+            </div>
         </div>
+
     </jsp:body>
 </t:pagetemplate>

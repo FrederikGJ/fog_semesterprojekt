@@ -19,7 +19,7 @@
     </head>
     <body>
         <header>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light py-0">
                 <div class="container" style="background-color: #002242">
                     <c:if test="${sessionScope.user == null }">
                         <a class="navbar-brand" href="index.jsp">
@@ -40,7 +40,7 @@
                     <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                         <div class="navbar-nav">
                             <c:if test="${sessionScope.user == null }">
-                                <a style="font-family: Tahoma; font-weight: bold;color: white;"class="nav-item nav-link" href="${pageContext.request.contextPath}/login.jsp">Log ind</a>
+                                <a style="font-family: Tahoma; font-weight: bold;color: white;" class="nav-item nav-link" href="${pageContext.request.contextPath}/login.jsp">Log ind</a>
                             </c:if>
                             <c:if test="${sessionScope.user != null}">
                                 <a style="font-family: Tahoma; font-weight: bold;color: white;" class="nav-item nav-link" href="${pageContext.request.contextPath}/MakeNewRequest">Bestil carport</a>
@@ -54,15 +54,15 @@
             </nav>
         </header>
 
-        <div id="body" class="container mt-4" style="min-height: 400px;">
+        <div id="body" class="container" style="min-height: 480px;">
             <h1><jsp:invoke fragment="header"/></h1>
             <jsp:doBody/>
         </div>
 
     <!-- Footer -->
-        <div class="container mt-5">
-            <hr/>
-            <div class="row mt-3 text-center">
+        <div class="container">
+            <div class="row text-center">
+                <hr/>
                 <div class="col-4">
                     Johannes Fog A/S&copy;
                 </div>
@@ -75,7 +75,6 @@
                     CVR-nr. 16314439
                 </div>
             </div>
-
         </div>
 
 

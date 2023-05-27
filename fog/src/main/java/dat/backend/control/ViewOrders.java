@@ -12,7 +12,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "ViewOrders", value = "/ViewOrders")
+@WebServlet(name = "vieworders", value = "/vieworders")
 public class ViewOrders extends HttpServlet {
     private ConnectionPool connectionPool;
 

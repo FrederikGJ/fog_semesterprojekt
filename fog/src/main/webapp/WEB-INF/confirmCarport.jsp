@@ -5,40 +5,43 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-
     </jsp:attribute>
 
     <jsp:attribute name="footer">
-
     </jsp:attribute>
-
     <jsp:body>
 
-        <table>
-            <tr>
-                <td class="table-header">Carport</td>
-                <td class="table-header"></td>
-            </tr>
+            <div class="container">
+                <div class="row text-center mt-5">
+                    <div class="col-12">
+                        <table style="margin: auto">
+                            <tr>
+                                <th colspan="2" class="table-header">Carport</th>
+                            </tr>
+                            <tr>
+                                <th>Længde</th>
+                                <td>${requestScope.length}</td>
+                            </tr>
+                            <tr>
+                                <th>Bredde</th>
+                                <td>${requestScope.width}</td>
+                            </tr>
+                            <caption>${requestScope.comment}</caption>
+                        </table>
+                    </div>
+                </div>
 
-            <tr>
-                <th>Længde</th>
-                <td>${requestScope.length}</td>
-            </tr>
-            <tr>
-                <th>Bredde</th>
-                <td>${requestScope.width}</td>
-            </tr>
-            <caption>${requestScope.comment}</caption>
-        </table>
-        <br>
-
-        <form action="confirmcarport" method="post">
-            <input type="number" hidden name="length" value="${requestScope.length}">
-            <input type="number" hidden name="width" value="${requestScope.width}">
-            <input type="text" hidden name="comment" value="${requestScope.comment}">
-            <input type="submit" value="Aflæg ordre">
-        </form>
+                <div class="row text-center mt-5">
+                    <div class="col-12">
+                        <form action="confirmcarport" method="post">
+                            <input type="number" hidden name="length" value="${requestScope.length}">
+                            <input type="number" hidden name="width" value="${requestScope.width}">
+                            <input type="text" hidden name="comment" value="${requestScope.comment}">
+                            <input type="submit" value="Aflæg ordre">
+                        </form>
+                    </div>
+                </div>
+            </div>
 
     </jsp:body>
-
 </t:pagetemplate>

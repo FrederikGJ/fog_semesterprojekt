@@ -11,7 +11,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "Welcome", value = "/Welcome")
+@WebServlet(name = "welcome", value = "/welcome")
 public class Welcome extends HttpServlet {
     private ConnectionPool connectionPool;
 

@@ -8,93 +8,104 @@
     </jsp:attribute>
 
     <jsp:attribute name="footer">
-        Se alle ordre
     </jsp:attribute>
-
     <jsp:body>
 
+       <div class="container">
+           <div class="row text-center mt-5">
+               <div class="col-12">
+                    <h1>Se alle ordre</h1>
+               </div>
+           </div>
 
-       <div class="row col-12 mb-4">
-           <h1>Se alle ordre</h1>
+           <div class="row text-center mt-2">
+               <h3>${requestScope.msgDelete}</h3>
+           </div>
+
+            <div class="row mt-5">
+                <div class="col-12">
+                    <h3>Nye forespørgsler: </h3>
+                    <form method="get">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <tr>
+                                    <th>IDorders</th>
+                                    <th>Username</th>
+                                    <th>Status</th>
+                                    <th>Slet</th>
+                                </tr>
+                                <tbody>
+                                    <c:forEach var="orders" items="${sessionScope.newOrders}">
+                                        <tr>
+                                            <td><button class="custom-btn" formaction="makeoffer" formmethod="post" name="idOrders" value="${orders.idOrders}">${orders.idOrders}</button></td>
+                                            <td>${orders.username}</td>
+                                            <td>${orders.orderStatus}</td>
+                                            <td><button class="custom-btn" formaction="deleteorders" formmethod="post" name="idOrdersD" value="${orders.idOrders}">Slet</button></td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-12">
+                    <h3>Igangværende: </h3>
+                    <form method="get">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <tr>
+                                    <th>IDorders</th>
+                                    <th>Username</th>
+                                    <th>Status</th>
+                                    <th>Slet</th>
+                                </tr>
+                                <tbody>
+                                <c:forEach var="orders" items="${sessionScope.pendingOrders}">
+                                    <tr>
+                                        <td><button class="custom-btn" formaction="pendingorders" formmethod="post" name="idOrders" value="${orders.idOrders}">${orders.idOrders}</button></td>
+                                        <td>${orders.username}</td>
+                                        <td>${orders.orderStatus}</td>
+                                        <td><button class="custom-btn" formaction="deleteorders" formmethod="post" name="idOrdersD" value="${orders.idOrders}">Slet</button></td>
+                                    </tr>
+                                </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="row mt-5 mb-5">
+                <div class="col-12">
+                    <h3>Afsluttede: </h3>
+                    <form method="get">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <tr>
+                                    <th>IDorders</th>
+                                    <th>Username</th>
+                                    <th>Status</th>
+                                    <th>Slet</th>
+                                </tr>
+                                <tbody>
+                                    <c:forEach var="orders" items="${sessionScope.finishedOrders}">
+                                        <tr>
+                                            <td><button class="custom-btn" formaction="finishedorders" formmethod="post" name="idOrders" value="${orders.idOrders}">${orders.idOrders}</button></td>
+                                            <td>${orders.username}</td>
+                                            <td>${orders.orderStatus}</td>
+                                            <td><button class="custom-btn" formaction="deleteorders" formmethod="post" name="idOrdersD" value="${orders.idOrders}">Slet</button></td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+            </div>
        </div>
 
-        <div class="row mt-5">
-            <div class="col-12">
-                <h3>Nye forespørgsler: </h3>
-                <form method="get">
-                    <table class="table table-hover">
-                            ${requestScope.msgDelete}
-                        <tr>
-                            <th>IDorders</th>
-                            <th>Username</th>
-                            <th>Status</th>
-                            <th>Slet</th>
-                        </tr>
-                        <tbody>
-                            <c:forEach var="orders" items="${sessionScope.newOrders}">
-                                <tr>
-                                    <td><button formaction="makeoffer" formmethod="post" name="idOrders" value="${orders.idOrders}">${orders.idOrders}</button></td>
-                                    <td>${orders.username}</td>
-                                    <td>${orders.orderStatus}</td>
-                                    <td><button formaction="deleteorders" formmethod="post" name="idOrdersD" value="${orders.idOrders}">Slet</button></td>
-                                </tr>
-                            </c:forEach>
-                        </tbody>
-                    </table>
-                </form>
-            </div>
-
-            <div class="col-12">
-                <h3>Igangværende: </h3>
-                <form method="get">
-                    <table class="table table-hover">
-                        <tr>
-                            <th>IDorders</th>
-                            <th>Username</th>
-                            <th>Status</th>
-                            <th>Slet</th>
-                        </tr>
-                        <tbody>
-                        <c:forEach var="orders" items="${sessionScope.pendingOrders}">
-                            <tr>
-                                <td><button formaction="pendingorders" formmethod="post" name="idOrders" value="${orders.idOrders}">${orders.idOrders}</button></td>
-                                <td>${orders.username}</td>
-                                <td>${orders.orderStatus}</td>
-                                <td><button formaction="deleteorders" formmethod="post" name="idOrdersD" value="${orders.idOrders}">Slet</button></td>
-                            </tr>
-                        </c:forEach>
-                        </tbody>
-                    </table>
-                </form>
-            </div>
-        </div>
-
-        <div class="row mt-5">
-            <div class="col-12">
-                <h3>Afsluttede: </h3>
-                <form method="get">
-                    <table class="table table-hover">
-                        <tr>
-                            <th>IDorders</th>
-                            <th>Username</th>
-                            <th>Status</th>
-                            <th>Slet</th>
-                        </tr>
-                        <tbody>
-                            <c:forEach var="orders" items="${sessionScope.finishedOrders}">
-                                <tr>
-                                    <td><button formaction="finishedorders" formmethod="post" name="idOrders" value="${orders.idOrders}">${orders.idOrders}</button></td>
-                                    <td>${orders.username}</td>
-                                    <td>${orders.orderStatus}</td>
-                                    <td><button formaction="deleteorders" formmethod="post" name="idOrdersD" value="${orders.idOrders}">Slet</button></td>
-                                </tr>
-                            </c:forEach>
-                        </tbody>
-                    </table>
-                </form>
-            </div>
-        </div>
-
     </jsp:body>
-
 </t:pagetemplate>

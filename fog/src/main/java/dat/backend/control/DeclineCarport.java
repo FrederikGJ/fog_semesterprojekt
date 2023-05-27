@@ -34,7 +34,7 @@ public class DeclineCarport extends HttpServlet {
             AdminFacade.deleteOrders(idOrders, connectionPool);
             List<Orders> pendingOrders = AdminFacade.getPendingOrders(connectionPool);
             session.setAttribute("pendingOrders", pendingOrders);
-            request.setAttribute("msgDecline", "Tilbudet er blevet afvist");
+            request.setAttribute("msgDecline", "Tilbuddet er blevet afvist");
 
         } catch (DatabaseException e) {
             request.setAttribute("errormessage", e.getMessage());

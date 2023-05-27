@@ -212,7 +212,8 @@ public class AdminMapper {
                     int width = rs.getInt("width");
                     int totalPrice = rs.getInt("totalprice");
                     String username = rs.getString("username");
-                    orders = new Orders(idOrders, orderStatus, length, width, totalPrice, username);
+                    String comments = rs.getString("comments");
+                    orders = new Orders(idOrders, orderStatus, length, width, totalPrice, username, comments);
                     newOrders.add(orders);
                 }
             }
@@ -238,7 +239,8 @@ public class AdminMapper {
                     int width = rs.getInt("width");
                     int totalPrice = rs.getInt("totalprice");
                     String username = rs.getString("username");
-                    orders = new Orders(idOrders, orderStatus, length, width, totalPrice, username);
+                    String comments = rs.getString("comments");
+                    orders = new Orders(idOrders, orderStatus, length, width, totalPrice, username, comments);
                     pendingOrders.add(orders);
                 }
             }

@@ -9,34 +9,34 @@
     </jsp:attribute>
 
     <jsp:attribute name="footer">
-            
     </jsp:attribute>
-
     <jsp:body>
 
-        <div class="row text-center">
-            <div class="col-12">
-                <h1>Log ind</h1>
-            </div>
-        </div>
-
-        <div class="row mt-4">
-        </div>
-
-        <div class="row text-center mt-5">
-            <form action="login" method="post">
+        <div class="container">
+            <div class="row text-center mt-5">
                 <div class="col-12">
-                    <label class="mr-3" for="username">Username: </label>
-                    <input type="text" id="username" name="username"/>
+                    <h1>Log ind</h1>
                 </div>
-                <div class="col-12 mt-4">
-                    <label for="password">Password: </label>
-                    <input type="password" id="password" name="password"/>
-                </div>
-                <div class="col-12 mt-4">
-                    <input type="submit"  value="Log in"/>
-                </div>
-            </form>
+            </div>
+
+            <div class="row mt-4">
+            </div>
+
+            <div class="row text-center mt-5">
+                <form action="login" method="post">
+                    <div class="col-12">
+                        <label style="text-indent: -1em;" for="username">Brugernavn: </label>
+                        <input type="text" id="username" name="username"/>
+                    </div>
+                    <div class="col-12 mt-4">
+                        <label style="text-indent: -2em;" for="password">Adgangskode: </label>
+                        <input type="password" id="password" name="password"/>
+                    </div>
+                    <div class="col-12 mt-4">
+                        <input type="submit"  value="Log in"/>
+                    </div>
+                </form>
+            </div>
         </div>
 
     </jsp:body>

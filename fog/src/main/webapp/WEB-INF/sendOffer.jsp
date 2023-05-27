@@ -10,15 +10,23 @@
     <jsp:attribute name="footer">
         Tilbuddet er sendt
     </jsp:attribute>
-
     <jsp:body>
 
-            <div class="row justify-content-center">
-                <div class="col-lg-12 text-center">
-                    <h1>Tilbuddet er nu sendt</h1>
+            <div class="container">
+                <div class="row text-center mt-5">
+                    <div class="col-12">
+                        <h1>Tilbuddet er nu sendt</h1>
+                    </div>
+                </div>
+
+                <div class="row text-center mt-5">
+                    <div class="col-12">
+                        <form action="welcome" method="get">
+                            <input type="submit" value="Startside" class="frontbutton">
+                        </form>
+                    </div>
                 </div>
             </div>
 
     </jsp:body>
-
 </t:pagetemplate>

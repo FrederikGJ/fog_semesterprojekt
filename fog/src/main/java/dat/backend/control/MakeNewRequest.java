@@ -7,7 +7,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "MakeNewRequest", value = "/MakeNewRequest")
+@WebServlet(name = "makenewrequest", value = "/makenewrequest")
 public class MakeNewRequest extends HttpServlet {
     private ConnectionPool connectionPool;
 
