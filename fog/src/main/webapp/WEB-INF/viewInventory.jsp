@@ -12,7 +12,6 @@
     <jsp:body>
 
         <div class="container">
-
             <div class="row text-center mt-2">
                 <h3>${requestScope.msgAdd}</h3>
                 <h3>${requestScope.msgDelete}</h3>
