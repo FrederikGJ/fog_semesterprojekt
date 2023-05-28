@@ -14,8 +14,8 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "acceptcarport", value = "/acceptcarport")
-public class AcceptCarport extends HttpServlet {
+@WebServlet(name = "confirmpurchase", value = "/confirmpurchase")
+public class ConfirmPurchase extends HttpServlet {
     private ConnectionPool connectionPool;
 
     @Override

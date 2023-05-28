@@ -70,14 +70,14 @@
                                 <c:forEach var="orders" items="${sessionScope.pendingOrders}">
                                     <c:if test="${sessionScope.user.username == orders.username }">
                                         <tr>
-                                            <form action="acceptcarport" method="post">
+                                            <form action="confirmpurchase" method="post">
                                                 <td>${orders.idOrders}</td>
                                                 <td>${orders.length} cm</td>
                                                 <td>${orders.width} cm</td>
                                                 <td>${orders.comments}</td>
                                                 <td>${orders.totalPrice} kr</td>
                                                 <td>
-                                                    <button class="custom-btn" formaction="acceptcarport" formmethod="post" value="${orders.idOrders}" name="idOrders">Accepter
+                                                    <button class="custom-btn" formaction="confirmpurchase" formmethod="post" value="${orders.idOrders}" name="idOrders">Accepter
                                                     </button>
                                                     <button class="custom-btn mt-2" formaction="declinecarport" formmethod="post" name="idOrdersD"
                                                             value="${orders.idOrders}">Afvis

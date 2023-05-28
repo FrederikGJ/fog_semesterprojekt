@@ -12,7 +12,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "sendoffer", value = "sendoffer")
+@WebServlet(name = "sendoffer", value = "/sendoffer")
 public class SendOffer extends HttpServlet
 {
 
@@ -21,7 +21,6 @@ public class SendOffer extends HttpServlet
     public void init(){
         this.connectionPool = ApplicationStart.getConnectionPool();
     }
-
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
@@ -64,7 +63,5 @@ public class SendOffer extends HttpServlet
             request.setAttribute("errormessage", e.getMessage());
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
-
     }
-
 }

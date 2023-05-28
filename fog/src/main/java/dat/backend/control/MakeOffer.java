@@ -87,7 +87,6 @@ public class MakeOffer extends HttpServlet
             }
             session.setAttribute("salesprice", salesprice);
 
-
             double salespriceTaxFree = salesprice/1.25;
             String salesPriceTaxFreeTwoDecimals = String.format("%.2f", salespriceTaxFree);
             session.setAttribute("salespriceTaxFree", salesPriceTaxFreeTwoDecimals);
@@ -108,7 +107,6 @@ public class MakeOffer extends HttpServlet
             double operationMargin = orders.makeOperationMargin(grossProfit, salespriceTaxFree);
             String operationMarginTwoDecimals = String.format("%.2f", operationMargin);
             session.setAttribute("operationMargin", operationMarginTwoDecimals);
-
             
             request.getRequestDispatcher("WEB-INF/makeOffer.jsp").forward(request, response);
 
@@ -116,8 +114,5 @@ public class MakeOffer extends HttpServlet
             request.setAttribute("errormessage", e.getMessage());
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
-
     }
-
-
 }
