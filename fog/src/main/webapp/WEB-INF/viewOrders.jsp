@@ -29,7 +29,7 @@
                         <div class="table-responsive">
                             <table>
                                 <tr>
-                                    <th>OrdreID</th>
+                                    <th>Ordre ID</th>
                                     <th>Længde</th>
                                     <th>Bredde</th>
                                     <th>Bemærkninger</th>
@@ -39,10 +39,10 @@
                                     <c:if test="${sessionScope.user.username == orders.username }">
                                         <tr>
                                             <td>${orders.idOrders}</td>
-                                            <td>${orders.length}</td>
-                                            <td>${orders.width}</td>
+                                            <td>${orders.length} cm</td>
+                                            <td>${orders.width} cm</td>
                                             <td>${orders.comments}</td>
-                                            <td>Ikke beregnet</td>
+                                            <td>Afventer tilbud</td>
                                         </tr>
                                     </c:if>
                                 </c:forEach>
@@ -59,7 +59,7 @@
                         <div class="table-responsive">
                             <table>
                                 <tr>
-                                    <th>OrdreID</th>
+                                    <th>Ordre ID</th>
                                     <th>Længde</th>
                                     <th>Bredde</th>
                                     <th>Bemærkninger</th>
@@ -72,10 +72,10 @@
                                         <tr>
                                             <form action="acceptcarport" method="post">
                                                 <td>${orders.idOrders}</td>
-                                                <td>${orders.length}</td>
-                                                <td>${orders.width}</td>
+                                                <td>${orders.length} cm</td>
+                                                <td>${orders.width} cm</td>
                                                 <td>${orders.comments}</td>
-                                                <td>${orders.totalPrice}</td>
+                                                <td>${orders.totalPrice} kr</td>
                                                 <td>
                                                     <button class="custom-btn" formaction="acceptcarport" formmethod="post" value="${orders.idOrders}" name="idOrders">
                                                             Accepter
@@ -102,7 +102,7 @@
                         <div class="table-responsive">
                             <table>
                                 <tr>
-                                    <th>OrdreID</th>
+                                    <th>Ordre ID</th>
                                     <th>Længde</th>
                                     <th>Bredde</th>
                                     <th>Bemærkninger</th>
@@ -113,15 +113,11 @@
                                     <c:if test="${sessionScope.user.username == orders.username }">
                                         <tr>
                                             <td>${orders.idOrders}</td>
-                                            <td>${orders.length}</td>
-                                            <td>${orders.width}</td>
+                                            <td>${orders.length} cm</td>
+                                            <td>${orders.width} cm</td>
                                             <td>${orders.comments}</td>
-                                            <td>${orders.totalPrice}</td>
-                                            <td>
-                                                <form action="#">
-                                                    <input type="submit" value="Se styklisten">
-                                                </form>
-                                            </td>
+                                            <td>${orders.totalPrice} kr</td>
+                                            <td><button class="custom-btn" formaction="viewbom" formmethod="post" name="idOrders" value="${orders.idOrders}">Se stykliste</button></td>
                                         </tr>
                                     </c:if>
                                 </c:forEach>

@@ -29,8 +29,8 @@
                         <div class="table-responsive">
                             <table class="table table-hover">
                                 <tr>
-                                    <th>IDorders</th>
-                                    <th>Username</th>
+                                    <th>Ordre ID</th>
+                                    <th>Brugernavn</th>
                                     <th>Status</th>
                                     <th>Slet</th>
                                 </tr>
@@ -57,8 +57,8 @@
                         <div class="table-responsive">
                             <table class="table table-hover">
                                 <tr>
-                                    <th>IDorders</th>
-                                    <th>Username</th>
+                                    <th>Ordres ID</th>
+                                    <th>brugernavn</th>
                                     <th>Status</th>
                                     <th>Slet</th>
                                 </tr>
@@ -85,8 +85,8 @@
                         <div class="table-responsive">
                             <table class="table table-hover">
                                 <tr>
-                                    <th>IDorders</th>
-                                    <th>Username</th>
+                                    <th>Orders ID</th>
+                                    <th>Brugernavn</th>
                                     <th>Status</th>
                                     <th>Slet</th>
                                 </tr>

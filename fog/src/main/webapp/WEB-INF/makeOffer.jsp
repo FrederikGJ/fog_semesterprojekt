@@ -21,11 +21,11 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th scope="row">IDorders</th>
+                                    <th scope="row">Ordre ID</th>
                                     <td>${sessionScope.idOrders}</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Username</th>
+                                    <th scope="row">Brugernavn</th>
                                     <td>${sessionScope.ongoingOrder.username}</td>
                                 </tr>
                                 <tr>
@@ -64,9 +64,9 @@
                                 </thead>
                                 <thead>
                                     <tr>
-                                        <th scope="col">Quantity</th>
-                                        <th scope="col">Description</th>
-                                        <th scope="col">ID Materials</th>
+                                        <th scope="col">Antal</th>
+                                        <th scope="col">Beskrivelse</th>
+                                        <th scope="col">Vare ID</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -81,7 +81,7 @@
                                         <thead>
                                         </thead>
                                         <th scope="row" colspan="2">Samlet kostpris</th>
-                                        <td>${sessionScope.totalBomPrice}</td>
+                                        <td>${sessionScope.totalBomPrice} kr</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -101,25 +101,25 @@
                                 <tbody>
                                     <tr>
                                         <th scope="row">Dækningsgrad</th>
-                                        <td>${sessionScope.operationMargin}</td>
+                                        <td>${sessionScope.operationMargin} %</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Pris uden moms</th>
-                                        <td>${sessionScope.salespriceTaxFree}</td>
+                                        <td>${sessionScope.salespriceTaxFree} kr</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Pris med moms</th>
-                                        <td>${sessionScope.salesprice}</td>
+                                        <td>${sessionScope.salesprice} kr</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Prisændring</th>
-                                        <td>${sessionScope.priceChange}</td>
+                                        <td>${sessionScope.priceChange} kr</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Prisforslag ved salg</th>
                                         <td>
                                             <label for="${sessionScope.salesprice}"></label>
-                                            <input type="hidden" name="idOrders" value="${sessionScope.idOrders}"/>
+                                            <input type="hidden" name="idOrders" value="${sessionScope.idOrders}" />
                                             <input class="mt-2" type="number" class="form-control text-center" id="${sessionScope.salesprice}" name="salesprice" value="${sessionScope.salesprice}"/>
                                             <button class="custom-btn mt-2" type="submit" formaction="makeoffer"/>Opdater</button>
                                         </td>

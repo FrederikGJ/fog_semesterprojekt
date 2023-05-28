@@ -28,11 +28,11 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <th scope="row">IDorders</th>
+                                    <th scope="row">Ordre ID</th>
                                     <td>${sessionScope.idOrders}</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Username</th>
+                                    <th scope="row">Brugernavn</th>
                                     <td>${sessionScope.pendingOrder.username}</td>
                                 </tr>
                                 <tr>
@@ -48,11 +48,11 @@
                                 <tbody>
                                 <tr>
                                     <th scope="row">Længde</th>
-                                    <td>${sessionScope.pendingOrder.length}</td>
+                                    <td>${sessionScope.pendingOrder.length} cm</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Bredde</th>
-                                    <td>${sessionScope.pendingOrder.width}</td>
+                                    <td>${sessionScope.pendingOrder.width} cm</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -68,9 +68,9 @@
                                 </thead>
                                 <thead>
                                 <tr>
-                                    <th scope="col">Quantity</th>
-                                    <th scope="col">Description</th>
-                                    <th scope="col">ID Materials</th>
+                                    <th scope="col">Antal</th>
+                                    <th scope="col">Beskrivelse</th>
+                                    <th scope="col">Vare ID</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -85,7 +85,7 @@
                                         <thead>
                                         </thead>
                                         <th scope="row" colspan="2">Samlet kostpris</th>
-                                        <td>${sessionScope.totalBomPrice}</td>
+                                        <td>${sessionScope.totalBomPrice} kr</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -104,19 +104,19 @@
                             <tbody>
                                 <tr>
                                     <th scope="row">Dækningsgrad</th>
-                                    <td>${sessionScope.operationMargin}</td>
+                                    <td>${sessionScope.operationMargin} %</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Pris uden moms</th>
-                                    <td>${sessionScope.salespriceTaxFree}</td>
+                                    <td>${sessionScope.salespriceTaxFree} kr</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Pris med moms</th>
-                                    <td>${sessionScope.pendingOrder.totalPrice}</td>
+                                    <td>${sessionScope.pendingOrder.totalPrice} kr</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Prisændring</th>
-                                    <td>${sessionScope.priceChange}</td>
+                                    <td>${sessionScope.priceChange} kr</td>
                                 </tr>
                             </tbody>
                             <thead class="thead-light">
@@ -127,7 +127,7 @@
                             <tbody>
                                 <tr>
                                     <th scope="row">Sendte salgspris</th>
-                                    <td>${sessionScope.pendingOrder.totalPrice}</td>
+                                    <td>${sessionScope.pendingOrder.totalPrice} kr</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Bemærkninger</th>

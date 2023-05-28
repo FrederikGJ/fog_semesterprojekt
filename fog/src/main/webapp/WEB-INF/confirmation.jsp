@@ -15,6 +15,7 @@
                 <div class="row text-center mt-5">
                     <div class="col-12">
                          <h1>Din carport er nu bestilt!</h1>
+                        <h2> Du kan følge med på din bestilling på siden 'Mine bestillinger'</h2>
                     </div>
                 </div>
 

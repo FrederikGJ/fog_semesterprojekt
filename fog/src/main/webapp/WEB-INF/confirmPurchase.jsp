@@ -13,6 +13,7 @@
     <jsp:body>
 
         <h1>Din carport er nu købt!</h1>
+        <h2>Se din færdige ordre på siden 'Mine bestillinger'</h2>
 
         <form action="welcome.jsp"  method="get">
             <input type="submit" value="Startside" class="frontbutton">

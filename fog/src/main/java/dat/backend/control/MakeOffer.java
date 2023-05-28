@@ -17,6 +17,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Double.parseDouble;
+
 @WebServlet(name = "makeoffer", value = "/makeoffer")
 public class MakeOffer extends HttpServlet
 {
