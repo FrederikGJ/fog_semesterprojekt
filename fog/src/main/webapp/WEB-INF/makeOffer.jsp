@@ -128,7 +128,7 @@
                                         <th scope="row">Bemærkninger</th>
                                         <td>
                                             <label for="${requestScope.adminComment}"></label>
-                                            <input type="text" placeholder="Tilføj bemærkning" name="adminComment"/>
+                                            <input type="text" value="Fog bemærkninger: " name="adminComment"/>
                                         </td>
                                     </tr>
                                     <tr>
