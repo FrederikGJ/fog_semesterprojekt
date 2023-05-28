@@ -60,18 +60,18 @@
         </div>
 
     <!-- Footer -->
-        <div class="container">
-            <div class="row text-center">
+        <div class="container mb-0">
+            <div class="row text-center mb-0">
                 <hr/>
-                <div class="col-4">
+                <div class="col-4 mb-0">
                     Johannes Fog A/S&copy;
                 </div>
-                <div class="col-4">
+                <div class="col-4 mb-0">
                     <p>Firskovvej 20 <br>
                         2800 Lyngby
                     </p>
                 </div>
-                <div class="col-4">
+                <div class="col-4 mb-0">
                     CVR-nr. 16314439
                 </div>
             </div>
