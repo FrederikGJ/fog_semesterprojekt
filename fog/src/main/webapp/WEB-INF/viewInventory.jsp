@@ -58,7 +58,7 @@
                 </div>
             </div>
 
-            <div class="row text-center mt-5">
+            <div class="row text-center mt-5 mb-5">
                 <div class="col-sm-12 col-md-12 col-lg-12">
                     <form method="post">
                         <div class="table-responsive text-nowrap table-fixed">
@@ -82,7 +82,7 @@
                                             <td><input style="width: 100px;" type="text" name="descriptionE" id="descriptionE" value="${materials.description}"></td>
                                             <td><input style="width: 50px;" type="number" name="lengthE" id="lengthE" value="${materials.length}"></td>
                                             <td>
-                                                <button class="custom-btn" type="submit" name="idMaterialsE" value="${materials.idMaterials}">Gem ændring
+                                                <button class="custom-btn" type="submit" name="idMaterialsE" value="${materials.idMaterials}">Gem
                                                 </button>
                                                 <button class="custom-btn mt-2" formaction="deleteinventory" formmethod="post" name="idMaterialsD"
                                                         value="${materials.idMaterials}">Slet

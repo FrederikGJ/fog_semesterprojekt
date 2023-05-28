@@ -27,7 +27,7 @@
                         </a>
                     </c:if>
                     <c:if test="${sessionScope.user != null }">
-                        <a class="navbar-brand" href="${pageContext.request.contextPath}/Welcome">
+                        <a class="navbar-brand" href="${pageContext.request.contextPath}/welcome">
                             <img src="${pageContext.request.contextPath}/images/fogLogo.png" width="100px;" class="img-fluid"/>
                         </a>
                     </c:if>
@@ -43,8 +43,8 @@
                                 <a style="font-family: Tahoma; font-weight: bold;color: white;" class="nav-item nav-link" href="${pageContext.request.contextPath}/login.jsp">Log ind</a>
                             </c:if>
                             <c:if test="${sessionScope.user != null}">
-                                <a style="font-family: Tahoma; font-weight: bold;color: white;" class="nav-item nav-link" href="${pageContext.request.contextPath}/MakeNewRequest">Bestil carport</a>
-                                <a style="font-family: Tahoma; font-weight: bold;color: white;"class="nav-item nav-link" href="${pageContext.request.contextPath}/ViewOrders">Mine bestillinger</a>
+                                <a style="font-family: Tahoma; font-weight: bold;color: white;" class="nav-item nav-link" href="${pageContext.request.contextPath}/makenewrequest">Bestil carport</a>
+                                <a style="font-family: Tahoma; font-weight: bold;color: white;"class="nav-item nav-link" href="${pageContext.request.contextPath}/vieworders">Mine bestillinger</a>
                                 <a style="font-family: Tahoma; font-weight: bold;color: white;"class="nav-item nav-link" href="${pageContext.request.contextPath}/logout">Log ud</a>
                                 <p style="font-family: Tahoma; font-weight: bold;color: white;"class="nav-item nav-link" class="nav-item nav-link">${sessionScope.user.username}</p>
                             </c:if>
