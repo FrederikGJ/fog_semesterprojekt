@@ -28,7 +28,8 @@ public class FinishedOrders extends HttpServlet
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-
+        // You shouldn't end up here with a GET-request, thus you get sent back to frontpage
+        response.sendRedirect("index.jsp");
     }
 
     @Override
@@ -99,12 +100,11 @@ public class FinishedOrders extends HttpServlet
             String operationMarginTwoDecimals = String.format("%.2f", operationMargin);
             session.setAttribute("operationMargin", operationMarginTwoDecimals);
 
-
             request.getRequestDispatcher("WEB-INF/finishedOrders.jsp").forward(request, response);
 
         }catch (DatabaseException e){
-            e.printStackTrace();
+            request.setAttribute("errormessage", e.getMessage());
+            request.getRequestDispatcher("error.jsp").forward(request, response);
         }
-
     }
 }

@@ -17,27 +17,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "pendingorders", value = "/pendingorders")
-public class PendingOrders extends HttpServlet
-{
+public class PendingOrders extends HttpServlet {
     private ConnectionPool connectionPool;
 
-    public void init(){
+    public void init() {
         this.connectionPool = ApplicationStart.getConnectionPool();
     }
 
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // You shouldn't end up here with a GET-request, thus you get sent back to frontpage
+        response.sendRedirect("index.jsp");
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         HttpSession session = request.getSession();
         request.setCharacterEncoding("UTF-8");
 
-        try{
+        try {
             int idOrders = Integer.parseInt(request.getParameter("idOrders"));
             session.setAttribute("idOrders", idOrders);
 
@@ -49,7 +49,7 @@ public class PendingOrders extends HttpServlet
             CalculateBOM calBom = new CalculateBOM();
 
             //if the current order already exits in the database, it will not be added again.
-            if(!listOfIdOrders.contains(idOrders)){
+            if (!listOfIdOrders.contains(idOrders)) {
                 calBom.createCarportBOM(pendingOrder, pendingOrder.getLength(), pendingOrder.getWidth(), connectionPool);
                 ArrayList<BOM> bomArrayList = BomFacade.getBOMById(idOrders, connectionPool);
                 session.setAttribute("bomArrayList", bomArrayList);
@@ -61,8 +61,8 @@ public class PendingOrders extends HttpServlet
 
             //calculates the totalBomPrice for existing order
             double totalBomPrice = 0;
-            for (BOM bom : bomArrayList){
-                if(idOrders == bom.getIdOrders()){
+            for (BOM bom : bomArrayList) {
+                if (idOrders == bom.getIdOrders()) {
                     totalBomPrice = calBom.bomPrice(pendingOrder, idOrders);
                     session.setAttribute("totalBomPrice", totalBomPrice);
                 }
@@ -71,13 +71,13 @@ public class PendingOrders extends HttpServlet
             //autoOperationMargin = automatisk dækningsgrad
             double autoOperationMargin = 39.02;
 
-            double autoSalesprice = Math.round(totalBomPrice/(1-(autoOperationMargin/100))*1.25);
+            double autoSalesprice = Math.round(totalBomPrice / (1 - (autoOperationMargin / 100)) * 1.25);
             session.setAttribute("autoSalesprice", autoSalesprice);
 
             //salesprice = the offered price
             double salesprice = pendingOrder.getTotalPrice();
 
-            double salespriceTaxFree = salesprice/1.25;
+            double salespriceTaxFree = salesprice / 1.25;
             String salesPriceTaxFreeTwoDecimals = String.format("%.2f", salespriceTaxFree);
             session.setAttribute("salespriceTaxFree", salesPriceTaxFreeTwoDecimals);
 
@@ -101,8 +101,9 @@ public class PendingOrders extends HttpServlet
 
             request.getRequestDispatcher("WEB-INF/pendingOrders.jsp").forward(request, response);
 
-        }catch (DatabaseException e){
-            e.printStackTrace();
+        } catch (DatabaseException e) {
+            request.setAttribute("errormessage", e.getMessage());
+            request.getRequestDispatcher("error.jsp").forward(request, response);
         }
 
     }

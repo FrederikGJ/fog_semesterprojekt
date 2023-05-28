@@ -25,17 +25,13 @@ public class Welcome extends HttpServlet {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
 
-
         if (user.getRole().equalsIgnoreCase("admin")) {
             session.setAttribute("admin", true); // adding admin object to session scope
             request.getRequestDispatcher("WEB-INF/welcomeAdmin.jsp").forward(request, response);
         }
         request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request, response);
-
-
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
     }
 }

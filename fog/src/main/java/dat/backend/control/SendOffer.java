@@ -12,7 +12,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "sendoffer", value = "/sendoffer")
+@WebServlet(name = "sendoffer", value = "sendoffer")
 public class SendOffer extends HttpServlet
 {
 
@@ -25,7 +25,8 @@ public class SendOffer extends HttpServlet
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-
+        // You shouldn't end up here with a GET-request, thus you get sent back to frontpage
+        response.sendRedirect("index.jsp");
     }
 
     @Override
@@ -35,7 +36,6 @@ public class SendOffer extends HttpServlet
         request.setCharacterEncoding("UTF-8");
 
         try{
-
             int idOrders = (int) session.getAttribute("idOrders");
 
             Orders ongoingOrder = AdminFacade.getOrdersById(idOrders, "new", connectionPool);
@@ -46,10 +46,8 @@ public class SendOffer extends HttpServlet
             session.setAttribute("newOrderStatus", newOrderStatus);
             newOrderStatus = "Pending";
 
-
             double salesprice = (double) session.getAttribute("salesprice");
             session.setAttribute("salesprice", salesprice);
-
 
             String customerComment = ongoingOrder.getComments();
 
@@ -59,7 +57,6 @@ public class SendOffer extends HttpServlet
             String totalComments = customerComment + ". " + adminComment;
 
             OrdersFacade.updateOrder(newOrderStatus, salesprice, totalComments, idOrders, connectionPool);
-
 
             request.getRequestDispatcher("WEB-INF/sendOffer.jsp").forward(request, response);
 

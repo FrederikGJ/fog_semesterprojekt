@@ -25,7 +25,8 @@ public class AcceptCarport extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        // You shouldn't end up here with a GET-request, thus you get sent back to frontpage
+        response.sendRedirect("index.jsp");
     }
 
     @Override
@@ -34,7 +35,7 @@ public class AcceptCarport extends HttpServlet {
         HttpSession session = request.getSession();
         request.setCharacterEncoding("UTF-8");
 
-        try{
+        try {
 
             int idOrders = Integer.parseInt(request.getParameter("idOrders"));
 
@@ -45,17 +46,13 @@ public class AcceptCarport extends HttpServlet {
             session.setAttribute("newOrderStatus", newOrderStatus);
             newOrderStatus = "Finished";
 
-            OrdersFacade.updateOrder(newOrderStatus,pendingOrder.getTotalPrice(), pendingOrder.getComments(), pendingOrder.getIdOrders(), connectionPool);
+            OrdersFacade.updateOrder(newOrderStatus, pendingOrder.getTotalPrice(), pendingOrder.getComments(), pendingOrder.getIdOrders(), connectionPool);
 
             request.getRequestDispatcher("WEB-INF/confirmPurchase.jsp").forward(request, response);
 
-        }catch (DatabaseException e) {
-           request.setAttribute("errormessage", e.getMessage());
+        } catch (DatabaseException e) {
+            request.setAttribute("errormessage", e.getMessage());
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
     }
-
-
-
-    }
-
+}

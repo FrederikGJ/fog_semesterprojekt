@@ -23,14 +23,14 @@ public class ViewRequests extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-     response.sendRedirect("index.jsp");
+        // You shouldn't end up here with a GET-request, thus you get sent back to frontpage
+        response.sendRedirect("index.jsp");
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         response.setContentType("text/html");
         HttpSession session = request.getSession();
-
 
         try{
 
@@ -42,7 +42,6 @@ public class ViewRequests extends HttpServlet{
 
             List<Orders> finishedOrders = AdminFacade.getFinishedOrders(connectionPool);
             session.setAttribute("finishedOrders", finishedOrders);
-
 
             request.getRequestDispatcher("WEB-INF/viewRequests.jsp").forward(request, response);
 

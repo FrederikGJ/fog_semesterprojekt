@@ -24,9 +24,10 @@ public class ViewBOM extends HttpServlet {
     public void init() {
         this.connectionPool = ApplicationStart.getConnectionPool();
     }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-// You shouldn't end up here with a GET-request, thus you get sent back to frontpage
+        // You shouldn't end up here with a GET-request, thus you get sent back to frontpage
         response.sendRedirect("index.jsp");
     }
 
@@ -37,7 +38,7 @@ public class ViewBOM extends HttpServlet {
         int idOrders = Integer.parseInt(request.getParameter("idOrders"));
         session.setAttribute("idOrders", idOrders);
 
-        try{
+        try {
             Orders finishedOrder = AdminFacade.getOrdersById(idOrders, "finished", connectionPool);
             session.setAttribute("finishedOrder", finishedOrder);
 

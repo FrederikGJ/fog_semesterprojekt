@@ -26,7 +26,8 @@ public class ConfirmCarport extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        // You shouldn't end up here with a GET-request, thus you get sent back to frontpage
+        response.sendRedirect("index.jsp");
     }
 
     @Override
@@ -50,7 +51,8 @@ public class ConfirmCarport extends HttpServlet {
             calBom.createCarportBOM(order, length, width, connectionPool);
 
         } catch (DatabaseException e) {
-            e.printStackTrace();
+            request.setAttribute("errormessage", e.getMessage());
+            request.getRequestDispatcher("error.jsp").forward(request, response);
         }
     }
 }
