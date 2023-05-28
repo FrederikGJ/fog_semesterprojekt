@@ -41,11 +41,11 @@
                             <tbody>
                                 <tr>
                                     <th scope="row">Længde</th>
-                                    <td>${sessionScope.ongoingOrder.length}</td>
+                                    <td>${sessionScope.ongoingOrder.length} cm</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Bredde</th>
-                                    <td>${sessionScope.ongoingOrder.width}</td>
+                                    <td>${sessionScope.ongoingOrder.width} cm</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Bemærkninger</th>
@@ -128,7 +128,7 @@
                                         <th scope="row">Bemærkninger</th>
                                         <td>
                                             <label for="${requestScope.adminComment}"></label>
-                                            <input type="text" value="Fog bemærkninger: " name="adminComment"/>
+                                            <input type="text" placeholder="Tilføj bemærkning" name="adminComment"/>
                                         </td>
                                     </tr>
                                     <tr>

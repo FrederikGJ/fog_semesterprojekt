@@ -23,27 +23,27 @@
                     <div class="col-12">
                         <label for="length">Vælg carportens længde:</label>
                         <select name="length" id="length">
-                            <option value="400">400cm</option>
-                            <option value="450">450cm</option>
-                            <option value="500">500cm</option>
-                            <option value="550">550cm</option>
-                            <option value="600">600cm</option>
+                            <option value="400">400 cm</option>
+                            <option value="450">450 cm</option>
+                            <option value="500">500 cm</option>
+                            <option value="550">550 cm</option>
+                            <option value="600">600 cm</option>
                         </select>
                     </div>
                     <div class="col-12 mt-4">
                         <label for="width">Vælg carportens bredde:</label>
                         <select name="width" id="width">
-                            <option value="300">300cm</option>
-                            <option value="350">350cm</option>
-                            <option value="400">400cm</option>
-                            <option value="450">450cm</option>
-                            <option value="500">500cm</option>
-                            <option value="550">550cm</option>
-                            <option value="600">600cm</option>
+                            <option value="300">300 cm</option>
+                            <option value="350">350 cm</option>
+                            <option value="400">400 cm</option>
+                            <option value="450">450 cm</option>
+                            <option value="500">500 cm</option>
+                            <option value="550">550 cm</option>
+                            <option value="600">600 cm</option>
                         </select>
                     </div>
                     <div class="col-12 mt-4">
-                        <input type="text" value="Bemærkninger:" name="comment">
+                        <input type="text" placeholder="Tilføj bemærkning" name="comment">
                     </div>
                     <div class="col-12 mt-4">
                         <input type="submit" value="Gå til kassen">

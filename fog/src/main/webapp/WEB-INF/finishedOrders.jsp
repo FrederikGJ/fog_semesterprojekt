@@ -28,7 +28,7 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <th scope="row">IDorders</th>
+                                        <th scope="row">Ordre ID</th>
                                         <td>${sessionScope.idOrders}</td>
                                     </tr>
                                     <tr>
@@ -48,11 +48,11 @@
                                 <tbody>
                                     <tr>
                                         <th scope="row">Længde</th>
-                                        <td>${sessionScope.finishedOrder.length}</td>
+                                        <td>${sessionScope.finishedOrder.length} cm</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Bredde</th>
-                                        <td>${sessionScope.finishedOrder.width}</td>
+                                        <td>${sessionScope.finishedOrder.width} cm</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -104,7 +104,7 @@
                             <tbody>
                                 <tr>
                                     <th scope="row">Dækningsgrad</th>
-                                    <td>${sessionScope.operationMargin} </td>
+                                    <td>${sessionScope.operationMargin} %</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Pris uden moms</th>

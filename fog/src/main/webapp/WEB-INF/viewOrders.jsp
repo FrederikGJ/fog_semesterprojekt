@@ -77,11 +77,10 @@
                                                 <td>${orders.comments}</td>
                                                 <td>${orders.totalPrice} kr</td>
                                                 <td>
-                                                    <button class="custom-btn" formaction="acceptcarport" formmethod="post" value="${orders.idOrders}" name="idOrders">
-                                                            Accepter
+                                                    <button class="custom-btn" formaction="acceptcarport" formmethod="post" value="${orders.idOrders}" name="idOrders">Accepter
                                                     </button>
                                                     <button class="custom-btn mt-2" formaction="declinecarport" formmethod="post" name="idOrdersD"
-                                                            value="${orders.idOrders}"> Afvis
+                                                            value="${orders.idOrders}">Afvis
                                                     </button>
                                                 </td>
                                             </form>

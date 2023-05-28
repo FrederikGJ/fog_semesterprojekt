@@ -32,7 +32,7 @@
                                     <th>Ordre ID</th>
                                     <th>Brugernavn</th>
                                     <th>Status</th>
-                                    <th>Slet</th>
+                                    <th>Valg</th>
                                 </tr>
                                 <tbody>
                                     <c:forEach var="orders" items="${sessionScope.newOrders}">
@@ -58,9 +58,9 @@
                             <table class="table table-hover">
                                 <tr>
                                     <th>Ordres ID</th>
-                                    <th>brugernavn</th>
+                                    <th>Brugernavn</th>
                                     <th>Status</th>
-                                    <th>Slet</th>
+                                    <th>Valg</th>
                                 </tr>
                                 <tbody>
                                 <c:forEach var="orders" items="${sessionScope.pendingOrders}">
@@ -88,7 +88,7 @@
                                     <th>Orders ID</th>
                                     <th>Brugernavn</th>
                                     <th>Status</th>
-                                    <th>Slet</th>
+                                    <th>Valg</th>
                                 </tr>
                                 <tbody>
                                     <c:forEach var="orders" items="${sessionScope.finishedOrders}">

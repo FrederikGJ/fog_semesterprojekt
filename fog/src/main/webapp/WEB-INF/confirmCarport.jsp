@@ -20,13 +20,14 @@
                             </tr>
                             <tr>
                                 <th>Længde</th>
-                                <td>${requestScope.length}</td>
+                                <td>${requestScope.length} cm</td>
                             </tr>
                             <tr>
                                 <th>Bredde</th>
-                                <td>${requestScope.width}</td>
+                                <td>${requestScope.width} cm</td>
                             </tr>
-                            <caption>${requestScope.comment}</caption>
+                            <th>Bemærkninger</th>
+                            <td>${requestScope.comment}</td>
                         </table>
                     </div>
                 </div>
