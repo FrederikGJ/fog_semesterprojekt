@@ -76,7 +76,7 @@
                                         <form action="editinventory" method="post">
                                             <td>${materials.idMaterials}</td>
                                             <td><input style="width: 100px;" type="text" name="nameE" id="nameE" value="${materials.name}"></td>
-                                            <td><input style="width: 70px;" type="number" name="unitPriceE" id="unitPriceE" value="${materials.unitPrice} "> kr</td>
+                                            <td><input style="width: 70px;" type="number" name="unitPriceE" id="unitPriceE" value="${materials.unitPrice}"> kr</td>
                                             <td><input style="width: 50px;" type="text" name="unitE" id="unitE" value="${materials.unit}"> stk</td>
                                             <td><input style="width: 100px;" type="text" name="descriptionE" id="descriptionE" value="${materials.description}"></td>
                                             <td><input style="width: 50px;" type="number" name="lengthE" id="lengthE" value="${materials.length}"> cm</td>
