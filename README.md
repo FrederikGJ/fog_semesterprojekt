@@ -1,2 +1,2 @@
 # fog_semesterprojekt
-Semesterprojekt anden semester datamatiker uddannelsen.
+Semesterprojekt 2. semester datamatiker uddannelsen.
