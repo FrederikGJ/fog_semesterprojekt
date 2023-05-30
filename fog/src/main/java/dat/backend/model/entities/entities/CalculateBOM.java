@@ -53,9 +53,6 @@ public class CalculateBOM {
         try {
             allBOM = BomFacade.readBOM(connectionPool);
 
-            //idMaterials skal bruges til at koble på hver bom i allbom
-            //hvordan gør jeg det?????
-
             allMaterials = AdminFacade.getAllMaterials(connectionPool);
 
             for(BOM bom : allBOM){
