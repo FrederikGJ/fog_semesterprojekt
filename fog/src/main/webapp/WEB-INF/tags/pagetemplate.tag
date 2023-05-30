@@ -39,10 +39,16 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                         <div class="navbar-nav">
+                            <c:if test="${sessionScope.admin == true}">
+                                <a style="font-family: Tahoma; font-weight: bold;color: white;" class="nav-item nav-link" href="${pageContext.request.contextPath}/viewinventory">Se alt i inventar</a>
+                                <a style="font-family: Tahoma; font-weight: bold;color: white;" class="nav-item nav-link" href="${pageContext.request.contextPath}/viewrequests">Se alle ordre</a>
+                                <a style="font-family: Tahoma; font-weight: bold;color: white;"class="nav-item nav-link" href="${pageContext.request.contextPath}/logout">Log ud</a>
+                                <p style="font-family: Tahoma; font-weight: bold;color: white;"class="nav-item nav-link" class="nav-item nav-link">${sessionScope.user.username}
+                            </c:if>
                             <c:if test="${sessionScope.user == null }">
                                 <a style="font-family: Tahoma; font-weight: bold;color: white;" class="nav-item nav-link" href="${pageContext.request.contextPath}/login.jsp">Log ind</a>
                             </c:if>
-                            <c:if test="${sessionScope.user != null}">
+                            <c:if test="${sessionScope.admin == false}">
                                 <a style="font-family: Tahoma; font-weight: bold;color: white;" class="nav-item nav-link" href="${pageContext.request.contextPath}/makenewrequest">Bestil carport</a>
                                 <a style="font-family: Tahoma; font-weight: bold;color: white;"class="nav-item nav-link" href="${pageContext.request.contextPath}/vieworders">Mine bestillinger</a>
                                 <a style="font-family: Tahoma; font-weight: bold;color: white;"class="nav-item nav-link" href="${pageContext.request.contextPath}/logout">Log ud</a>

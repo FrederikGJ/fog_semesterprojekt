@@ -38,7 +38,10 @@ public class Login extends HttpServlet {
         try {
             User user = UserFacade.login(username, password, connectionPool);
             session = request.getSession();
-            session.setAttribute("user", user); // adding user object to session scope
+            session.setAttribute("user", user);
+            session.setAttribute("admin", false);
+
+            // adding user object to session scope
 
             if (user.getRole().equalsIgnoreCase("admin")) {
                 session.setAttribute("admin", true); // adding admin object to session scope
