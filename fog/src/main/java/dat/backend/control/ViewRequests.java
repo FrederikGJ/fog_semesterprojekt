@@ -32,7 +32,6 @@ public class ViewRequests extends HttpServlet{
         HttpSession session = request.getSession();
 
         try{
-
             List<Orders> newOrders = AdminFacade.getNewOrders(connectionPool);
             session.setAttribute("newOrders", newOrders);
 
@@ -49,5 +48,4 @@ public class ViewRequests extends HttpServlet{
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
     }
-
 }

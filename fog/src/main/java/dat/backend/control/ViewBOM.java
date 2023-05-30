@@ -39,13 +39,11 @@ public class ViewBOM extends HttpServlet
         HttpSession session = request.getSession();
 
         try{
-
             int idOrders  = Integer.parseInt(request.getParameter("idOrders"));
             session.setAttribute("idOrders", idOrders);
 
             Orders ongoingOrder = AdminFacade.getOrdersById(idOrders, "new", connectionPool);
             session.setAttribute("ongoingOrder", ongoingOrder);
-
 
             List<Integer> listOfIdOrders = BomFacade.getIdOrdersFromBom(connectionPool);
 
@@ -70,15 +68,11 @@ public class ViewBOM extends HttpServlet
                     session.setAttribute("totalBomPrice", totalBomPrice);
                 }
             }
-
             request.getRequestDispatcher("WEB-INF/viewBOM.jsp").forward(request, response);
 
         } catch(DatabaseException e){
             request.setAttribute("errormessage", e.getMessage());
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
-
     }
-
-
 }

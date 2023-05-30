@@ -81,7 +81,6 @@ public class Orders {
     }
 
 
-
     //dækningsbidrag
     public double makeGrossProfit(double salespriceTaxFree, double totalBomPrice)
     {
@@ -97,6 +96,4 @@ public class Orders {
         double operationMargin = grossProfit * 100 / salespriceTaxFree;
         return operationMargin;
     }
-
-
 }

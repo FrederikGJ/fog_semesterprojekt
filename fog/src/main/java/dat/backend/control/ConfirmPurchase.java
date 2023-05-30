@@ -36,7 +36,6 @@ public class ConfirmPurchase extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         try {
-
             int idOrders = Integer.parseInt(request.getParameter("idOrders"));
 
             Orders pendingOrder = AdminFacade.getOrdersById(idOrders, "pending", connectionPool);

@@ -37,7 +37,7 @@ public class ConfirmCarport extends HttpServlet {
 
         int length = Integer.parseInt(request.getParameter("length"));
         int width = Integer.parseInt(request.getParameter("width"));
-        User user = (User) session.getAttribute("user"); // Henter user ud fra session scope
+        User user = (User) session.getAttribute("user");
         String username = user.getUsername();
         String comment = request.getParameter("comment");
         request.getRequestDispatcher("WEB-INF/confirmation.jsp").forward(request, response);

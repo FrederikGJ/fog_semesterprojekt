@@ -51,6 +51,5 @@ public class EditInventory extends HttpServlet {
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
         request.getRequestDispatcher("WEB-INF/viewInventory.jsp").forward(request, response);
-
     }
 }

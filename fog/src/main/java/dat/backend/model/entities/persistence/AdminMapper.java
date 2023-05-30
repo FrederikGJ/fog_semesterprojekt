@@ -78,34 +78,6 @@ public class AdminMapper {
         }
     }
 
-
-    static List<Orders> getAllOrders(ConnectionPool connectionPool) throws DatabaseException {
-        List<Orders> ordersList = new ArrayList<>();
-        Orders orders;
-        String sql = "SELECT * FROM fog.orders";
-
-        try (Connection connection = connectionPool.getConnection()) {
-            try (PreparedStatement ps = connection.prepareStatement(sql)) {
-                ResultSet rs = ps.executeQuery();
-                while (rs.next()) {
-                    int idOrders = rs.getInt("idorders");
-                    String orderStatus = rs.getString("orderstatus");
-                    int length = rs.getInt("length");
-                    int width = rs.getInt("width");
-                    int totalPrice = rs.getInt("totalprice");
-                    String username = rs.getString("username");
-                    String comments = rs.getString("comments");
-                    orders = new Orders(idOrders, orderStatus, length, width, totalPrice, username, comments);
-                    ordersList.add(orders);
-                }
-            }
-        } catch (SQLException ex) {
-            throw new DatabaseException(ex, "Something went wrong with the database");
-        }
-        return ordersList;
-    }
-
-
     static List<Orders> getFinishedOrders(ConnectionPool connectionPool) throws DatabaseException {
         List<Orders> finishedOrders = new ArrayList<>();
         Orders orders;
@@ -130,33 +102,6 @@ public class AdminMapper {
             throw new DatabaseException(ex, "Something went wrong with the database");
         }
         return finishedOrders;
-    }
-
-
-    static List<Orders> getOngoingOrders(ConnectionPool connectionPool) throws DatabaseException {
-        List<Orders> ongoingOrders = new ArrayList<>();
-        Orders orders;
-        String sql = "SELECT * FROM fog.orders WHERE orderstatus = 'New' OR orderstatus = 'Pending' ORDER BY orderstatus ASC";
-
-        try (Connection connection = connectionPool.getConnection()) {
-            try (PreparedStatement ps = connection.prepareStatement(sql)) {
-                ResultSet rs = ps.executeQuery();
-                while (rs.next()) {
-                    int idOrders = rs.getInt("idorders");
-                    String orderStatus = rs.getString("orderstatus");
-                    int length = rs.getInt("length");
-                    int width = rs.getInt("width");
-                    int totalPrice = rs.getInt("totalprice");
-                    String username = rs.getString("username");
-                    String comments = rs.getString("comments");
-                    orders = new Orders(idOrders, orderStatus, length, width, totalPrice, username, comments);
-                    ongoingOrders.add(orders);
-                }
-            }
-        } catch (SQLException ex) {
-            throw new DatabaseException(ex, "Something went wrong with the database");
-        }
-        return ongoingOrders;
     }
 
     static Orders getOrdersById(int idOrders, String status, ConnectionPool connectionPool) throws DatabaseException {

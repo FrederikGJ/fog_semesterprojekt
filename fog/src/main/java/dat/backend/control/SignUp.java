@@ -44,7 +44,6 @@ public class SignUp extends HttpServlet {
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
         request.getRequestDispatcher("WEB-INF/welcome.jsp").forward(request, response);
-
     }
 }
 

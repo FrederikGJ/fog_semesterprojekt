@@ -12,21 +12,11 @@ public class BOM {
     //for the read CRUD operation in mapper we have
     int idMaterials;
 
-
-   /* public BOM(int quantity, String descriptionOfUSe,int idMaterials)
-    {
-        this.quantity = quantity;
-        this.descriptionOfUSe = descriptionOfUSe;
-        this.idMaterials = idMaterials;
-    }*/
-
-
     public BOM(Materials material, String descriptionOfUSe, int quantity) {
         this.material = material;
         this.descriptionOfUSe = descriptionOfUSe;
         this.quantity = quantity;
     }
-
 
     public BOM(int idOrders, int quantity, String descriptionOfUse, int idMaterials)
     {
@@ -64,8 +54,6 @@ public class BOM {
         return idMaterials;
     }
 
-
-
     public void setMaterial(Materials material) {
         this.material = material;
     }
@@ -73,6 +61,4 @@ public class BOM {
     public void setIdMaterials(int idMaterials) {
         this.idMaterials = idMaterials;
     }
-
-
 }

@@ -25,7 +25,6 @@ public class FinishedOrders extends HttpServlet
         this.connectionPool = ApplicationStart.getConnectionPool();
     }
 
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         // You shouldn't end up here with a GET-request, thus you get sent back to frontpage
@@ -39,7 +38,6 @@ public class FinishedOrders extends HttpServlet
         request.setCharacterEncoding("UTF-8");
 
         try{
-
             int idOrders = Integer.parseInt(request.getParameter("idOrders"));
             session.setAttribute("idOrders", idOrders);
 
@@ -59,7 +57,6 @@ public class FinishedOrders extends HttpServlet
 
             ArrayList<BOM> bomArrayList = BomFacade.getBOMById(idOrders, connectionPool);
             session.setAttribute("bomArrayList", bomArrayList);
-
 
             //calculates the totalBomPrice for existing order
             double totalBomPrice = 0;

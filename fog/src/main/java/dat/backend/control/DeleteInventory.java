@@ -16,7 +16,6 @@ import java.util.List;
 public class DeleteInventory extends HttpServlet {
     private ConnectionPool connectionPool;
 
-
     @Override
     public void init() {
         this.connectionPool = ApplicationStart.getConnectionPool();
@@ -46,6 +45,5 @@ public class DeleteInventory extends HttpServlet {
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
         request.getRequestDispatcher("WEB-INF/viewInventory.jsp").forward(request, response);
-
     }
 }

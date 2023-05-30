@@ -42,7 +42,6 @@ public class Login extends HttpServlet {
             session.setAttribute("admin", false);
 
             // adding user object to session scope
-
             if (user.getRole().equalsIgnoreCase("admin")) {
                 session.setAttribute("admin", true); // adding admin object to session scope
                 request.getRequestDispatcher("WEB-INF/welcomeAdmin.jsp").forward(request, response);

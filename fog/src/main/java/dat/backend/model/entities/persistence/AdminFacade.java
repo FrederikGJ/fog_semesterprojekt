@@ -25,16 +25,8 @@ public class AdminFacade {
         AdminMapper.editInventory(idMaterials, name, unitPrice, unit, description, length, connectionPool);
     }
 
-    public static List<Orders> getAllOrders(ConnectionPool connectionPool) throws DatabaseException {
-        return AdminMapper.getAllOrders(connectionPool);
-    }
-
     public static List<Orders> getFinishedOrders(ConnectionPool connectionPool) throws DatabaseException {
         return AdminMapper.getFinishedOrders(connectionPool);
-    }
-
-    public static List<Orders> getOngoingOrders(ConnectionPool connectionPool) throws DatabaseException {
-        return AdminMapper.getOngoingOrders(connectionPool);
     }
 
     public static List<Orders> getNewOrders(ConnectionPool connectionPool) throws DatabaseException {

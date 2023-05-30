@@ -22,7 +22,7 @@ public class DeclineCarport extends HttpServlet {
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-// You shouldn't end up here with a GET-request, thus you get sent back to frontpage
+        // You shouldn't end up here with a GET-request, thus you get sent back to frontpage
         response.sendRedirect("index.jsp");
     }
 
@@ -42,6 +42,5 @@ public class DeclineCarport extends HttpServlet {
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
         request.getRequestDispatcher("WEB-INF/viewOrders.jsp").forward(request, response);
-
     }
 }

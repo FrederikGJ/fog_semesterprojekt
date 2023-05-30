@@ -49,7 +49,6 @@ public class DeleteOrders extends HttpServlet {
 
             request.setAttribute("msgDelete", "Ordren er blevet slettet fra systemet");
 
-
         } catch (DatabaseException e) {
             e.printStackTrace();
             request.setAttribute("errormessage", e.getMessage());
@@ -58,4 +57,3 @@ public class DeleteOrders extends HttpServlet {
         request.getRequestDispatcher("WEB-INF/viewRequests.jsp").forward(request, response);
     }
 }
-

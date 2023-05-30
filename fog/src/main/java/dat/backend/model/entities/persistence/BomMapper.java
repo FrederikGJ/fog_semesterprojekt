@@ -14,20 +14,14 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class BomMapper
-{
+public class BomMapper {
 
     static void createBOM(Orders order, Materials material, String descriptionOfUSe,
-                          int quantity, ConnectionPool connectionPool) throws DatabaseException{
-
-        //TODO: Der er noget galt her som gør at DB ikke opdateres
+                          int quantity, ConnectionPool connectionPool) throws DatabaseException {
 
         Logger.getLogger("web").log(Level.INFO, "");
 
-        BOM bom;
         String sql = "insert into fog.BOM (idorders, quantity, description, idmaterials) values (?,?,?,?)";
-
-
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -36,25 +30,14 @@ public class BomMapper
                 ps.setString(3, descriptionOfUSe);
                 ps.setInt(4, material.getIdMaterials());
                 ps.executeUpdate();
-                /*
-                int rowsAffected = ps.executeUpdate();
-                if (rowsAffected == 1) {
-                    bom = new BOM( material, descriptionOfUSe, quantity);
-                } else {
-                    throw new DatabaseException("The BOM with idorders = " + order.getIdOrders() + " and descrition"
-                            + descriptionOfUSe + " could not be inserted into the database");
-                }
-
-                 */
             }
         } catch (SQLException ex) {
             throw new DatabaseException(ex, "Could not insert BOM into database");
         }
-        //return bom;
     }
 
 
-    static ArrayList<BOM> readBOM(ConnectionPool connectionPool) throws DatabaseException{
+    static ArrayList<BOM> readBOM(ConnectionPool connectionPool) throws DatabaseException {
         Logger.getLogger("web").log(Level.INFO, "");
         ArrayList<BOM> bomArrayList = new ArrayList<>();
         BOM bom;
@@ -63,13 +46,13 @@ public class BomMapper
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ResultSet rs = ps.executeQuery();
-                while(rs.next()) {
-                    int idorders= rs.getInt("idorders");
+                while (rs.next()) {
+                    int idorders = rs.getInt("idorders");
                     int quantity = rs.getInt("quantity");
                     String description = rs.getString("description");
                     int idmaterials = rs.getInt("idmaterials");
-                     bom = new BOM(idorders, quantity, description, idmaterials );
-                     bomArrayList.add(bom);
+                    bom = new BOM(idorders, quantity, description, idmaterials);
+                    bomArrayList.add(bom);
                 }
             }
         } catch (SQLException ex) {
@@ -86,8 +69,8 @@ public class BomMapper
 
         String sql = "SELECT * FROM fog.BOM WHERE idorders = ?";
 
-        try(Connection connection = connectionPool.getConnection()){
-            try(PreparedStatement ps = connection.prepareStatement(sql)){
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setInt(1, idOrders);
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
@@ -113,8 +96,8 @@ public class BomMapper
 
         String sql = "SELECT idorders FROM fog.BOM";
 
-        try(Connection connection = connectionPool.getConnection()){
-            try(PreparedStatement ps = connection.prepareStatement(sql)){
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
                     idOrders = rs.getInt("idorders");
@@ -126,7 +109,4 @@ public class BomMapper
         }
         return idOrdersList;
     }
-
-
-
 }

@@ -13,14 +13,4 @@ public class ListOfOrders {
         orderList.add(order);
     }
 
-    public List<Orders> getOrderList() {
-
-        return orderList;
-    }
-
-    public void resetOrderList() {
-        orderList.clear();
-    }
-
-
 }

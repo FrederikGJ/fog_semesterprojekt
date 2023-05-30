@@ -58,7 +58,6 @@ public class PendingOrders extends HttpServlet {
             ArrayList<BOM> bomArrayList = BomFacade.getBOMById(idOrders, connectionPool);
             session.setAttribute("bomArrayList", bomArrayList);
 
-
             //calculates the totalBomPrice for existing order
             double totalBomPrice = 0;
             for (BOM bom : bomArrayList) {
@@ -98,13 +97,11 @@ public class PendingOrders extends HttpServlet {
             String operationMarginTwoDecimals = String.format("%.2f", operationMargin);
             session.setAttribute("operationMargin", operationMarginTwoDecimals);
 
-
             request.getRequestDispatcher("WEB-INF/pendingOrders.jsp").forward(request, response);
 
         } catch (DatabaseException e) {
             request.setAttribute("errormessage", e.getMessage());
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
-
     }
 }

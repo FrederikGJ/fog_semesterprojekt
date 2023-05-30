@@ -14,7 +14,6 @@ public class CalculateBOM {
 
     public ArrayList<BOM> createCarportBOM(Orders order, int length, int width, ConnectionPool connectionPool) throws DatabaseException
     {
-
         ArrayList<BOM> bom = new ArrayList<>();
         List<Materials> materials = AdminFacade.getAllMaterials(connectionPool);
 
@@ -43,10 +42,8 @@ public class CalculateBOM {
 
     public double bomPrice(Orders orders, int choosenID) {
         ConnectionPool connectionPool = ApplicationStart.getConnectionPool();
-        //Materials materials = new Materials(choosenID);
-        List<BOM> allBOM = new ArrayList<>();
-        List<BOM> specificBOMForPriceCalc = new ArrayList<>();
-        List<Materials> allMaterials = new ArrayList<>();
+        List<BOM> allBOM;
+        List<Materials> allMaterials;
         double bomPrice = 0;
 
         //get all BOM from db;
@@ -62,19 +59,13 @@ public class CalculateBOM {
                     }
                 }
             }
-
-
-
             for (BOM bom : allBOM) {
                 bomPrice = (bom.getQuantity() * bom.material.getUnitPrice());
             }
-
         } catch (Exception e){
             e.printStackTrace();
         }
-
         return bomPrice;
-
     }
 
     //all functions below this point are helper functions for createCarportBOM
