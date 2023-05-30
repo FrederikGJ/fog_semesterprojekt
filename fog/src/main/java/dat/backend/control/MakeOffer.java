@@ -53,7 +53,7 @@ public class MakeOffer extends HttpServlet
 
             CalculateBOM calBom = new CalculateBOM();
 
-            //if the current order already exits in the database, it will not be added again.
+            //if the current bomlist for the specific order already exits in the database, it will not be added again.
            if(!listOfIdOrders.contains(idOrders)){
                 calBom.createCarportBOM(ongoingOrder, ongoingOrder.getLength(), ongoingOrder.getWidth(), connectionPool);
                 ArrayList<BOM> bomArrayList = BomFacade.getBOMById(idOrders, connectionPool);
@@ -80,7 +80,7 @@ public class MakeOffer extends HttpServlet
             session.setAttribute("autoSalesprice", autoSalesprice);
 
             String salespriceString = request.getParameter("salesprice");
-            //be setting the two equal, it will show the autoSalesprice in the start
+            //by setting the two equal, it will show the autoSalesprice in the start
             double salesprice = autoSalesprice;
             if (salespriceString != null){
                 salesprice = Double.parseDouble(salespriceString);

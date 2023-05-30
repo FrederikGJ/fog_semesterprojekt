@@ -40,7 +40,6 @@ public class ViewBOM extends HttpServlet
 
         try{
 
-
             int idOrders  = Integer.parseInt(request.getParameter("idOrders"));
             session.setAttribute("idOrders", idOrders);
 
@@ -72,67 +71,7 @@ public class ViewBOM extends HttpServlet
                 }
             }
 
-//            double totalBomPrice = 10891.80;
-//            //double totalBomPrice = calBom.bomPrice(ongoingOrder, idOrders);
-//            session.setAttribute("totalBomPrice", totalBomPrice);
-
-
-            //automatisk dækningsgrad
-            double autoOperationMargin = 39.02;
-
-            double autoSalesprice = Math.round(totalBomPrice/(1-(autoOperationMargin/100))*1.25);
-            session.setAttribute("autoSalesprice", autoSalesprice);
-
-            String salespriceString = request.getParameter("salesprice");
-            double salesprice = autoSalesprice;
-            if (salespriceString != null)
-            {
-                salesprice = Double.parseDouble(salespriceString);
-            }
-            session.setAttribute("salesprice", salesprice);
-
-
-            double salespriceTaxFree = salesprice/1.25;
-            String salesPriceTaxFreeTwoDecimals = String.format("%.2f", salespriceTaxFree);
-            session.setAttribute("salespriceTaxFree", salesPriceTaxFreeTwoDecimals);
-
-            Orders orders = new Orders();
-
-            //price change from autoSalesprice with operationMargin on 39.02 to new salesprice.
-            double priceChange = salesprice - autoSalesprice;
-            String priceChangeTwoDecimals = String.format("%.2f", priceChange);
-            session.setAttribute("priceChange", priceChangeTwoDecimals);
-
-            //dækningsbidrag
-            double grossProfit = orders.makeGrossProfit(salespriceTaxFree, totalBomPrice);
-            String grossProfitTwoDecimals = String.format("%.2f", grossProfit);
-            session.setAttribute("grossProfit", grossProfitTwoDecimals);
-
-            //dækningsgraden
-            double operationMargin = orders.makeOperationMargin(grossProfit, salespriceTaxFree);
-            String operationMarginTwoDecimals = String.format("%.2f", operationMargin);
-            session.setAttribute("operationMargin", operationMarginTwoDecimals);
-
-
-//            String autoAdminComment = "Bemaerkning fra Fog: ";
-//            session.setAttribute("autoAdminComment", autoAdminComment);
-//
-//            String adminCommentString = request.getParameter("adminComment");
-//
-//            String adminComment = autoAdminComment;
-//            if(adminCommentString != null)
-//            {
-//                adminComment = adminCommentString;
-//           }
-//            session.setAttribute("adminComment", adminComment);
-
-            //lavet funktioner til udregning inde i klassen Orders, giver det mening eller skal det ligge et andet sted?
-
-            // lav egen jsp og servlet til finishedOrder i stedet for MakeOffer
-            // Orders finishedOrder = AdminFacade.getOrdersById(idorders, "finished", connectionPool);
-            // session.setAttribute("finishedOrder", finishedOrder);
-
-            request.getRequestDispatcher("WEB-INF/makeOffer.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/viewBOM.jsp").forward(request, response);
 
         } catch(DatabaseException e){
             request.setAttribute("errormessage", e.getMessage());

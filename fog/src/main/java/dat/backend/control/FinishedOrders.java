@@ -50,7 +50,7 @@ public class FinishedOrders extends HttpServlet
 
             CalculateBOM calBom = new CalculateBOM();
 
-            //if the current order already exits in the database, it will not be added again.
+            //if the current bomlist for the specific order already exits in the database, it will not be added again.
             if(!listOfIdOrders.contains(idOrders)){
                 calBom.createCarportBOM(finishedOrder, finishedOrder.getLength(), finishedOrder.getWidth(), connectionPool);
                 ArrayList<BOM> bomArrayList = BomFacade.getBOMById(idOrders, connectionPool);

@@ -48,7 +48,7 @@ public class PendingOrders extends HttpServlet {
 
             CalculateBOM calBom = new CalculateBOM();
 
-            //if the current order already exits in the database, it will not be added again.
+            //if the current bomlist for the specific order already exits in the database, it will not be added again.
             if (!listOfIdOrders.contains(idOrders)) {
                 calBom.createCarportBOM(pendingOrder, pendingOrder.getLength(), pendingOrder.getWidth(), connectionPool);
                 ArrayList<BOM> bomArrayList = BomFacade.getBOMById(idOrders, connectionPool);

@@ -9,22 +9,32 @@
 
     <jsp:attribute name="footer">
     </jsp:attribute>
-
     <jsp:body>
 
-        <h1>Din carport er nu købt!</h1>
-        <h2>Se din færdige ordre på siden 'Mine bestillinger'</h2>
+        <div class="container">
+            <div class="row text-center mt-5">
+                <div class="col-12">
+                    <h1>Din carport er nu købt!</h1>
+                    <h2>Se din færdige ordre på siden 'Mine bestillinger'</h2>
+                </div>
+            </div>
 
-        <form action="welcome.jsp"  method="get">
-            <input type="submit" value="Startside" class="frontbutton">
-        </form>
-        <br>
-        <form action="viewOrders.jsp" method="get">
-            <input type="submit" value="Mine bestillinger" class="frontbutton">
-        </form>
+            <div class="row text-center mt-5">
+                <div class="col-12">
+                    <form action="welcome"  method="get">
+                        <input type="submit" value="Startside" class="frontbutton">
+                    </form>
+                </div>
+            </div>
 
-
+            <div class="row text-center mt-5">
+                <div class="col-12">
+                    <form action="vieworders" method="get">
+                        <input type="submit" value="Mine bestillinger" class="frontbutton">
+                    </form>
+                </div>
+            </div>
+        </div>
 
     </jsp:body>
-
 </t:pagetemplate>

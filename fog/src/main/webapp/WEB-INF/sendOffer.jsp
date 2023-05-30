@@ -8,7 +8,6 @@
     </jsp:attribute>
 
     <jsp:attribute name="footer">
-        Tilbuddet er sendt
     </jsp:attribute>
     <jsp:body>
 

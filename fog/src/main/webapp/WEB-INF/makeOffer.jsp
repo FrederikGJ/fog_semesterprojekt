@@ -121,7 +121,7 @@
                                             <label for="${sessionScope.salesprice}"></label>
                                             <input type="hidden" name="idOrders" value="${sessionScope.idOrders}" />
                                             <input class="mt-2" type="number" class="form-control text-center" id="${sessionScope.salesprice}" name="salesprice" value="${sessionScope.salesprice}"/>
-                                            <button class="custom-btn mt-2" type="submit" formaction="makeoffer"/>Opdater</button>
+                                            <button class="mt-2" type="submit" formaction="makeoffer">Opdater</button>
                                         </td>
                                     </tr>
                                     <tr>

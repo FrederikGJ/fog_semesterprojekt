@@ -66,7 +66,6 @@
                                     <th>Fuld pris</th>
                                     <th>Valg</th>
                                 </tr>
-
                                 <c:forEach var="orders" items="${sessionScope.pendingOrders}">
                                     <c:if test="${sessionScope.user.username == orders.username }">
                                         <tr>
